@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="分离以逗号隔开的数据 12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt">
+<meta name="description" content="分离以逗号隔开的数据12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt;">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handlebars使用中的一些工具集">
 <meta property="og:url" content="blog.wangguanwei.com/2017/10/19/Handlebars使用中的一些工具集/index.html">
 <meta property="og:site_name" content="薄梦风轻眠">
-<meta property="og:description" content="分离以逗号隔开的数据 12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt">
+<meta property="og:description" content="分离以逗号隔开的数据12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-01T15:54:23.034Z">
+<meta property="og:updated_time" content="2018-11-02T02:23:53.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handlebars使用中的一些工具集">
-<meta name="twitter:description" content="分离以逗号隔开的数据 12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt">
+<meta name="twitter:description" content="分离以逗号隔开的数据12345678910Handlebars.registerHelper(&amp;apos;splitDetailImg&amp;apos;,function (value) &amp;#123;        var splitvalue=value.split(&amp;apos;,&amp;apos;);        var reValues=[];        for ( var i=0; i&amp;lt;">
 
 
 
@@ -301,9 +301,11 @@
 
       
         <ul>
-<li><p>分离以逗号隔开的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Handlebars.registerHelper(&apos;splitDetailImg&apos;,function (value) &#123;</span><br><span class="line">        var splitvalue=value.split(&apos;,&apos;);</span><br><span class="line">        var reValues=[];</span><br><span class="line">        for ( var i=0; i&lt;splitvalue.length; i++ )&#123;</span><br><span class="line">            var reValue=&#123;&#125;;</span><br><span class="line">            reValue.name=splitvalue[i];</span><br><span class="line">            reValues[i]=reValue;</span><br><span class="line">        &#125;</span><br><span class="line">        return reValues;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<li>分离以逗号隔开的数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Handlebars.registerHelper(&apos;splitDetailImg&apos;,function (value) &#123;</span><br><span class="line">        var splitvalue=value.split(&apos;,&apos;);</span><br><span class="line">        var reValues=[];</span><br><span class="line">        for ( var i=0; i&lt;splitvalue.length; i++ )&#123;</span><br><span class="line">            var reValue=&#123;&#125;;</span><br><span class="line">            reValue.name=splitvalue[i];</span><br><span class="line">            reValues[i]=reValue;</span><br><span class="line">        &#125;</span><br><span class="line">        return reValues;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<a id="more"></a>
+<ul>
 <li><p>比较两个值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//sym可以是&lt;,&gt;,=</span><br><span class="line">Handlebars.registerHelper(&apos;compare&apos;,function (first, sym, sec) &#123;</span><br><span class="line">    var r=first+sym+sec;</span><br><span class="line">    return eval(r);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
@@ -353,10 +355,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/02/test/" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -424,7 +422,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
