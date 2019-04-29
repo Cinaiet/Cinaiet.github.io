@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="前言: 基于hexo + GitHub 构建个人博客，当前环境默认已安装git 和node，两者的安装方法这里不再赘述。 相关步骤 新建文件目录，并进入新的文件目录。 12mkdir blogcd blog/  安装hexo (-g 为全局安装)，并检查是否安装成功。由于本地已经安装hexo上述代码不再详细赘述。 12345wangguanweideMacBook-Pro:blog xiaowei">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-06T06:40:00.510Z">
+<meta property="og:updated_time" content="2019-04-25T07:10:27.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo常用命令">
 <meta name="twitter:description" content="前言: 基于hexo + GitHub 构建个人博客，当前环境默认已安装git 和node，两者的安装方法这里不再赘述。 相关步骤 新建文件目录，并进入新的文件目录。 12mkdir blogcd blog/  安装hexo (-g 为全局安装)，并检查是否安装成功。由于本地已经安装hexo上述代码不再详细赘述。 12345wangguanweideMacBook-Pro:blog xiaowei">
@@ -352,7 +352,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h6 id="以上。"><a href="#以上。" class="headerlink" title="以上。"></a>以上。</h6>
+<h6 id="以上。"><a href="#以上。" class="headerlink" title="以上。"></a>以上。</h6><hr>
+<h6 id="2019-04-25-补充"><a href="#2019-04-25-补充" class="headerlink" title="2019.04.25 补充"></a>2019.04.25 补充</h6><ol>
+<li>针对于每次发布部署新的文章之后，都需要在github page页上面重新配置解析的域名。<ul>
+<li>解决办法: 在blog/source/ 目录下，新建一个无任何格式的文件，文件名 CNAME。在CNAME文件中写入要解析到域名url</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim CNAME</span><br><span class="line">  blog.xxx.com // 在文件中写入域名url</span><br></pre></td></tr></table></figure>
+<h6 id="以上。-1"><a href="#以上。-1" class="headerlink" title="以上。"></a>以上。</h6>
       
     </div>
     
@@ -471,7 +479,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -482,7 +490,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -493,7 +501,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -526,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言-基于hexo-GitHub-构建个人博客，当前环境默认已安装git-和node，两者的安装方法这里不再赘述。"><span class="nav-number">1.</span> <span class="nav-text">前言: 基于hexo + GitHub 构建个人博客，当前环境默认已安装git 和node，两者的安装方法这里不再赘述。</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#相关步骤"><span class="nav-number"></span> <span class="nav-text">相关步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#以上。"><span class="nav-number">0.0.1.</span> <span class="nav-text">以上。</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言-基于hexo-GitHub-构建个人博客，当前环境默认已安装git-和node，两者的安装方法这里不再赘述。"><span class="nav-number">1.</span> <span class="nav-text">前言: 基于hexo + GitHub 构建个人博客，当前环境默认已安装git 和node，两者的安装方法这里不再赘述。</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#相关步骤"><span class="nav-number"></span> <span class="nav-text">相关步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#以上。"><span class="nav-number">0.0.1.</span> <span class="nav-text">以上。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2019-04-25-补充"><span class="nav-number">0.0.2.</span> <span class="nav-text">2019.04.25 补充</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#以上。-1"><span class="nav-number">0.0.3.</span> <span class="nav-text">以上。</span></a></li></ol></li></div>
             
 
           </div>
