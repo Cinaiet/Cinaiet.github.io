@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -87,7 +94,7 @@
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="前言上周上线的一个关于基金类的任务，有一个地方需要对浮点型的数据进行计算转换，漏判了一种情况以及对toFixed的滥用，直接导致线上页面无法正常加载，差点祭天…">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-25T06:48:57.272Z">
+<meta property="og:updated_time" content="2019-05-15T06:40:58.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js浮点型运算bug及toFixed">
 <meta name="twitter:description" content="前言上周上线的一个关于基金类的任务，有一个地方需要对浮点型的数据进行计算转换，漏判了一种情况以及对toFixed的滥用，直接导致线上页面无法正常加载，差点祭天…">
@@ -358,8 +365,8 @@
 
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>上周上线的一个关于基金类的任务，有一个地方需要对浮点型的数据进行计算转换，漏判了一种情况以及对toFixed的滥用，直接导致线上页面无法正常加载，差点祭天… </p>
-<hr>
 <a id="more"></a>
+<hr>
 <h4 id="问题复述"><a href="#问题复述" class="headerlink" title="问题复述"></a>问题复述</h4><p>服务端返回一个字段a: 0.3456 ，前端要展示a转化成百分比的值 以及 (1 - a) 的百分值，均保留一位小数。</p>
 <ul>
 <li>行吧，简单。</li>
@@ -509,7 +516,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +527,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
