@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[npm与包的发布]]></title>
+    <url>%2F2019%2F08%2F28%2Fnpm%E4%B8%8E%E5%8C%85%E7%9A%84%E5%8F%91%E5%B8%83%2F</url>
+    <content type="text"><![CDATA[前言 npm包的出现，一定程度上的解决了变量依赖、依赖关系等代码组织性问题。 包的结构 包实际上是一个存档文件，即一个目录直接打包为.zip或tar.gz格式的文件，安装后解压还原为目录。 package.json 包描述文件package.json中定义了如下必需字段(未全列入) name 包名 包名必须是唯一的，规范定义它需要由小写的字母和数字组成，可以包含、. _和 -，但不允许出现空格。 description 包简介。 version 版本号 keywords 关键字。用来NPM中的分类搜索。 未完待续… 发布包为了将整个流程串联起来，这里演示如何编写一个包，将其发布到npm仓库中，并通过npm安装到本地。 编写模块1234// 编写hello.jsexports.sayHello = function () &#123; return &apos;Hello World&apos;&#125; 初始化包描述文件package.json 文件的内容尽管相对较多，但实际发布一个包时不需要一行行编写。NPM提供 npm init 命令来帮助生成package.json 文件。123456789101112131415161718192021222324252627$ npm init // 以下内容NPM通过提问式的交互形式，来逐个填写。&#123; &quot;name&quot;: &quot;wgw_test&quot;, &quot;version&quot;: &quot;0.0.1&quot;, &quot;description&quot;: &quot;A Wgw Hello Test&quot;, &quot;main&quot;: &quot;hello.js&quot;, &quot;scripts&quot;: &#123; &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot; &#125;, &quot;repository&quot;: &#123; &quot;type&quot;: &quot;git&quot;, &quot;url&quot;: &quot;git+https://github.com/Cinaiet/wgw_hello.git&quot; &#125;, &quot;keywords&quot;: [ &quot;wgw&quot;, &quot;hello&quot;, &quot;world&quot; ], &quot;author&quot;: &quot;cinaiet&quot;, &quot;license&quot;: &quot;ISC&quot;, &quot;bugs&quot;: &#123; &quot;url&quot;: &quot;https://github.com/Cinaiet/wgw_hello/issues&quot; &#125;, &quot;homepage&quot;: &quot;https://github.com/Cinaiet/wgw_hello#readme&quot;&#125; 注册npm包仓库账号为了维护包，NPM必须要使用仓库账号才允许将包发布到仓库中。注册命令是npm adduser，这也是一个提问式的交互过程。注：注册成功之后，务必去npm官网激活邮箱， 这点很重要，关联到包能否正常发布 1234$ npm adduser Username: xxx Password: xxx Email: xxx 上传包上传包的命令是npm publish 。在刚刚创建package.json的文件夹下，执行npm publish .，开始上传包。 安装包安装包的命令是npm install xxx或 npm install xxx -g (全局安装) 以上。]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>花满楼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[你该如何找到理财正确的方向]]></title>
     <url>%2F2019%2F05%2F16%2Ffinance%2F</url>
     <content type="text"><![CDATA[前言 是什么让你决定开始理财？理财是赚钱吗？ 理财的认知 应时刻谨记，你不是为了赚钱而理财，而是为了拥有更好的生活而理财。 理财只是用来“改善生活”提升幸福感的，绝不是用来逆袭改变命运的。 为什么要理财？通货膨胀通货膨胀，就是钱的购买力越来越低。其实质是社会总需求大于社会总供给 。《小狗钱钱》一书中有提到一个72定理，它可以告诉我们在一定通货膨胀率下，我们的钱在多长时间后会贬值一半。假如说通货膨胀率为3%， 72 / 3 = 24 ，就是说24年以后，你的钱将会贬值一半。 增加被动收入让钱动起来，让钱为你工作。 规划 理财是规划，是打理我们的时间、也是打理我们的生活。理财的目的不应该是是为了追求收益，而是可以通过理财规划去实现每个人生阶段的财务需求目标，使得生活更美好。理财是一场平淡而持久的人生管理，是伴随我们一生的一种生活方式。 理财误区没钱没法理财你不理财，财不理你。理财不仅仅是投资，还包括了收支规划、养老安排、子女教育、甚至税务筹划等等。它不是一个简单的工具，更多的是一种思维习惯和生活方式。 把所有的钱都拿去投资不要把所有的鸡蛋都放在同一个篮子里。钱应该分位4份： 1份用来日常花销；一份用来买保障；一份用来跑赢通货膨胀；还有一份，用来赚取高收益。 不懂不投刚考完驾照的时候，你敢上高速莫？(Ps: 感觉这个例子不恰当，后续再做修改。我驾照没俩月的时候已经两趟高速了。) 靠运气赚来的钱最终会被靠实力亏掉。 20190517补充 你有多少钱可以用来理财？在理财投资之前，应该清楚的知道自己的资产状况。只有知道自己有多少资产，才能做出正确的投资行为。 资产负债什么是资产？资产，就是能换成钱的东西。比方说你的房子、车子、工资、甚至是别人欠你的钱，都算作资产（Ps: 钱本身就是资产）。 什么是负债？负债，就是你欠别人的钱。比方说你的房贷、车贷、信用卡、甚至是借的别人的钱，都算作负债。 所有者权益所有者权益就是真正属于你自己的钱会计学上有个公式: 资产=负债 + 所有者权益 资产减负值，才是真正属于你自己的钱。意思是指，你所拥有的钱，等于你借来的钱，加上真正属于你的钱。 资产负债表 资产种类 本月余额 负债种类 本月负债 现金 熟人借款 定期存款 信用卡欠款 活期存款 花呗 理财型保险 京东白条 货币基金 微粒贷 其它种类基金 其它手机借款 股票 房贷 收藏品 车贷 汽车 电器 应收借款 本月总负债 其它 所有者权益(总资产 - 总负债) 本月总资产 资产负债率(总负债 / 总资产) . 收入支出表收入支出表，就是根据自己的收支情况，每天做一个基本的记录。收入多少，花费多少。 弄清楚这几个概念，以后应当养成每周或每月记录消费情况，用来看清楚自己的收支情况。]]></content>
