@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="大千世界,数据结构,">
+  <meta name="keywords" content="核心原理,">
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="痛并快乐着。">
-<meta name="keywords" content="大千世界,数据结构">
+<meta name="description" content="语句，是 JavaScript 中组织代码的基础语法组件，包括函数声明等等在内的六种声明，其实都被归为“语句”的范畴。所以，理解“语句”在 JavaScript 中的语义是重中之重。 尽管如此，实际上要了解的也无非是顺序、分支、循环这三种执行逻辑而已，相比于它们，其它语句在语义上的复杂性通常不值一提。而这三种逻辑中尤其复杂的就是循环。 块在ES6之后，JavaScript实现了块级作用域。因此">
+<meta name="keywords" content="核心原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构和算法之美">
-<meta property="og:url" content="https:// blog.wangguanwei.com/2020/04/06/数据结构和算法之美/index.html">
+<meta property="og:title" content="for循环">
+<meta property="og:url" content="https:// blog.wangguanwei.com/2020/06/14/for循环/index.html">
 <meta property="og:site_name" content="薄梦风轻眠">
-<meta property="og:description" content="痛并快乐着。">
+<meta property="og:description" content="语句，是 JavaScript 中组织代码的基础语法组件，包括函数声明等等在内的六种声明，其实都被归为“语句”的范畴。所以，理解“语句”在 JavaScript 中的语义是重中之重。 尽管如此，实际上要了解的也无非是顺序、分支、循环这三种执行逻辑而已，相比于它们，其它语句在语义上的复杂性通常不值一提。而这三种逻辑中尤其复杂的就是循环。 块在ES6之后，JavaScript实现了块级作用域。因此">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-18T15:50:17.816Z">
+<meta property="og:updated_time" content="2020-06-14T15:18:33.614Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构和算法之美">
-<meta name="twitter:description" content="痛并快乐着。">
+<meta name="twitter:title" content="for循环">
+<meta name="twitter:description" content="语句，是 JavaScript 中组织代码的基础语法组件，包括函数声明等等在内的六种声明，其实都被归为“语句”的范畴。所以，理解“语句”在 JavaScript 中的语义是重中之重。 尽管如此，实际上要了解的也无非是顺序、分支、循环这三种执行逻辑而已，相比于它们，其它语句在语义上的复杂性通常不值一提。而这三种逻辑中尤其复杂的就是循环。 块在ES6之后，JavaScript实现了块级作用域。因此">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https:// blog.wangguanwei.com/2020/04/06/数据结构和算法之美/">
+  <link rel="canonical" href="https:// blog.wangguanwei.com/2020/06/14/for循环/">
 
 
 
 
 
-  <title>数据结构和算法之美 | 薄梦风轻眠</title>
+  <title>for循环 | 薄梦风轻眠</title>
   
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2020/04/06/数据结构和算法之美/">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2020/06/14/for循环/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cinaiet">
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构和算法之美</h1>
+          <h1 class="post-title" itemprop="name headline">for循环</h1>
         
 
         <div class="post-meta">
@@ -304,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T13:09:22+08:00">
-                2020-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T23:18:33+08:00">
+                2020-06-14
               </time>
             
 
@@ -327,8 +327,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大千世界/" itemprop="url" rel="index">
-                    <span itemprop="name">大千世界</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -364,56 +364,61 @@
       
 
       
-        <p>痛并快乐着。<br><a id="more"></a></p>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="大O复杂度表示法-时间复杂度"><a href="#大O复杂度表示法-时间复杂度" class="headerlink" title="大O复杂度表示法(时间复杂度)"></a>大O复杂度表示法(时间复杂度)</h3><p>T(n) = O(f(n))<br>T(n)表示代码执行的时间；n 表示数据规模的大小；f(n) 表示每行代码执行的次数总和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 例1</span><br><span class="line">function cal1 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 例2</span><br><span class="line">function cal2 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    let j = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        j = 1;</span><br><span class="line">        for(; i &lt;= n; j++) &#123;</span><br><span class="line">            sum = sum + i * j</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>假设每行代码的运行时间为x,例1中的第二三行代码，分别需要x个时间,第4、5行代码,各执行了n次,执行时间分别需要 n <em> x。所以例1中代码执行时间需要(2n+2) </em>x 。可以看出，<strong>所有代码的执行时间 T(n) 与每行代码的执行次数成正比。</strong></p>
-<p>所以例2中代码所需要的执行时间T(n) = 2n² + 2n + 3.<br>即: <strong>所有代码的执行时间 T(n) 与每行代码的执行次数 n 成正比</strong></p>
-<p><strong>大 O 时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码执行时间随数据规模增长的变化趋势</strong></p>
-<h4 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4><ul>
-<li>只关注循环执行次数最多的一段代码。<br>如例1中的代码，2、3行代码的执行时间都是常量级,与n的大小无关，所以对于复杂度并没有影响。循环执行次数最多的是第 4、5 行代码，所以这块代码要重点分析。这两行代码被执行了 n 次，所以总的时间复杂度就是 O(n)。</li>
-<li>加法法则: 总复杂度等于量级最大的那段代码的复杂度</li>
-<li>乘法法则: 嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
-<li>O(m+n)、O(m*n)<br>如一个函数中有两个数据规模的量，在事先又无法评估谁的量级大，所以我们在表示复杂度的时候，就不能简单地利用加法法则，省略掉其中一个。所以，上面代码的时间复杂度就是 O(m+n)。乘法一样。<h4 id="最好、最坏情况时间复杂度"><a href="#最好、最坏情况时间复杂度" class="headerlink" title="最好、最坏情况时间复杂度"></a>最好、最坏情况时间复杂度</h4>最好情况时间复杂度就是，在最理想的情况下，执行这段代码的时间复杂度。<br>最坏情况时间复杂度就是，在最糟糕的情况下，执行这段代码的时间复杂度。<h4 id="平均情况时间复杂度"><a href="#平均情况时间复杂度" class="headerlink" title="平均情况时间复杂度"></a>平均情况时间复杂度</h4>比如要查找的变量 x 在数组中的位置，有 n+1 种情况：在数组的 0～n-1 位置中和不在数组中。我们把每种情况下，查找需要遍历的元素个数累加起来，然后再除以 n+1，就可以得到需要遍历的元素个数的平均值<br>(1 + 2 + 3 + … + n + n) / (n+1) <h4 id="均摊时间复杂度"><a href="#均摊时间复杂度" class="headerlink" title="均摊时间复杂度"></a>均摊时间复杂度</h4>在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结果就等于低级别复杂度<br>均摊复杂度在以下两个条件满足时使用</li>
-</ul>
-<ol>
-<li>代码在绝大多数情况下是低级别复杂度，只有极少数情况是高级别复杂度；</li>
-<li>低级别和高级别复杂度出现具有时序规律。均摊结果一般都等于低级别复杂度。<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3>表示算法的存储空间与数据规模之间的增长关系。</li>
-</ol>
-<h2 id="数据结构类型"><a href="#数据结构类型" class="headerlink" title="数据结构类型"></a>数据结构类型</h2><h3 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h3><p>线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。<br>数组，链表、队列、栈等都是线性表结构。</p>
-<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>数组,用一组连续的内存空间，来存储一组具有相同类型的数据。</p>
+        <a id="more"></a> 
+<p>语句，是 JavaScript 中组织代码的基础语法组件，包括函数声明等等在内的六种声明，其实都被归为“语句”的范畴。<br>所以，理解“语句”在 JavaScript 中的语义是重中之重。</p>
+<p>尽管如此，实际上要了解的也无非是顺序、分支、循环这三种执行逻辑而已，相比于它们，其它语句在语义上的复杂性通常不值一提。而这三种逻辑中尤其复杂的就是循环。</p>
+<h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>在ES6之后，JavaScript实现了块级作用域。因此，现在绝大多数语句都基于这一作用域的概念来实现。<br>然而，事实上正好相反。<br>真正的状况是，绝大多数 JavaScript 语句都并没有自己的块级作用域。从语言设计的原则上来看，越少作用域的执行环境调度效率也就越高，执行时的性能也就越好。</p>
+<p>基于这个原则，switch语句被设计为有且仅有一个作用域，无论它有多少个 case 语句，其实都是运行在一个块级作用域环境中的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var x = 100, c = &apos;a&apos;;</span><br><span class="line">switch (c) &#123;</span><br><span class="line">  case &apos;a&apos;: </span><br><span class="line">    console.log(x); // ReferenceError</span><br><span class="line">    break;</span><br><span class="line">  case &apos;b&apos;:</span><br><span class="line">    let x = 200;</span><br><span class="line">    break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，switch 语句内是无法访问到外部变量x的，即便声明变量x的分支case ‘b’永远都执行不到，但它里面的x却已经声明了，并且导致case ‘a’中的代码无法访问到外部的<code>x = 100</code>。这是因为所有分支都处在同一个块级作用域中（case ‘a’ 和 case ‘b’使用了同一个闭包），所以任意分支的声明都会给该作用域添加这个标识符，从而覆盖了全局的变量x。</p>
+<p>一些简单的、显而易见的块级作用域包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">// 例1</span><br><span class="line">try &#123;</span><br><span class="line">  // 作用域1</span><br><span class="line">&#125;</span><br><span class="line">catch (e) &#123; // 表达式e位于作用域2</span><br><span class="line">  // 作用域2</span><br><span class="line">&#125;</span><br><span class="line">finally &#123;</span><br><span class="line">  // 作用域3</span><br><span class="line">&#125;</span><br><span class="line">// 例2</span><br><span class="line">//（注：没有使用大括号）</span><br><span class="line">with (x) /* 作用域1 */; // &lt;- 这里存在一个块级作用域</span><br><span class="line">// 例3, 块语句</span><br><span class="line">&#123;</span><br><span class="line">  // 作用域1</span><br></pre></td></tr></table></figure></p>
+<p>除了这三个语句和“一个特例”之外，所有其它的语句都是没有块级作用域的。例如if条件语句的几种常见书写形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (x) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">// or</span><br><span class="line">if (x) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这些语法中的“块级作用域”都是一对大括号表示的“块语句”自带的，与上面的“例 3”是一样的，而与if语句本身无关。</p>
+<h3 id="循环语句中的块"><a href="#循环语句中的块" class="headerlink" title="循环语句中的块"></a>循环语句中的块</h3><p>并不是所有的循环语句都有自己的块级作用域，例如 while 和 do…while 语句就没有。而且，也不是所有 for 语句都有块级作用域。在 JavaScript 中，有且仅有：</p>
+<blockquote>
+<p> for (&lt;let/const&gt; …) …</p>
+</blockquote>
+<p>这个语法有自己的块级作用域。当然，这也包括相同设计的for await和for .. of/in ..。</p>
+<blockquote>
+<p>for await (&lt;let/const&gt; x of …) …<br>for (&lt;let/const&gt; x … in …) …<br>for (&lt;let/const&gt; x … of …) …</p>
+</blockquote>
+<p>在es6中，其实for只要写大括号就代表着块级作用域。所以只要写大括号，不管用let 还是 var，一定是会创建相应循环数量的块级作用域。<br>如果不用大括号，在for中使用了let，也会创建相应循环数量的块级作用域。</p>
+<h3 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h3><p>所有在语句内可以存在的东西只有四种：表达式、其它语句、标识符声明（取决于声明语句或其它的隐式声明的方式），以及一种特殊的语法元素，称为“标签（例如标签化语句，或 break 语句指向的目标位置）”。</p>
+<p>所谓“块级作用域”，本质上只包括一组标识符。因此，只有当存在潜在标识符冲突的时候，才有必要新添加一个作用域来管理它们。例如函数，由于函数存在“重新进入”的问题，所以它必须有一个作用域来管理“重新进入之前”的那些标识符。这个东西被称为“闭包”。</p>
+<blockquote>
+<p>NOTE: 在语言设计时，有三种需求会促使语句构建自己的作用域，标识符管理只是其中之一。其它两种情况，要么是因为在语法上支持多语句（例如 try…catch…finally 语句），要么是语句所表达的语义要求有一个块，例如“块语句{ }”在语义上就要求它自己是一个块级作用域。</p>
+</blockquote>
+<h3 id="特例中的特例"><a href="#特例中的特例" class="headerlink" title="特例中的特例"></a>特例中的特例</h3><p>“var 声明”是特例中的特例。</p>
+<p>这一特性来自于 JavaScript 远古时代的作用域设计。在早期的 JavaScript 中，并没有所谓的块级作用域，那个时候的作用域设计只有“函数内”和“函数外”两种，如果一个标识符不在任何（可以多层嵌套的）函数内的话，那么它就一定是在“全局作用域”里。</p>
+<p>而在这个时代，变量也就只有“var 声明”的变量。由于作用域只有上面两个，所以任何一个“var 声明”的标识符，要么是在函数内的，要么就是在全局的，没有例外。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (var x = ...)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>按照早期的设计，变量x是不应该出现在for 语句所在的”块级作用域中的。</p>
+<p>它应该出现其外层的某个函数作用域，或者全局作用域中。这种越过当前语法范围，而在更外围的作用域中登记名字行为就称为“提升“。</p>
 <ul>
-<li>连续的内存空间和相同类型的数据</li>
-<li>支持随机访问</li>
-<li>低效的“插入”和“删除”<br>如果某个数组中，需要在arr[x]的位置插入一个新的val，就需要将原来的x向后挪出一位，最坏的时间复杂度的情况为O(n)</li>
+<li>所有”var 声明“和函数声明的标识符都登记为 varNames，使用“变量作用域”管理；</li>
+<li>其它情况下的标识符 / 变量声明，都作为 lexicaNames 登记，使用“词法作用域”管理。</li>
 </ul>
-<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>与数组相反，它并不需要一块一块连续的内存空间，它通过“指针”将一组零散的内存块串联起来使用。其中，我们把内存块称为链表的”结点”。为了将所有的结点串起来，每个链表的结点除了存储数据之外，还需要记录链上的下一个结点的地址。</p>
-<h5 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--&gt; data --&gt; data -- &gt; data --&gt; null</span><br></pre></td></tr></table></figure>
-<p>单链表有两个结点比较特殊,头结点(第一个结点)和尾结点(最后一个结点指向null)</p>
-<ul>
-<li>插入删除非常便捷</li>
-<li>但随即访问没有数组高效，无法像数组一样通过下标获取，而是需要根据指针一个结点一个结点地依次遍历，直到找到相应的结点。<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5>是一种特殊的单链表。<br>单链表的尾结点指向null(空地址),而循环链表的尾结点指针是指向链表的头结点.<h5 id="双向链表。"><a href="#双向链表。" class="headerlink" title="双向链表。"></a>双向链表。</h5>单向链表只有一个方向，结点只有一个后继指针 next 指向后面的结点。而双向链表，顾名思义，它支持两个方向，每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。</li>
-<li>双向链表需要额外的两个空间来存储后继结点和前驱结点的地址。所以，如果存储同样多的数据，双向链表要比单链表占用更多的内存空间。虽然两个指针比较浪费存储空间，但可以支持双向遍历，这样也带来了双向链表操作的灵活性。</li>
-</ul>
-<p>####链表与数组的对比</p>
-<ul>
-<li>数组大小固定，一经声明就要占用整块连续内存空间。链表本身没有大小的限制，天然地支持动态扩容。<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5>将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针，或者反过来说，指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量。</li>
-</ul>
-<p><strong>插入结点时一定要注意: 如果希望在a结点和b结点插入c结点，要先将c的next结点指向b，再将a的next结点指向c,这样才不会丢失指针，导致内存泄漏。同理，删除链表结点时，也一定要记得手动释放内存空间。</strong></p>
-<h5 id="如何优雅的写出链表代码"><a href="#如何优雅的写出链表代码" class="headerlink" title="如何优雅的写出链表代码"></a>如何优雅的写出链表代码</h5><ol>
-<li>理解指针或引用的含义</li>
-<li>警惕指针丢失和内存泄漏（单链表）</li>
-<li>利用“哨兵”简化实现难度<br>链表中的“哨兵”节点是解决边界问题的，不参与业务逻辑。如果我们引入“哨兵”节点，则不管链表是否为空，head指针都会指向这个“哨兵”节点。我们把这种有“哨兵”节点的链表称为带头链表，相反，没有“哨兵”节点的链表就称为不带头链表。</li>
-<li>重点留意边界条件处理</li>
-<li>举例画图，辅助思考</li>
-</ol>
-<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>先进后出，后进先出。</p>
-<ul>
-<li>只允许在端插入和删除数据</li>
-<li>存储运行方法的形参、局部变量、返回值。由系统自动分配和回收。</li>
-<li>可以由数组实现<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4>先进先出</li>
-<li>最基本的操作有两个：入队 enqueue()，放一个数据到队列尾部；出队 dequeue()，从队列头部取一个元素。</li>
-<li>可以由数组实现，也可以用链表来实现。用数组实现的栈叫作顺序栈，用链表实现的栈叫作链式栈。同样，用数组实现的队列叫作顺序队列，用链表实现的队列叫作链式队列。</li>
-</ul>
+<blockquote>
+<p>NOTE: 考虑到对传统 JavaScript 的兼容，函数内部的顶层函数名是提升到变量作用域中来管理的。 &gt; &gt; NOTE: 我通常会将“在变量声明语句前使用该变量”也称为一种提升效果（Hoisting effect)，但这种说法不见于 ECMAScript 规范。ES 规范将这种“提前使用”称为“访问一个未初始化的绑定（uninitialized mutable/immutable binding）”。而所谓“var 声明能被提前使用”的效果，事实上是“var 变量总是被引擎预先初始化为 undefined”的一种后果。</p>
+</blockquote>
+<p>所以，语句for (&lt;const/let&gt; x …) …语法中的标识符x是一个词法名字，应该由for语句为它创建一个（块级的）词法作用域来管理之。</p>
+<h3 id="第二个作用域"><a href="#第二个作用域" class="headerlink" title="第二个作用域"></a>第二个作用域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var x = 100;</span><br><span class="line">for (let x = 102; x &lt; 105; x++)</span><br><span class="line">  console.log(&apos;value:&apos;, x);  // 显示“value: 102~104”</span><br><span class="line">console.log(&apos;outer:&apos;, x); // 显示“outer: 100”</span><br></pre></td></tr></table></figure>
+<p>因为for语句的这个块级作用域的存在，导致循环体内访问了一个局部的x值（循环变量），而外部的（outer）变量x是不受影响的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for (let x = 102; x &lt; 105; x++)</span><br><span class="line">  let x = 200;</span><br></pre></td></tr></table></figure>
+<p>如果循环体（单个语句）允许支持新的变量声明，那么为了避免它影响到循环变量，就必须为它再提供另一个块级作用域。在这里，JavaScript 是不允许声明新的变量的。上述的示例会抛出一个异常，提示“单语句不支持词法声明”：</p>
+<blockquote>
+<p> SyntaxError: Lexical declaration cannot appear in a single-statement context</p>
+</blockquote>
+<p>这个语法错误并不常见，因为很少有人会尝试构建这样的特殊代码。然而事实上，它是一个普遍存在的语法禁例。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// if语句中的禁例</span><br><span class="line">if (false) let x = 100;</span><br><span class="line">// while语句中的禁例</span><br><span class="line">while (false) let x = 200;</span><br><span class="line">// with语句中的禁例</span><br><span class="line">with (0) let x = 300</span><br></pre></td></tr></table></figure></p>
+<p>所以，现在可以确定：循环语句（对于支持“let/const”的 for 语句来说）“通常情况下”只支持一个块级作用域。更进一步地说，在上面的代码中，我们并没有机会覆盖 for 语句中的“let/const”声明。</p>
+<p>但是对于下面这个例子来说，“只有一个块级作用域”就不够了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for (let i in x) ...;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，“let i …”在语义上就需要被执行多次——因为在静态结构中它的多次迭代都作用于同一个语法元素。而你是知道的，let 语句的变量不能重复声明的。所以，这里就存在了一个冲突：“let/const”语句的单次声明（不可覆盖）的设计，与迭代多次执行的现实逻辑矛盾了。</p>
+<p>这个矛盾的起点，就是“只有一个块级作用域”。所以，在 JavaScript 引擎实现“支持 <em>let/const</em> 的 for 语句”时，就在这个地方做了特殊处理：为循环体增加一个作用域。</p>
+<p>这样一来，“let i”就可以只执行一次，然后将“i in x”放在每个迭代中来执行，这样避免了与“let/const”的设计冲突。</p>
+<h3 id="for-循环的代价"><a href="#for-循环的代价" class="headerlink" title="for 循环的代价"></a>for 循环的代价</h3><p>块语句在每个迭代中都会都会创建一次它自己的块级作用域副本。这个循环体越大，支持的层次越多，那么这个环境的创建也就越频繁，代价越高昂。再加上可以使用函数闭包将环境传递出去，或交给别的上下文引用，这里的负担就更是雪上加霜了。</p>
+<p>也就是所谓“循环与函数递归在语义上等价”。所以在事实上，上述这种 for 循环并不比使用函数递归节省开销。在函数调用中，这里的循环变量通常都是通过函数参数传递来处理的。因而，那些支持“let/const”的 for 语句，本质上也就与“在函数参数界面中传递循环控制变量的递归过程”完全等价，并且在开销上也是完全一样的。</p>
+<p>因为每一次函数调用其实都会创建一个新的闭包——也就是函数的作用域的一个副本。</p>
 
       
     </div>
@@ -431,9 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/大千世界/" rel="tag"># 大千世界</a>
-          
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/tags/核心原理/" rel="tag"># 核心原理</a>
           
         </div>
       
@@ -446,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/29/web协议详解/" rel="next" title="web协议详解">
-                <i class="fa fa-chevron-left"></i> web协议详解
+              <a href="/2020/06/14/export-default-function/" rel="next" title="export default function() {} ">
+                <i class="fa fa-chevron-left"></i> export default function() {} 
               </a>
             
           </div>
@@ -455,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/21/前端梳理/" rel="prev" title="前端梳理">
-                前端梳理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-number">1.</span> <span class="nav-text">复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大O复杂度表示法-时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">大O复杂度表示法(时间复杂度)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最好、最坏情况时间复杂度"><span class="nav-number">1.1.2.</span> <span class="nav-text">最好、最坏情况时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均情况时间复杂度"><span class="nav-number">1.1.3.</span> <span class="nav-text">平均情况时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均摊时间复杂度"><span class="nav-number">1.1.4.</span> <span class="nav-text">均摊时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间复杂度"><span class="nav-number">1.2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构类型"><span class="nav-number">2.</span> <span class="nav-text">数据结构类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性表"><span class="nav-number">2.1.</span> <span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">2.1.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单链表"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#循环链表"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#双向链表。"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">双向链表。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指针"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">指针</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何优雅的写出链表代码"><span class="nav-number">2.1.2.5.</span> <span class="nav-text">如何优雅的写出链表代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈"><span class="nav-number">2.1.3.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">2.1.4.</span> <span class="nav-text">队列</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#块"><span class="nav-number">1.</span> <span class="nav-text">块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句中的块"><span class="nav-number">2.</span> <span class="nav-text">循环语句中的块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特例"><span class="nav-number">3.</span> <span class="nav-text">特例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特例中的特例"><span class="nav-number">4.</span> <span class="nav-text">特例中的特例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二个作用域"><span class="nav-number">5.</span> <span class="nav-text">第二个作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-循环的代价"><span class="nav-number">6.</span> <span class="nav-text">for 循环的代价</span></a></li></ol></div>
             
 
           </div>

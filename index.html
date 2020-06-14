@@ -274,6 +274,348 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2020/06/14/for循环/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/14/for循环/" itemprop="url">for循环</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T23:18:33+08:00">
+                2020-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>语句，是 JavaScript 中组织代码的基础语法组件，包括函数声明等等在内的六种声明，其实都被归为“语句”的范畴。<br>所以，理解“语句”在 JavaScript 中的语义是重中之重。</p>
+<p>尽管如此，实际上要了解的也无非是顺序、分支、循环这三种执行逻辑而已，相比于它们，其它语句在语义上的复杂性通常不值一提。而这三种逻辑中尤其复杂的就是循环。</p>
+<h3 id="块"><a href="#块" class="headerlink" title="块"></a>块</h3><p>在ES6之后，JavaScript实现了块级作用域。因此，现在绝大多数语句都基于这一作用域的概念来实现。<br>然而，事实上正好相反。<br>真正的状况是，绝大多数 JavaScript 语句都并没有自己的块级作用域。从语言设计的原则上来看，越少作用域的执行环境调度效率也就越高，执行时的性能也就越好。</p>
+<p>基于这个原则，switch语句被设计为有且仅有一个作用域，无论它有多少个 case 语句，其实都是运行在一个块级作用域环境中的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var x = 100, c = &apos;a&apos;;</span><br><span class="line">switch (c) &#123;</span><br><span class="line">  case &apos;a&apos;: </span><br><span class="line">    console.log(x); // ReferenceError</span><br><span class="line">    break;</span><br><span class="line">  case &apos;b&apos;:</span><br><span class="line">    let x = 200;</span><br><span class="line">    break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，switch 语句内是无法访问到外部变量x的，即便声明变量x的分支case ‘b’永远都执行不到，但它里面的x却已经声明了，并且导致case ‘a’中的代码无法访问到外部的<code>x = 100</code>。这是因为所有分支都处在同一个块级作用域中（case ‘a’ 和 case ‘b’使用了同一个闭包），所以任意分支的声明都会给该作用域添加这个标识符，从而覆盖了全局的变量x。</p>
+<p>一些简单的、显而易见的块级作用域包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">// 例1</span><br><span class="line">try &#123;</span><br><span class="line">  // 作用域1</span><br><span class="line">&#125;</span><br><span class="line">catch (e) &#123; // 表达式e位于作用域2</span><br><span class="line">  // 作用域2</span><br><span class="line">&#125;</span><br><span class="line">finally &#123;</span><br><span class="line">  // 作用域3</span><br><span class="line">&#125;</span><br><span class="line">// 例2</span><br><span class="line">//（注：没有使用大括号）</span><br><span class="line">with (x) /* 作用域1 */; // &lt;- 这里存在一个块级作用域</span><br><span class="line">// 例3, 块语句</span><br><span class="line">&#123;</span><br><span class="line">  // 作用域1</span><br></pre></td></tr></table></figure></p>
+<p>除了这三个语句和“一个特例”之外，所有其它的语句都是没有块级作用域的。例如if条件语句的几种常见书写形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (x) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">// or</span><br><span class="line">if (x) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这些语法中的“块级作用域”都是一对大括号表示的“块语句”自带的，与上面的“例 3”是一样的，而与if语句本身无关。</p>
+<h3 id="循环语句中的块"><a href="#循环语句中的块" class="headerlink" title="循环语句中的块"></a>循环语句中的块</h3><p>并不是所有的循环语句都有自己的块级作用域，例如 while 和 do…while 语句就没有。而且，也不是所有 for 语句都有块级作用域。在 JavaScript 中，有且仅有：</p>
+<blockquote>
+<p> for (&lt;let/const&gt; …) …</p>
+</blockquote>
+<p>这个语法有自己的块级作用域。当然，这也包括相同设计的for await和for .. of/in ..。</p>
+<blockquote>
+<p>for await (&lt;let/const&gt; x of …) …<br>for (&lt;let/const&gt; x … in …) …<br>for (&lt;let/const&gt; x … of …) …</p>
+</blockquote>
+<p>在es6中，其实for只要写大括号就代表着块级作用域。所以只要写大括号，不管用let 还是 var，一定是会创建相应循环数量的块级作用域。<br>如果不用大括号，在for中使用了let，也会创建相应循环数量的块级作用域。</p>
+<h3 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h3><p>所有在语句内可以存在的东西只有四种：表达式、其它语句、标识符声明（取决于声明语句或其它的隐式声明的方式），以及一种特殊的语法元素，称为“标签（例如标签化语句，或 break 语句指向的目标位置）”。</p>
+<p>所谓“块级作用域”，本质上只包括一组标识符。因此，只有当存在潜在标识符冲突的时候，才有必要新添加一个作用域来管理它们。例如函数，由于函数存在“重新进入”的问题，所以它必须有一个作用域来管理“重新进入之前”的那些标识符。这个东西被称为“闭包”。</p>
+<blockquote>
+<p>NOTE: 在语言设计时，有三种需求会促使语句构建自己的作用域，标识符管理只是其中之一。其它两种情况，要么是因为在语法上支持多语句（例如 try…catch…finally 语句），要么是语句所表达的语义要求有一个块，例如“块语句{ }”在语义上就要求它自己是一个块级作用域。</p>
+</blockquote>
+<h3 id="特例中的特例"><a href="#特例中的特例" class="headerlink" title="特例中的特例"></a>特例中的特例</h3><p>“var 声明”是特例中的特例。</p>
+<p>这一特性来自于 JavaScript 远古时代的作用域设计。在早期的 JavaScript 中，并没有所谓的块级作用域，那个时候的作用域设计只有“函数内”和“函数外”两种，如果一个标识符不在任何（可以多层嵌套的）函数内的话，那么它就一定是在“全局作用域”里。</p>
+<p>而在这个时代，变量也就只有“var 声明”的变量。由于作用域只有上面两个，所以任何一个“var 声明”的标识符，要么是在函数内的，要么就是在全局的，没有例外。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (var x = ...)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>按照早期的设计，变量x是不应该出现在for 语句所在的”块级作用域中的。</p>
+<p>它应该出现其外层的某个函数作用域，或者全局作用域中。这种越过当前语法范围，而在更外围的作用域中登记名字行为就称为“提升“。</p>
+<ul>
+<li>所有”var 声明“和函数声明的标识符都登记为 varNames，使用“变量作用域”管理；</li>
+<li>其它情况下的标识符 / 变量声明，都作为 lexicaNames 登记，使用“词法作用域”管理。</li>
+</ul>
+<blockquote>
+<p>NOTE: 考虑到对传统 JavaScript 的兼容，函数内部的顶层函数名是提升到变量作用域中来管理的。 &gt; &gt; NOTE: 我通常会将“在变量声明语句前使用该变量”也称为一种提升效果（Hoisting effect)，但这种说法不见于 ECMAScript 规范。ES 规范将这种“提前使用”称为“访问一个未初始化的绑定（uninitialized mutable/immutable binding）”。而所谓“var 声明能被提前使用”的效果，事实上是“var 变量总是被引擎预先初始化为 undefined”的一种后果。</p>
+</blockquote>
+<p>所以，语句for (&lt;const/let&gt; x …) …语法中的标识符x是一个词法名字，应该由for语句为它创建一个（块级的）词法作用域来管理之。</p>
+<h3 id="第二个作用域"><a href="#第二个作用域" class="headerlink" title="第二个作用域"></a>第二个作用域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var x = 100;</span><br><span class="line">for (let x = 102; x &lt; 105; x++)</span><br><span class="line">  console.log(&apos;value:&apos;, x);  // 显示“value: 102~104”</span><br><span class="line">console.log(&apos;outer:&apos;, x); // 显示“outer: 100”</span><br></pre></td></tr></table></figure>
+<p>因为for语句的这个块级作用域的存在，导致循环体内访问了一个局部的x值（循环变量），而外部的（outer）变量x是不受影响的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for (let x = 102; x &lt; 105; x++)</span><br><span class="line">  let x = 200;</span><br></pre></td></tr></table></figure>
+<p>如果循环体（单个语句）允许支持新的变量声明，那么为了避免它影响到循环变量，就必须为它再提供另一个块级作用域。在这里，JavaScript 是不允许声明新的变量的。上述的示例会抛出一个异常，提示“单语句不支持词法声明”：</p>
+<blockquote>
+<p> SyntaxError: Lexical declaration cannot appear in a single-statement context</p>
+</blockquote>
+<p>这个语法错误并不常见，因为很少有人会尝试构建这样的特殊代码。然而事实上，它是一个普遍存在的语法禁例。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// if语句中的禁例</span><br><span class="line">if (false) let x = 100;</span><br><span class="line">// while语句中的禁例</span><br><span class="line">while (false) let x = 200;</span><br><span class="line">// with语句中的禁例</span><br><span class="line">with (0) let x = 300</span><br></pre></td></tr></table></figure></p>
+<p>所以，现在可以确定：循环语句（对于支持“let/const”的 for 语句来说）“通常情况下”只支持一个块级作用域。更进一步地说，在上面的代码中，我们并没有机会覆盖 for 语句中的“let/const”声明。</p>
+<p>但是对于下面这个例子来说，“只有一个块级作用域”就不够了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for (let i in x) ...;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，“let i …”在语义上就需要被执行多次——因为在静态结构中它的多次迭代都作用于同一个语法元素。而你是知道的，let 语句的变量不能重复声明的。所以，这里就存在了一个冲突：“let/const”语句的单次声明（不可覆盖）的设计，与迭代多次执行的现实逻辑矛盾了。</p>
+<p>这个矛盾的起点，就是“只有一个块级作用域”。所以，在 JavaScript 引擎实现“支持 <em>let/const</em> 的 for 语句”时，就在这个地方做了特殊处理：为循环体增加一个作用域。</p>
+<p>这样一来，“let i”就可以只执行一次，然后将“i in x”放在每个迭代中来执行，这样避免了与“let/const”的设计冲突。</p>
+<h3 id="for-循环的代价"><a href="#for-循环的代价" class="headerlink" title="for 循环的代价"></a>for 循环的代价</h3><p>块语句在每个迭代中都会都会创建一次它自己的块级作用域副本。这个循环体越大，支持的层次越多，那么这个环境的创建也就越频繁，代价越高昂。再加上可以使用函数闭包将环境传递出去，或交给别的上下文引用，这里的负担就更是雪上加霜了。</p>
+<p>也就是所谓“循环与函数递归在语义上等价”。所以在事实上，上述这种 for 循环并不比使用函数递归节省开销。在函数调用中，这里的循环变量通常都是通过函数参数传递来处理的。因而，那些支持“let/const”的 for 语句，本质上也就与“在函数参数界面中传递循环控制变量的递归过程”完全等价，并且在开销上也是完全一样的。</p>
+<p>因为每一次函数调用其实都会创建一个新的闭包——也就是函数的作用域的一个副本。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2020/06/14/export-default-function/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/14/export-default-function/" itemprop="url">export default function() {} </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T18:48:37+08:00">
+                2020-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>无法导出一个匿名函数表达式</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/14/export-default-function/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2020/06/11/delete-JavaScript中有什么是可以销毁的/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -366,43 +708,17 @@
 
       
         
-          
-            <p>在了解delete之前，先说下JavaScript的数据类型的分类。</p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h4><p>所谓值类型中的字符串是按照引用来赋值和传递引用（而不是传递值）的。</p>
-<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>JavaScript中强行定义了Object和Function 就是引用类型。<br>及对象和函数，按照引用来传递和使用。</p>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><p>绝大多数情况下，按数据的传递和使用来解释起来是行得通的。但是到了 delete 运算这里，就不行。</p>
-<p>按照引用定义，delete 0 就是删除一个值，而delete x 就是删除一个值或者删除一个引用。</p>
-<p>delete 运算的表面意思，是该运算试图销毁某种东西。而delete 0 中的 0 是一个具体的字面量的值，字面量的值是不能销毁的，所以JavaScript认为“所有删除值的 delete 就直接返回 true”</p>
-<p><em>delete 这个操作的正式语法设计并不是“删除某个东西”，而是“删除一个表达式的结果”</em></p>
-<p>所以，现在这里的 0，其实不是值（Value）类型的数据，而是一个表达式运算的结果（Result）。而在进一步的删除操作之前，JavaScript 需要检测这个 Result 的类型：</p>
-<ul>
-<li>如果它是值，则按照传统的 JavaScript 的约定返回 true；</li>
-<li>如果它是一个引用，那么对该引用进行分析，以决定如何操作。</li>
-</ul>
-<p>这个检测过程说明，ECMAScript 约定：任何表达式计算的结果（Result）要么是一个值，要么是一个引用。</p>
-<h3 id="GetValue"><a href="#GetValue" class="headerlink" title="GetValue"></a>GetValue</h3><p>GetValue()是从一个引用中取出值来的行为。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x  = x</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所有赋值操作的含义，是将右边的“值”，赋给左边用于包含该值的“引用”。<br>那么上面的x = x 可翻译为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = GetValue(x)</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>所以x = x的语义并不是“x 赋给 x”，而是“把值 x 赋给引用 x”。</p>
-<p>所以，“delete x”归根到底，是在删除一个表达式的、引用类型的结果（Result），而不是在删除 x 表达式，或者这个删除表达式的值（Value）。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>delete 运算符尝试删除值数据时，会返回 true，用于表示没有错误（Error）。</li>
-<li>delete 0 的本质是删除一个表达式的值（Result）。</li>
-<li>delete x 与上述的区别只在于 Result 是一个引用（Reference）。</li>
-<li>delete 其实只能删除一种引用，即对象的成员（Property）</li>
-</ul>
-<h2 id="扩充"><a href="#扩充" class="headerlink" title="扩充"></a>扩充</h2><h3 id="delete-undefined"><a href="#delete-undefined" class="headerlink" title="delete undefined"></a>delete undefined</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete undefined // false</span><br></pre></td></tr></table></figure>
-<p>在早起的JavaScript中，undefined是一个特殊的值，是在运行期间，通过void运算，或者不返回值的函数又或者一个声明了但未赋值的变量，等等类似这样的情况来“计算得到”的。所以在JavaScript早期的版本中，是无法判断x === undefined 这样的代码的，只能判断 typeof  x === undefined 这样的代码。<br>后来，将undefined 声明为一个全局属性。</p>
-<p>所以由于undefined是全局属性，所以<code>delete undefined</code>其实就是<code>delete global.undefined</code>，是删除引用，而不是删除值。而这个属性是只读的，所以就返回false了。</p>
-<h3 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h3><p>访问不存在的变量时，会报<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ x</span><br><span class="line">Uncaught ReferenceError: x is not defined</span><br></pre></td></tr></table></figure></p>
-<p>之所以报错是因为对x的表达式的result进行了getValue()操作。而 typeof x 不报错，是因为没有求值。</p>
-
-          
+          <p>在了解delete之前，先说下JavaScript的数据类型的分类。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/11/delete-JavaScript中有什么是可以销毁的/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -1457,303 +1773,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2019/05/16/finance/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cinaiet">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薄梦风轻眠">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/16/finance/" itemprop="url">你该如何找到理财正确的方向</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T13:54:38+08:00">
-                2019-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大千世界/" itemprop="url" rel="index">
-                    <span itemprop="name">大千世界</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>前言</strong>   是什么让你决定开始理财？<br><strong>理财是赚钱吗？</strong> </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/16/finance/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2019/05/10/Js继承/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cinaiet">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薄梦风轻眠">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/10/Js继承/" itemprop="url">Js继承</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-10T14:27:46+08:00">
-                2019-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>前言</strong>  js语言是一种面向对象的语言，所谓的封装、继承、多态等特征js也都具备，这篇文章中我们就来探讨一下js中的继承有哪些实现方式。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/10/Js继承/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1801,7 +1825,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
