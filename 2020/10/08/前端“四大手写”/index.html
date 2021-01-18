@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="花满楼,">
 
 
 
@@ -86,17 +86,18 @@
 
 
 
-<meta name="description" content="手写bindMDN bind 释义链接  定义bind用法不难，就是把新的this绑定到某个函数func上，并返回func的一个拷贝。 用法function.bind(thisArg[, arg1[, arg2[, …]]]) 实现初级bind 只使用ES6语法 优点：因为可以使用 const 、… 操作符，代码简洁 缺点：兼容性稍差，不能兼容IE等古老浏览器。  123456function b">
+<meta name="description" content="手写bindMDN bind 释义链接">
+<meta name="keywords" content="花满楼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端“四大手写”">
 <meta property="og:url" content="https:// blog.wangguanwei.com/2020/10/08/前端“四大手写”/index.html">
 <meta property="og:site_name" content="薄梦风轻眠">
-<meta property="og:description" content="手写bindMDN bind 释义链接  定义bind用法不难，就是把新的this绑定到某个函数func上，并返回func的一个拷贝。 用法function.bind(thisArg[, arg1[, arg2[, …]]]) 实现初级bind 只使用ES6语法 优点：因为可以使用 const 、… 操作符，代码简洁 缺点：兼容性稍差，不能兼容IE等古老浏览器。  123456function b">
+<meta property="og:description" content="手写bindMDN bind 释义链接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-08T10:35:45.132Z">
+<meta property="og:updated_time" content="2021-01-18T13:37:05.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端“四大手写”">
-<meta name="twitter:description" content="手写bindMDN bind 释义链接  定义bind用法不难，就是把新的this绑定到某个函数func上，并返回func的一个拷贝。 用法function.bind(thisArg[, arg1[, arg2[, …]]]) 实现初级bind 只使用ES6语法 优点：因为可以使用 const 、… 操作符，代码简洁 缺点：兼容性稍差，不能兼容IE等古老浏览器。  123456function b">
+<meta name="twitter:description" content="手写bindMDN bind 释义链接">
 
 
 
@@ -314,6 +315,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -342,6 +365,7 @@
 
       
         <h3 id="手写bind"><a href="#手写bind" class="headerlink" title="手写bind"></a>手写bind</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">MDN bind 释义链接</a> </p>
+<a id="more"></a>
 <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>bind用法不难，就是把新的this绑定到某个函数func上，并返回func的一个拷贝。</p>
 <h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>function.bind(thisArg[, arg1[, arg2[, …]]])</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><h5 id="初级bind"><a href="#初级bind" class="headerlink" title="初级bind"></a>初级bind</h5><ul>
@@ -350,7 +374,6 @@
 <li>缺点：兼容性稍差，不能兼容IE等古老浏览器。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function bind(thisArg, ...args) &#123;</span><br><span class="line">	const fn = this; // 这里的fn就是调用bind的函数 func</span><br><span class="line">	return function(...args2) &#123;</span><br><span class="line">		return fn.apply(thisArg, ...args, ...args2)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -364,6 +387,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/花满楼/" rel="tag"># 花满楼</a>
+          
+        </div>
       
 
       
@@ -465,7 +494,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

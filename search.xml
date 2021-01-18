@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[浅谈Web性能优化策略]]></title>
+    <url>%2F2021%2F01%2F18%2F%E6%B5%85%E8%B0%88Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5%2F</url>
+    <content type="text"><![CDATA[针对不同的业务场景应使用不同的优化策略。 渲染优化首页一级页面，采用SSR或Native的渲染方式 客户端(浏览器)加载HTML是采用串行的形式去加载(先加载HTML，再加载CSS、JS，加载完JS之后再执行JS、解析JS去Render页面)，比较耗时。所以一级页面渲染时可交由服务端，使用Server Render的形式去渲染。 native渲染，可选择使用React Native、Flutter等方式去渲染。 预渲染 如个人中心等页面样式较为固定的，在数据为加载前可采用预渲染的形式，如loading、骨架屏、等预渲染的形式去加载。 弱网优化客户端离线包在弱网环境下，如3G或2G网可采用客户端提供离线包的形式。在页面第一次加载完之后，缓存到客户端本地的磁盘里面，在下一次访问时直接从本地磁盘中获取 PWA离线缓存技术请求页面资源之后，创建Service Worker缓存页面资源，再下一次访问时从Service Worker中获取。 Webview优化 打开webview的同时，并行的加载页面数据。 也可采用缓存webview的形式。]]></content>
+      <categories>
+        <category>平行宇宙</category>
+      </categories>
+      <tags>
+        <tag>平行宇宙</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Loader和插件的编写]]></title>
     <url>%2F2021%2F01%2F17%2FLoader%E5%92%8C%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BC%96%E5%86%99%2F</url>
     <content type="text"><![CDATA[webpack loader 和插件编写。 Loaderloader本身是一个函数，接受源文件作为参数，返回转换的结果。 执行顺序loader的执行顺序为从右向左。 123// webpack 采用的执行顺序(函数组合情况)compose = (f, g) =&gt; (...args) =&gt; f(g(...args)) loader-runner定义： 允许在不安装webpack-cli 的前提下运行loader 作用： 提供独立的运行环境 作为webpack的依赖，在webpack中使用它执行loader； 进行loader的开发和调试。 github地址 编写一个调试实例（处理es6安全性问题）编码为2028的字符为行分隔符，会被浏览器理解为换行，而在Javascript的字符串表达式中是不允许换行的，从而导致错误。2029为段分隔号，同2028 目录结构 1234567-- pageage.json-- src -- demo.txt -- raw-loader.js-- run-loader.js$ npm i loader-runner -S src/demo.js 1asd src/raw-loader.js 1234567module.exports = function(source) &#123; const json = JSON.stringify(source) .replace(/\u2028/g, &apos;\\u2028&apos;) .replace(/\u2029/g, &apos;\\u2029&apos;) rerurn `export defalut $&#123;json&#125;`&#125; run-loader.js 123456789101112131415161718192021222324252627282930// 核心函数runLoadersconst path = require(&apos;path&apos;)const fs = require(&apos;fs&apos;)const &#123; runLoaders &#125; = require(&apos;loader-runner&apos;)runLoaders(&#123; resource: path.join(__dirname, &apos;./src/demo.txt&apos;), // 资源绝对路径 loaders: [ path.join(__dirname, &apos;./src/raw-loader.js&apos;) ], context: &#123; // 额外上下文 minimize: true, // 压缩参数 &#125;, readResource: fs.readFile.bind(fs)&#125;, (err, result) =&gt; &#123; err ? console.error(err) : console.log(result)&#125;)// 打印结果&#123; result: [ &apos;export defalut &quot;&quot;&apos; ], resourceBuffer: &lt;Buffer &gt;, cacheable: true, fileDependencies: [ &apos;/Users/wangguanwei/Desktop/test/webpack/raw-loader/src/demo.txt&apos; ], contextDependencies: [], missingDependencies: [] &#125; 编写一个构建资源为zip包的插件代码仓库地址]]></content>
@@ -15,6 +26,12 @@
     <title><![CDATA[前端“四大手写”]]></title>
     <url>%2F2020%2F10%2F08%2F%E5%89%8D%E7%AB%AF%E2%80%9C%E5%9B%9B%E5%A4%A7%E6%89%8B%E5%86%99%E2%80%9D%2F</url>
     <content type="text"><![CDATA[手写bindMDN bind 释义链接 定义bind用法不难，就是把新的this绑定到某个函数func上，并返回func的一个拷贝。 用法function.bind(thisArg[, arg1[, arg2[, …]]]) 实现初级bind 只使用ES6语法 优点：因为可以使用 const 、… 操作符，代码简洁 缺点：兼容性稍差，不能兼容IE等古老浏览器。 123456function bind(thisArg, ...args) &#123; const fn = this; // 这里的fn就是调用bind的函数 func return function(...args2) &#123; return fn.apply(thisArg, ...args, ...args2) &#125;&#125;]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>花满楼</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[css规则]]></title>
