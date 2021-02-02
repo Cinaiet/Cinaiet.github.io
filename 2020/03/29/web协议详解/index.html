@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="web协议及抓包">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-18T15:48:28.529Z">
+<meta property="og:updated_time" content="2021-01-26T01:33:24.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web协议详解">
 <meta name="twitter:description" content="web协议及抓包">
@@ -364,7 +364,8 @@
       
 
       
-        <p>web协议及抓包<br><a id="more"></a></p>
+        <p>web协议及抓包</p>
+<a id="more"></a>
 <h2 id="评估web架构的关键属性"><a href="#评估web架构的关键属性" class="headerlink" title="评估web架构的关键属性"></a>评估web架构的关键属性</h2><h3 id="HTTP协议应当在以下属性中取得可接受的均衡"><a href="#HTTP协议应当在以下属性中取得可接受的均衡" class="headerlink" title="HTTP协议应当在以下属性中取得可接受的均衡:"></a>HTTP协议应当在以下属性中取得可接受的均衡:</h3><ul>
 <li>性能 performance : 影响高可用的关键因素</li>
 <li>可伸缩性 scalability : 支持部署可以交互的大量组件</li>
@@ -383,9 +384,13 @@
 </ul>
 <h3 id="架构属性"><a href="#架构属性" class="headerlink" title="架构属性"></a>架构属性</h3><h4 id="网络性能"><a href="#网络性能" class="headerlink" title="网络性能"></a>网络性能</h4><ul>
 <li>吞吐量 : 小于等于服务的带宽</li>
-<li>开销: 首次开销、每次开销<h4 id="用户感知到的性能"><a href="#用户感知到的性能" class="headerlink" title="用户感知到的性能"></a>用户感知到的性能</h4></li>
+<li>开销: 首次开销、每次开销</li>
+</ul>
+<h4 id="用户感知到的性能"><a href="#用户感知到的性能" class="headerlink" title="用户感知到的性能"></a>用户感知到的性能</h4><ul>
 <li>延迟: 发起请求到相应的时间</li>
-<li>完成时间: 完成一个应用动作所花费的时间<h4 id="网络效率"><a href="#网络效率" class="headerlink" title="网络效率"></a>网络效率</h4></li>
+<li>完成时间: 完成一个应用动作所花费的时间</li>
+</ul>
+<h4 id="网络效率"><a href="#网络效率" class="headerlink" title="网络效率"></a>网络效率</h4><ul>
 <li>重用缓存、减少交互次数、数据传输距离更近、COD</li>
 </ul>
 <h3 id="架构风格"><a href="#架构风格" class="headerlink" title="架构风格"></a>架构风格</h3><table>
@@ -464,9 +469,12 @@
 </tr>
 </tbody>
 </table>
-<h4 id="数据流风格-Data-flow-style"><a href="#数据流风格-Data-flow-style" class="headerlink" title="数据流风格 Data-flow-style"></a>数据流风格 Data-flow-style</h4><ul>
+<p>风格简单性可靠性可进化性可扩展性可配置性可重用性可伸缩性网络效率数据流风格✔️✔️✔️✔️✔️复制风格用户可察觉的性能✔️✔️✔️分层风格✔️✔️✔️移动代码风格可移植性✔️✔️点对点风格✔️✔️✔️✔️#### 数据流风格 Data-flow-style</p>
+<ul>
 <li>管道与过滤器(或者称为组件)<br>每个filter都有输入端和输出端,只能从输入端读取数据,处理后再从输出端产生数据</li>
-<li>接口统一的管道与过滤器<br>如在每个接口都增加统一的约束,则整个架构的简单性会得到增强<h4 id="复制风格-Replication-Style"><a href="#复制风格-Replication-Style" class="headerlink" title="复制风格 Replication Style"></a>复制风格 Replication Style</h4></li>
+<li>接口统一的管道与过滤器<br>如在每个接口都增加统一的约束,则整个架构的简单性会得到增强</li>
+</ul>
+<h4 id="复制风格-Replication-Style"><a href="#复制风格-Replication-Style" class="headerlink" title="复制风格 Replication Style"></a>复制风格 Replication Style</h4><ul>
 <li>复制仓库<br>多个进程提供相同的服务,如通过反向代理对外提供您集中服务</li>
 <li>缓存<br>在客户端或中间的代理中,通过复制请求的结果,为后续的请求复用</li>
 </ul>
@@ -519,27 +527,73 @@
 <li>Brokered Distributed Objects BDO<br>引入名字来解析组件来简化DO，例如CORBA</li>
 </ul>
 <hr>
-<h2 id="HTTP1详解"><a href="#HTTP1详解" class="headerlink" title="HTTP1详解"></a>HTTP1详解</h2><h3 id="request-line-请求行"><a href="#request-line-请求行" class="headerlink" title="request-line 请求行"></a>request-line 请求行</h3><p>request-line = method + request-target + http-version CRLF</p>
-<h4 id="method-方式"><a href="#method-方式" class="headerlink" title="method (方式)"></a>method (方式)</h4><p>指明请求方式</p>
+<h2 id="HTTP的前世今生"><a href="#HTTP的前世今生" class="headerlink" title="HTTP的前世今生"></a>HTTP的前世今生</h2><h3 id="HTTP-是什么"><a href="#HTTP-是什么" class="headerlink" title="HTTP 是什么"></a>HTTP 是什么</h3><p><strong>超文本传输协议</strong></p>
+<p>重点在于P(Protocol)，用于约定服务端与客户端 超文本(当前已有图片、音频超链接等)数据传递交互的规范。</p>
+<h4 id="与HTTP相关的概念"><a href="#与HTTP相关的概念" class="headerlink" title="与HTTP相关的概念"></a>与HTTP相关的概念</h4><h5 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h5><p>内容分发器。应用了HTTP协议的缓存和代理技术，代替源站去相应客户端的请求。<br>简单来说，就是缓存了源网站的数据，客户端再次请求时，可以不用去源服务器去请求，降低响应时间。</p>
+<h5 id="Web-Service"><a href="#Web-Service" class="headerlink" title="Web Service"></a>Web Service</h5><p>由W3C定义的应用服务开发规范，有client-server 主从架构，通过使用WSDL定义服务接口，使用HTTP传输xml或SOAP消息，也就是说，它是一个<strong>基于Web(HTTP)的服务架构技术</strong>。</p>
+<h5 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h5><p>TCP/IP 协议实际上是一系列网络通信协议的统称，其中最核心的两个协议是 TCP 和 IP，其他的还有 UDP、ICMP、ARP 等等，共同构成了一个复杂但有层次的协议栈。</p>
 <ul>
-<li>GET<br>主要的获取信息的方法，大量的性能优化都针对该方法，也是幂等方法(调用一次和调用多次获得的结果是完全一致的)</li>
-<li>POST<br>常用于form表单提交、新增资源等。</li>
-<li>HEAD<br>类似于GET方法，但服务器不发送body，用以获取HEAD元数据，幂等方法</li>
-<li>PUT<br>更新资源时使用。带条件时是幂等方法</li>
-<li>DELETE<br>删除资源，幂等方法</li>
-<li>CONNECT<br>建立tunnel隧道，</li>
-<li><p>OPTIONS<br>显示服务器对访问资源支持的方法，幂等方法</p>
+<li>TCP协议 属于<strong>传输层</strong> 传输控制协议。位于IP协议之上，基于IP协议提供 <font color="green">可靠的</font>、<font color="green">字节流</font>形式的通信。是HTTP协议实现的基础。<br>TCP是一个有状态的协议，需要先与对方建立连接，然后才能发送数据，并且保证数据不丢失不重复。TCP的数据时连续的字节流，有先后顺序。</li>
+<li>IP 协议 属于<strong>网际层</strong> 主要目的是解决寻址和路由问题，以及如何在两点之间传递数据包。</li>
+<li><p>TCP/IP协议总共有四层</p>
+<ol>
+<li>链接层  负责在以太网、WIFI这样的底层发送原始数据包，工作在网卡这个层次，使用MAC地址来标记网络上的设备，也叫MAC层。传输单位是帧。</li>
+<li>网际层(网络互连层) IP协议就在这一层。把IP地址转换成MAC地址。传输单位是包。</li>
+<li>传输层 保证数据在IP地址标记的两点之间“可靠的”传输，是TCP/IP协议工作的层次。传输单位是段。</li>
+<li>应用层</li>
+</ol>
+</li>
+</ul>
+<h5 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h5><p>域名系统 是IP地址的等价替代，用域名解析实现IP地址的映射。<br>如 <a href="blog.wangguanwei.com">薄梦风轻棉</a></p>
+<h5 id="URI-URL"><a href="#URI-URL" class="headerlink" title="URI/URL"></a>URI/URL</h5><h3 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h3><p>只允许使用GET从服务端获取HTML文档，并在请求响应之后立即关闭连接。</p>
+<h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h3><ul>
+<li>增加了HEAD、POST等方法；</li>
+<li>增加了相应状态码，标记可能出现的错误原因；</li>
+<li>引入协议版本号的概念；</li>
+<li>引入了HTTP Header(头部)的概念，让HTTP处理请求和相应更加灵活；</li>
+<li>传输的数据不再局限于文本。</li>
+</ul>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h3><ul>
+<li>增加了PUT、DELETE新方法；</li>
+<li>增加缓存管理和控制；</li>
+<li>明确连接管理，允许持久连接；</li>
+<li>允许相应数据分块(chunked)，利于传输大文件；</li>
+<li>强制要求Host头，让互联网主机托管称为可能。</li>
+</ul>
+<h3 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h3><p><strong>HTTP/2 基于 Google 的 SPDY 协议，注重性能改善，但还未普及；</strong></p>
+<ul>
+<li>二进制协议，不再是纯文本；</li>
+<li>可发起多个请求，废弃1.1中的管道；</li>
+<li>使用专用算法压缩头部，减少数据传输量；</li>
+<li>允许服务器主动向客户端推送数据；</li>
+<li>要求加密通信，增加了安全性。</li>
+</ul>
+<h3 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h3><p><strong>HTTP/3 基于 Google 的 QUIC 协议，是将来的发展方向。</strong></p>
+<hr>
+<h2 id="HTTP1详解"><a href="#HTTP1详解" class="headerlink" title="HTTP1详解"></a>HTTP1详解</h2><h3 id="request-line-请求行"><a href="#request-line-请求行" class="headerlink" title="request-line 请求行"></a>request-line 请求行</h3><p>request-line = method + request-target + http-version CRLF</p>
+<h4 id="method-方式"><a href="#method-方式" class="headerlink" title="method (方式)"></a>method (方式)</h4><p><strong>幂等： 多次执行相同的操作，结果也都是相同的，即多次“幂”后结果“相等”</strong></p>
+<p>指明请求方式</p>
+<ul>
+<li>GET<br>主要的获取数据的方法，大量的性能优化都针对该方法，也是幂等方法(调用一次和调用多次获得的结果是完全一致的)</li>
+<li>POST<br>主要用于向服务器提交数据(资源)。常用于form表单提交、新增资源等。POST有新建(credit)的含义。</li>
+<li>HEAD<br>类似于GET方法，但服务器不会返回请求的实体数据，只会传回响应头，也就是元数据。幂等方法</li>
+<li>PUT<br>替换或更新数据，更新资源时使用。带条件时是幂等方法（多次更新一个资源，资源还是第一次更新的状态。）PUT有修改(update)的含义。</li>
+<li>DELETE<br>删除资源，因为该动作危险性大通常服务器不会执行真正的删除操作，而是对资源做一个删除的标记。当然更多的服务器直接不处理该方法。幂等方法（可以多次删除同一个资源，得到的结果都是“资源不存在”。）</li>
+<li>CONNECT<br>建立tunnel隧道。要求服务器为客户端和另一台远程服务器建立一条特殊的连接隧道，这时 Web 服务器在中间充当了代理的角色。</li>
+<li>OPTIONS<br>显示服务器对访问资源支持的方法，在响应头的ALLOW字段中返回。幂等方法</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ curl static.taohui.tech -X OPTIONS -I</span><br><span class="line">// Allow列举出支持的方式</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: openresty/1.15.8.1</span><br><span class="line">Date: Wed, 01 Apr 2020 15:27:15 GMT</span><br><span class="line">Content-Length: 0</span><br><span class="line">Connection: keep-alive</span><br><span class="line">DAV: 2</span><br><span class="line">Allow: GET,HEAD,PUT,DELETE,MKCOL,COPY,MOVE,PROPFIND,OPTIONS,LOCK,UNLOCK</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>TRACE<br>回显服务器收到的请求，用于定位问题，有安全风险</p>
-</li>
+<ul>
+<li>TRACE<br>用于对HTTP链路或诊断，可以显示出请求-相应的传输路径。它的本意是好的，但存在漏洞，会泄漏网站的信息，所以 Web 服务器通常也是禁止使用。</li>
 </ul>
 <h4 id="request-target-Path"><a href="#request-target-Path" class="headerlink" title="request-target (Path)"></a>request-target (Path)</h4><p>request-target有四种类型。origin-form、absolute-form、authority-form、asterisk-form。</p>
 <ul>
 <li>origin-form<br>向语言服务器，及产生响应内容的服务器发送请求的方式</li>
 <li>absolute-form<br>仅用于向正向代理发送请求时。后面需要跟完整的URI</li>
 <li>authority-form<br>仅用于Connect方法，及需要建立VPN隧道时使用</li>
-<li>asterisk-form<br>仅用于Option方法，可以在request-target中传 “*” 号。<h4 id="http-version-版本号"><a href="#http-version-版本号" class="headerlink" title="http-version 版本号"></a>http-version 版本号</h4></li>
+<li>asterisk-form<br>仅用于Option方法，可以在request-target中传 “*” 号。</li>
+</ul>
+<h4 id="http-version-版本号"><a href="#http-version-版本号" class="headerlink" title="http-version 版本号"></a>http-version 版本号</h4><ul>
 <li>HTTP/0.9<br>只支持GET方法，已过时</li>
 <li>HTTP/1.0<br>常适用于代理服务器中，如Nginx向上游发起连接时，默认还是使用的1.0 的协议</li>
 <li>HTTP/1.1<br>对1.0做出的改进，支持缓存、超链接，通过Host对于域名的支持。</li>
@@ -561,7 +615,9 @@
 <h4 id="status-code-响应码"><a href="#status-code-响应码" class="headerlink" title="status-code 响应码"></a>status-code 响应码</h4><h5 id="1xx-请求已经接收到，需要进一步处理才能完成，HTTP1-0不支持"><a href="#1xx-请求已经接收到，需要进一步处理才能完成，HTTP1-0不支持" class="headerlink" title="1xx : 请求已经接收到，需要进一步处理才能完成，HTTP1.0不支持"></a>1xx : 请求已经接收到，需要进一步处理才能完成，HTTP1.0不支持</h5><ul>
 <li>100 Continue: 上传大文件前使用。(由客户端发起请求中携带 Expect: 100-continue 头部触发)</li>
 <li>101 Switch Protocols : 协议升级使用。(由客户端发起请求中携带Upgrade: 头部触发，如升级websocket或http2.0</li>
-<li>102 Processing : WEBDAV请求可能会包含许多涉及文件操作的子请求，需要很长时间才能完成请求。该代码表示服务器已经接收到并正在处理请求，但无响应可用，这样可以防止客户端超时，并假设请求丢失。<h5 id="2xx-成功处理请求"><a href="#2xx-成功处理请求" class="headerlink" title="2xx: 成功处理请求"></a>2xx: 成功处理请求</h5></li>
+<li>102 Processing : WEBDAV请求可能会包含许多涉及文件操作的子请求，需要很长时间才能完成请求。该代码表示服务器已经接收到并正在处理请求，但无响应可用，这样可以防止客户端超时，并假设请求丢失。</li>
+</ul>
+<h5 id="2xx-成功处理请求"><a href="#2xx-成功处理请求" class="headerlink" title="2xx: 成功处理请求"></a>2xx: 成功处理请求</h5><ul>
 <li>200 OK :  成功返回响应</li>
 <li>201 Created : 由新资源在服务器端被成功创建</li>
 <li>202 Accepted : 服务器接收并开始处理请求,但请求未处理完成。如异步、需要长时间处理的任务。</li>
@@ -570,14 +626,19 @@
 <li>205 Reset Content:成功执行了请求且不携带响应包体，同时指明客户端 需要更新当前页面视图。</li>
 <li>206 Partial Content:使用 range 协议时返回部分响应内容时的响应码</li>
 <li>207 Multi-Status:RFC4918 ，在 WEBDAV 协议中以 XML 返回多个资源的状态。</li>
-<li>208 Already Reported:RFC5842 ，为避免相同集合下资源在207响应码 下重复上报，使用 208 可以使用父集合的响应码。<h5 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h5>使用 Location 指向的资源或者缓存中的资源。在 RFC2068 中规定客户端重定向次数不应超过 5 次，以防止死循环。</li>
+<li>208 Already Reported:RFC5842 ，为避免相同集合下资源在207响应码 下重复上报，使用 208 可以使用父集合的响应码。</li>
+</ul>
+<h5 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h5><p>使用 Location 指向的资源或者缓存中的资源。在 RFC2068 中规定客户端重定向次数不应超过 5 次，以防止死循环。</p>
+<ul>
 <li>300 Multiple Choices:资源有多种表述，通过 300 返回给客户端后由其 自行选择访问哪一种表述。由于缺乏明确的细节，300 很少使用。</li>
 <li>301 Moved Permanently:资源永久性的重定向到另一个 URI 中。</li>
 <li>302 Found:资源临时的重定向到另一个 URI 中。</li>
 <li>303 See Other:重定向到其他资源，常用于 POST/PUT 等方法的响应中。</li>
 <li>304 Not Modified:当客户端拥有可能过期的缓存时，会携带缓存的标识 etag、时间等信息询问服务器缓存是否仍可复用，而304是告诉客户端可以 复用缓存。</li>
 <li>307 Temporary Redirect:类似302，但明确重定向后请求方法必须与原 请求方法相同，不得改变。</li>
-<li>308 Permanent Redirect:类似301，但明确重定向后请求方法必须与原请 求方法相同，不得改变。<h5 id="4xx-客户端出现错误"><a href="#4xx-客户端出现错误" class="headerlink" title="4xx: 客户端出现错误"></a>4xx: 客户端出现错误</h5></li>
+<li>308 Permanent Redirect:类似301，但明确重定向后请求方法必须与原请 求方法相同，不得改变。</li>
+</ul>
+<h5 id="4xx-客户端出现错误"><a href="#4xx-客户端出现错误" class="headerlink" title="4xx: 客户端出现错误"></a>4xx: 客户端出现错误</h5><ul>
 <li>400 Bad Request:服务器认为客户端出现了错误，但不能明确判断为以下哪种错误时使用此错误码。例如HTTP请求格式错误。</li>
 <li>401 Unauthorized:用户认证信息缺失或者不正确，导致服务器无法处理请求。</li>
 <li>407 Proxy Authentication Required:对需要经由代理的请求，认证信息未通过代理服务器的验证</li>
@@ -639,15 +700,22 @@
 <li>以下消息不能含有包体<ol>
 <li>HEAD 方法请求对应的响应</li>
 <li>1xx、204、304 对应的响应</li>
-<li>CONNECT 方法对应的 2xx 响应<h4 id="发送-HTTP-消息时已能够确定包体的全部长度"><a href="#发送-HTTP-消息时已能够确定包体的全部长度" class="headerlink" title="发送 HTTP 消息时已能够确定包体的全部长度"></a>发送 HTTP 消息时已能够确定包体的全部长度</h4>使用 Content-Length 头部明确指明包体长度<br>Content-Length = 1*DIGIT<br>用 10 进制(不是 16 进制)表示包体中的字节个数，且必须与实际传输的包体长度一致<br>优点:接收端处理更简单<h4 id="发送-HTTP-消息时不能确定包体的全部长度"><a href="#发送-HTTP-消息时不能确定包体的全部长度" class="headerlink" title="发送 HTTP 消息时不能确定包体的全部长度"></a>发送 HTTP 消息时不能确定包体的全部长度</h4>使用 Transfer-Encoding 头部指明使用 Chunk 传输方式，<br>含 Transfer-Encoding 头部后 Content-Length 头部应被忽略<br>优点:</li>
-<li>基于长连接持续推送动态内容</li>
-<li>压缩体积较大的包体时，不必完全压缩完(计算出头部)再发送，可以边发送边压缩</li>
-<li>传递必须在包体传输完才能计算出的 Trailer 头部<h3 id="HTML-Form表单"><a href="#HTML-Form表单" class="headerlink" title="HTML Form表单"></a>HTML Form表单</h3>表单，HTML 中的元素，提供了交互控制元件用来向服务器通过 HTTP 协议提交信息。<h4 id="关键属性"><a href="#关键属性" class="headerlink" title="关键属性"></a>关键属性</h4></li>
+<li>CONNECT 方法对应的 2xx 响应</li>
 </ol>
 </li>
+</ul>
+<h4 id="发送-HTTP-消息时已能够确定包体的全部长度"><a href="#发送-HTTP-消息时已能够确定包体的全部长度" class="headerlink" title="发送 HTTP 消息时已能够确定包体的全部长度"></a>发送 HTTP 消息时已能够确定包体的全部长度</h4><p>使用 Content-Length 头部明确指明包体长度<br>Content-Length = 1*DIGIT<br>用 10 进制(不是 16 进制)表示包体中的字节个数，且必须与实际传输的包体长度一致<br>优点:接收端处理更简单</p>
+<h4 id="发送-HTTP-消息时不能确定包体的全部长度"><a href="#发送-HTTP-消息时不能确定包体的全部长度" class="headerlink" title="发送 HTTP 消息时不能确定包体的全部长度"></a>发送 HTTP 消息时不能确定包体的全部长度</h4><p>使用 Transfer-Encoding 头部指明使用 Chunk 传输方式，<br>含 Transfer-Encoding 头部后 Content-Length 头部应被忽略<br>优点:</p>
+<ol>
+<li>基于长连接持续推送动态内容</li>
+<li>压缩体积较大的包体时，不必完全压缩完(计算出头部)再发送，可以边发送边压缩</li>
+<li>传递必须在包体传输完才能计算出的 Trailer 头部</li>
+</ol>
+<h3 id="HTML-Form表单"><a href="#HTML-Form表单" class="headerlink" title="HTML Form表单"></a>HTML Form表单</h3><p>表单，HTML 中的元素，提供了交互控制元件用来向服务器通过 HTTP 协议提交信息。</p>
+<h4 id="关键属性"><a href="#关键属性" class="headerlink" title="关键属性"></a>关键属性</h4><ul>
 <li>action:提交时发起 HTTP 请求的 URI</li>
 <li>method:提交时发起 HTTP 请求的 http 方法<ul>
-<li>GET:通过 URI，将表单数据以 URI 参数的方式提交 </li>
+<li>GET:通过 URI，将表单数据以 URI 参数的方式提交</li>
 <li>POST:将表单数据放在请求包体中提交</li>
 </ul>
 </li>
@@ -668,7 +736,9 @@
 <h4 id="Cookie的使用限制"><a href="#Cookie的使用限制" class="headerlink" title="Cookie的使用限制"></a>Cookie的使用限制</h4><ul>
 <li>每条 Cookie 的长度(包括 name、value 以及描述的属性等总长度)至于要达到 4KB • 每个域名下至少支持 50 个 Cookie</li>
 <li>至少要支持 3000 个 Cookie</li>
-<li>代理服务器传递 Cookie 时会有限制<h4 id="Cookie在协议设计上的问题"><a href="#Cookie在协议设计上的问题" class="headerlink" title="Cookie在协议设计上的问题"></a>Cookie在协议设计上的问题</h4></li>
+<li>代理服务器传递 Cookie 时会有限制</li>
+</ul>
+<h4 id="Cookie在协议设计上的问题"><a href="#Cookie在协议设计上的问题" class="headerlink" title="Cookie在协议设计上的问题"></a>Cookie在协议设计上的问题</h4><ul>
 <li>Cookie 会被附加在每个 HTTP 请求中，所以无形中增加了流量</li>
 <li>由于在 HTTP 请求中的 Cookie 是明文传递的，所以安全性成问题(除<br>非用 HTTPS)</li>
 <li>Cookie 的大小不应超过 4KB，故对于复杂的存储需求来说是不够用的</li>
@@ -734,7 +804,8 @@
 </tr>
 </tbody>
 </table>
-<h4 id="padding填充"><a href="#padding填充" class="headerlink" title="padding填充"></a>padding填充</h4><p>Block cipher 分组加密: 将明文分成多个等长的 Block 模块，对每个模块分别加解密。<br>目的: 当最后一个明文 Block 模块长度不足时，需要填充。<br>填充方法: </p>
+<p>inputinputoutputABA XOR B000011101110inputinputoutputABA XOR B000011101110inputinputoutputABA XOR B000011101110inputinputoutputABA XOR B000011101110#### padding填充</p>
+<p>Block cipher 分组加密: 将明文分成多个等长的 Block 模块，对每个模块分别加解密。<br>目的: 当最后一个明文 Block 模块长度不足时，需要填充。<br>填充方法:</p>
 <ul>
 <li>位填充: 以 bit 位为单位来填充</li>
 <li>字节填充:以字节为单位为填充。有四种方法<ol>
@@ -866,7 +937,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -921,7 +992,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#评估web架构的关键属性"><span class="nav-number">1.</span> <span class="nav-text">评估web架构的关键属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议应当在以下属性中取得可接受的均衡"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP协议应当在以下属性中取得可接受的均衡:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构属性"><span class="nav-number">1.2.</span> <span class="nav-text">架构属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络性能"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户感知到的性能"><span class="nav-number">1.2.2.</span> <span class="nav-text">用户感知到的性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络效率"><span class="nav-number">1.2.3.</span> <span class="nav-text">网络效率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构风格"><span class="nav-number">1.3.</span> <span class="nav-text">架构风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流风格-Data-flow-style"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据流风格 Data-flow-style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制风格-Replication-Style"><span class="nav-number">1.3.2.</span> <span class="nav-text">复制风格 Replication Style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分层风格-Hierarchical-Styles"><span class="nav-number">1.3.3.</span> <span class="nav-text">分层风格 Hierarchical Styles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动代码风格-Mobile-code-style"><span class="nav-number">1.3.4.</span> <span class="nav-text">移动代码风格 Mobile code style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点对点风格-Peer-to-Peer-style"><span class="nav-number">1.3.5.</span> <span class="nav-text">点对点风格 Peer-to-Peer style</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1详解"><span class="nav-number">2.</span> <span class="nav-text">HTTP1详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#request-line-请求行"><span class="nav-number">2.1.</span> <span class="nav-text">request-line 请求行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#method-方式"><span class="nav-number">2.1.1.</span> <span class="nav-text">method (方式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#request-target-Path"><span class="nav-number">2.1.2.</span> <span class="nav-text">request-target (Path)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-version-版本号"><span class="nav-number">2.1.3.</span> <span class="nav-text">http-version 版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用于文档管理的WEBDAV方法"><span class="nav-number">2.1.4.</span> <span class="nav-text">用于文档管理的WEBDAV方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status-line-响应行"><span class="nav-number">2.2.</span> <span class="nav-text">status-line 响应行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#status-code-响应码"><span class="nav-number">2.2.1.</span> <span class="nav-text">status-code 响应码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1xx-请求已经接收到，需要进一步处理才能完成，HTTP1-0不支持"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1xx : 请求已经接收到，需要进一步处理才能完成，HTTP1.0不支持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2xx-成功处理请求"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">2xx: 成功处理请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3xx-重定向"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">3xx: 重定向</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4xx-客户端出现错误"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">4xx: 客户端出现错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5xx-服务器端出现错误"><span class="nav-number">2.2.1.5.</span> <span class="nav-text">5xx:服务器端出现错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Host-头部"><span class="nav-number">2.3.</span> <span class="nav-text">Host 头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Headers-请求的上下文"><span class="nav-number">2.4.</span> <span class="nav-text">Request Headers 请求的上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#User-Agent"><span class="nav-number">2.4.1.</span> <span class="nav-text">User-Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#referer"><span class="nav-number">2.4.2.</span> <span class="nav-text">referer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From"><span class="nav-number">2.4.3.</span> <span class="nav-text">From</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Headers-响应的上下文"><span class="nav-number">2.5.</span> <span class="nav-text">Response Headers 响应的上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">2.5.1.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Allow"><span class="nav-number">2.5.2.</span> <span class="nav-text">Allow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Ranges"><span class="nav-number">2.5.3.</span> <span class="nav-text">Accept-Ranges</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP包体"><span class="nav-number">2.6.</span> <span class="nav-text">HTTP包体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#发送-HTTP-消息时已能够确定包体的全部长度"><span class="nav-number">2.6.1.</span> <span class="nav-text">发送 HTTP 消息时已能够确定包体的全部长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发送-HTTP-消息时不能确定包体的全部长度"><span class="nav-number">2.6.2.</span> <span class="nav-text">发送 HTTP 消息时不能确定包体的全部长度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-Form表单"><span class="nav-number">2.7.</span> <span class="nav-text">HTML Form表单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键属性"><span class="nav-number">2.7.1.</span> <span class="nav-text">关键属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">2.8.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie的使用限制"><span class="nav-number">2.8.1.</span> <span class="nav-text">Cookie的使用限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie在协议设计上的问题"><span class="nav-number">2.8.2.</span> <span class="nav-text">Cookie在协议设计上的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">2.9.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决跨域问题"><span class="nav-number">2.9.1.</span> <span class="nav-text">解决跨域问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control-头部"><span class="nav-number">2.10.</span> <span class="nav-text">Cache-Control 头部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control-头部在请求中的值"><span class="nav-number">2.10.1.</span> <span class="nav-text">Cache-Control 头部在请求中的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control-头部在响应中的值"><span class="nav-number">2.10.2.</span> <span class="nav-text">Cache-Control 头部在响应中的值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TSL-协议"><span class="nav-number">3.</span> <span class="nav-text">TSL 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AES对称加密"><span class="nav-number">3.1.</span> <span class="nav-text">AES对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密实现原理"><span class="nav-number">3.1.1.</span> <span class="nav-text">对称加密实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#padding填充"><span class="nav-number">3.1.2.</span> <span class="nav-text">padding填充</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#评估web架构的关键属性"><span class="nav-number">1.</span> <span class="nav-text">评估web架构的关键属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议应当在以下属性中取得可接受的均衡"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP协议应当在以下属性中取得可接受的均衡:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构属性"><span class="nav-number">1.2.</span> <span class="nav-text">架构属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络性能"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户感知到的性能"><span class="nav-number">1.2.2.</span> <span class="nav-text">用户感知到的性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络效率"><span class="nav-number">1.2.3.</span> <span class="nav-text">网络效率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构风格"><span class="nav-number">1.3.</span> <span class="nav-text">架构风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复制风格-Replication-Style"><span class="nav-number">1.3.1.</span> <span class="nav-text">复制风格 Replication Style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分层风格-Hierarchical-Styles"><span class="nav-number">1.3.2.</span> <span class="nav-text">分层风格 Hierarchical Styles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动代码风格-Mobile-code-style"><span class="nav-number">1.3.3.</span> <span class="nav-text">移动代码风格 Mobile code style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点对点风格-Peer-to-Peer-style"><span class="nav-number">1.3.4.</span> <span class="nav-text">点对点风格 Peer-to-Peer style</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP的前世今生"><span class="nav-number">2.</span> <span class="nav-text">HTTP的前世今生</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-是什么"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与HTTP相关的概念"><span class="nav-number">2.1.1.</span> <span class="nav-text">与HTTP相关的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CDN"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Web-Service"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Web Service</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-IP"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">TCP/IP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#URI-URL"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">URI/URL</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-0-9"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP/0.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP/1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">2.4.</span> <span class="nav-text">HTTP/1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2"><span class="nav-number">2.5.</span> <span class="nav-text">HTTP/2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-3"><span class="nav-number">2.6.</span> <span class="nav-text">HTTP/3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1详解"><span class="nav-number">3.</span> <span class="nav-text">HTTP1详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#request-line-请求行"><span class="nav-number">3.1.</span> <span class="nav-text">request-line 请求行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#method-方式"><span class="nav-number">3.1.1.</span> <span class="nav-text">method (方式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#request-target-Path"><span class="nav-number">3.1.2.</span> <span class="nav-text">request-target (Path)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-version-版本号"><span class="nav-number">3.1.3.</span> <span class="nav-text">http-version 版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用于文档管理的WEBDAV方法"><span class="nav-number">3.1.4.</span> <span class="nav-text">用于文档管理的WEBDAV方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status-line-响应行"><span class="nav-number">3.2.</span> <span class="nav-text">status-line 响应行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#status-code-响应码"><span class="nav-number">3.2.1.</span> <span class="nav-text">status-code 响应码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1xx-请求已经接收到，需要进一步处理才能完成，HTTP1-0不支持"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1xx : 请求已经接收到，需要进一步处理才能完成，HTTP1.0不支持</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2xx-成功处理请求"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2xx: 成功处理请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3xx-重定向"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3xx: 重定向</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4xx-客户端出现错误"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">4xx: 客户端出现错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5xx-服务器端出现错误"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">5xx:服务器端出现错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Host-头部"><span class="nav-number">3.3.</span> <span class="nav-text">Host 头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Headers-请求的上下文"><span class="nav-number">3.4.</span> <span class="nav-text">Request Headers 请求的上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#User-Agent"><span class="nav-number">3.4.1.</span> <span class="nav-text">User-Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#referer"><span class="nav-number">3.4.2.</span> <span class="nav-text">referer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From"><span class="nav-number">3.4.3.</span> <span class="nav-text">From</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Headers-响应的上下文"><span class="nav-number">3.5.</span> <span class="nav-text">Response Headers 响应的上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">3.5.1.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Allow"><span class="nav-number">3.5.2.</span> <span class="nav-text">Allow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Ranges"><span class="nav-number">3.5.3.</span> <span class="nav-text">Accept-Ranges</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP包体"><span class="nav-number">3.6.</span> <span class="nav-text">HTTP包体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#发送-HTTP-消息时已能够确定包体的全部长度"><span class="nav-number">3.6.1.</span> <span class="nav-text">发送 HTTP 消息时已能够确定包体的全部长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发送-HTTP-消息时不能确定包体的全部长度"><span class="nav-number">3.6.2.</span> <span class="nav-text">发送 HTTP 消息时不能确定包体的全部长度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-Form表单"><span class="nav-number">3.7.</span> <span class="nav-text">HTML Form表单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键属性"><span class="nav-number">3.7.1.</span> <span class="nav-text">关键属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">3.8.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie的使用限制"><span class="nav-number">3.8.1.</span> <span class="nav-text">Cookie的使用限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie在协议设计上的问题"><span class="nav-number">3.8.2.</span> <span class="nav-text">Cookie在协议设计上的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">3.9.</span> <span class="nav-text">同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决跨域问题"><span class="nav-number">3.9.1.</span> <span class="nav-text">解决跨域问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control-头部"><span class="nav-number">3.10.</span> <span class="nav-text">Cache-Control 头部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control-头部在请求中的值"><span class="nav-number">3.10.1.</span> <span class="nav-text">Cache-Control 头部在请求中的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control-头部在响应中的值"><span class="nav-number">3.10.2.</span> <span class="nav-text">Cache-Control 头部在响应中的值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TSL-协议"><span class="nav-number">4.</span> <span class="nav-text">TSL 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AES对称加密"><span class="nav-number">4.1.</span> <span class="nav-text">AES对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密实现原理"><span class="nav-number">4.1.1.</span> <span class="nav-text">对称加密实现原理</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

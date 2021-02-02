@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="webpack,">
 
 
 
@@ -86,16 +86,18 @@
 
 
 
-<meta name="description" content="因为喜欢，所以坚持">
-<meta property="og:type" content="website">
-<meta property="og:title" content="薄梦风轻眠">
-<meta property="og:url" content="https:// blog.wangguanwei.com/tags/平行宇宙/index.html">
+<meta name="description" content="编写前储备知识AST(abstract syntax tree)抽象语法树，或者叫语法树。是源代码的抽象语法结构的树状变现形式，这里特指编程语言的源代码。树上的每个节点都表示源代码中的一种结构。 应用场景 模板引擎常见的模板引擎的实现方式有两种  正则匹配 使用AST将模板引擎转换为字符串流、分析、render   ES6 转ES5 TS转JS  在线Demo webpack的模块机制webpa">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写一个简易的webpack">
+<meta property="og:url" content="https:// blog.wangguanwei.com/2021/01/19/编写一个简易的webpack/index.html">
 <meta property="og:site_name" content="薄梦风轻眠">
-<meta property="og:description" content="因为喜欢，所以坚持">
+<meta property="og:description" content="编写前储备知识AST(abstract syntax tree)抽象语法树，或者叫语法树。是源代码的抽象语法结构的树状变现形式，这里特指编程语言的源代码。树上的每个节点都表示源代码中的一种结构。 应用场景 模板引擎常见的模板引擎的实现方式有两种  正则匹配 使用AST将模板引擎转换为字符串流、分析、render   ES6 转ES5 TS转JS  在线Demo webpack的模块机制webpa">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-21T13:18:57.795Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="薄梦风轻眠">
-<meta name="twitter:description" content="因为喜欢，所以坚持">
+<meta name="twitter:title" content="编写一个简易的webpack">
+<meta name="twitter:description" content="编写前储备知识AST(abstract syntax tree)抽象语法树，或者叫语法树。是源代码的抽象语法结构的树状变现形式，这里特指编程语言的源代码。树上的每个节点都表示源代码中的一种结构。 应用场景 模板引擎常见的模板引擎的实现方式有两种  正则匹配 使用AST将模板引擎转换为字符串流、分析、render   ES6 转ES5 TS转JS  在线Demo webpack的模块机制webpa">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https:// blog.wangguanwei.com/tags/平行宇宙/">
+  <link rel="canonical" href="https:// blog.wangguanwei.com/2021/01/19/编写一个简易的webpack/">
 
 
 
 
 
-  <title>标签: 平行宇宙 | 薄梦风轻眠</title>
+  <title>编写一个简易的webpack | 薄梦风轻眠</title>
   
 
 
@@ -153,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -259,78 +261,197 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>平行宇宙<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2021/01/19/编写一个简易的webpack/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2021/01/18/浅谈Web性能优化策略/" itemprop="url">
-              
-                <span itemprop="name">浅谈Web性能优化策略</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">编写一个简易的webpack</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2021-01-18T23:34:08+08:00" content="2021-01-18">
-          01-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-19T17:13:13+08:00">
+                2021-01-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/27/ES6/" itemprop="url">
-              
-                <span itemprop="name">ES6常用语法总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-27T16:04:29+08:00" content="2019-02-27">
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <a id="more"></a>
+<h3 id="编写前储备知识"><a href="#编写前储备知识" class="headerlink" title="编写前储备知识"></a>编写前储备知识</h3><h4 id="AST-abstract-syntax-tree"><a href="#AST-abstract-syntax-tree" class="headerlink" title="AST(abstract syntax tree)"></a>AST(abstract syntax tree)</h4><p>抽象语法树，或者叫语法树。是源代码的抽象语法结构的树状变现形式，这里特指编程语言的源代码。树上的每个节点都表示源代码中的一种结构。</p>
+<h5 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h5><ul>
+<li><p>模板引擎<br>常见的模板引擎的实现方式有两种</p>
+<ol>
+<li>正则匹配</li>
+<li>使用AST将模板引擎转换为字符串流、分析、render</li>
+</ol>
+</li>
+<li>ES6 转ES5</li>
+<li>TS转JS</li>
+</ul>
+<p><a href="https://esprima.org/demo/parse.html#" target="_blank" rel="noopener">在线Demo</a></p>
+<h4 id="webpack的模块机制"><a href="#webpack的模块机制" class="headerlink" title="webpack的模块机制"></a>webpack的模块机制</h4><p><em>webpack打包之后的源码此处不再po</em></p>
+<hr>
+<ul>
+<li>webpack打包之后函数是一个匿名闭包(立即执行)函数.</li>
+<li>匿名函数中接收一个参数，该参数是一个数组，数组中的每一项为模块初始化函数</li>
+<li>__webpack_require 用于加载模块，返回module.export</li>
+<li>通过WEBPACK_REQUIRE_METHOD(0)启动程序</li>
+</ul>
+<h3 id="技术点分析"><a href="#技术点分析" class="headerlink" title="技术点分析"></a>技术点分析</h3><h4 id="ES6转换为ES5"><a href="#ES6转换为ES5" class="headerlink" title="ES6转换为ES5"></a>ES6转换为ES5</h4><ul>
+<li>使用 babylon 生成AST</li>
+<li>通过babel-core 将AST重新生成ES5代码</li>
+</ul>
+<h4 id="分析模块之间的依赖关系"><a href="#分析模块之间的依赖关系" class="headerlink" title="分析模块之间的依赖关系"></a>分析模块之间的依赖关系</h4><ul>
+<li>通过babel-traverse 的importDeclaration 方法获取依赖属性</li>
+</ul>
+<h4 id="生成的文件能在浏览器中运行"><a href="#生成的文件能在浏览器中运行" class="headerlink" title="生成的文件能在浏览器中运行"></a>生成的文件能在浏览器中运行</h4><h3 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h3><p><a href="https://github.com/Cinaiet/simplepack" target="_blank" rel="noopener">代码地址</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/18/浅谈Web性能优化策略/" rel="next" title="浅谈Web性能优化策略">
+                <i class="fa fa-chevron-left"></i> 浅谈Web性能优化策略
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +459,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -358,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -421,6 +555,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写前储备知识"><span class="nav-number">1.</span> <span class="nav-text">编写前储备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AST-abstract-syntax-tree"><span class="nav-number">1.1.</span> <span class="nav-text">AST(abstract syntax tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用场景"><span class="nav-number">1.1.1.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack的模块机制"><span class="nav-number">1.2.</span> <span class="nav-text">webpack的模块机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术点分析"><span class="nav-number">2.</span> <span class="nav-text">技术点分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6转换为ES5"><span class="nav-number">2.1.</span> <span class="nav-text">ES6转换为ES5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析模块之间的依赖关系"><span class="nav-number">2.2.</span> <span class="nav-text">分析模块之间的依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成的文件能在浏览器中运行"><span class="nav-number">2.3.</span> <span class="nav-text">生成的文件能在浏览器中运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序实现"><span class="nav-number">3.</span> <span class="nav-text">程序实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -549,6 +699,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
