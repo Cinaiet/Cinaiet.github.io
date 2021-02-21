@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="痛并快乐着。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-01T14:53:58.564Z">
+<meta property="og:updated_time" content="2021-02-20T14:12:01.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构和算法之美">
 <meta name="twitter:description" content="痛并快乐着。">
@@ -364,8 +364,10 @@
       
 
       
-        <p>痛并快乐着。<br><a id="more"></a></p>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="大O复杂度表示法-时间复杂度"><a href="#大O复杂度表示法-时间复杂度" class="headerlink" title="大O复杂度表示法(时间复杂度)"></a>大O复杂度表示法(时间复杂度)</h3><p>T(n) = O(f(n))<br>T(n)表示代码执行的时间；n 表示数据规模的大小；f(n) 表示每行代码执行的次数总和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 例1</span><br><span class="line">function cal1 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 例2</span><br><span class="line">function cal2 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    let j = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        j = 1;</span><br><span class="line">        for(; i &lt;= n; j++) &#123;</span><br><span class="line">            sum = sum + i * j</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>痛并快乐着。</p>
+<a id="more"></a>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="大O复杂度表示法-时间复杂度"><a href="#大O复杂度表示法-时间复杂度" class="headerlink" title="大O复杂度表示法(时间复杂度)"></a>大O复杂度表示法(时间复杂度)</h3><p>T(n) = O(f(n))<br>T(n)表示代码执行的时间；n 表示数据规模的大小；f(n) 表示每行代码执行的次数总和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 例1</span><br><span class="line">function cal1 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 例2</span><br><span class="line">function cal2 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    let j = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        j = 1;</span><br><span class="line">        for(; i &lt;= n; j++) &#123;</span><br><span class="line">            sum = sum + i * j</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>假设每行代码的运行时间为x,例1中的第二三行代码，分别需要x个时间,第4、5行代码,各执行了n次,执行时间分别需要 n <em> x。所以例1中代码执行时间需要(2n+2) </em>x 。可以看出，<strong>所有代码的执行时间 T(n) 与每行代码的执行次数成正比。</strong></p>
 <p>所以例2中代码所需要的执行时间T(n) = 2n² + 2n + 3.<br>即: <strong>所有代码的执行时间 T(n) 与每行代码的执行次数 n 成正比</strong></p>
 <p><strong>大 O 时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码执行时间随数据规模增长的变化趋势</strong></p>
@@ -374,18 +376,22 @@
 <li>只关注循环执行次数最多的一段代码。<br>如例1中的代码，2、3行代码的执行时间都是常量级,与n的大小无关，所以对于复杂度并没有影响。循环执行次数最多的是第 4、5 行代码，所以这块代码要重点分析。这两行代码被执行了 n 次，所以总的时间复杂度就是 O(n)。</li>
 <li>加法法则: 总复杂度等于量级最大的那段代码的复杂度</li>
 <li>乘法法则: 嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
-<li>O(m+n)、O(m*n)<br>如一个函数中有两个数据规模的量，在事先又无法评估谁的量级大，所以我们在表示复杂度的时候，就不能简单地利用加法法则，省略掉其中一个。所以，上面代码的时间复杂度就是 O(m+n)。乘法一样。<h4 id="最好、最坏情况时间复杂度"><a href="#最好、最坏情况时间复杂度" class="headerlink" title="最好、最坏情况时间复杂度"></a>最好、最坏情况时间复杂度</h4>最好情况时间复杂度就是，在最理想的情况下，执行这段代码的时间复杂度。<br>最坏情况时间复杂度就是，在最糟糕的情况下，执行这段代码的时间复杂度。<h4 id="平均情况时间复杂度"><a href="#平均情况时间复杂度" class="headerlink" title="平均情况时间复杂度"></a>平均情况时间复杂度</h4>比如要查找的变量 x 在数组中的位置，有 n+1 种情况：在数组的 0～n-1 位置中和不在数组中。我们把每种情况下，查找需要遍历的元素个数累加起来，然后再除以 n+1，就可以得到需要遍历的元素个数的平均值<br>(1 + 2 + 3 + … + n + n) / (n+1) <h4 id="均摊时间复杂度"><a href="#均摊时间复杂度" class="headerlink" title="均摊时间复杂度"></a>均摊时间复杂度</h4>在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结果就等于低级别复杂度<br>均摊复杂度在以下两个条件满足时使用</li>
+<li>O(m+n)、O(m*n)<br>如一个函数中有两个数据规模的量，在事先又无法评估谁的量级大，所以我们在表示复杂度的时候，就不能简单地利用加法法则，省略掉其中一个。所以，上面代码的时间复杂度就是 O(m+n)。乘法一样。</li>
 </ul>
+<h4 id="最好、最坏情况时间复杂度"><a href="#最好、最坏情况时间复杂度" class="headerlink" title="最好、最坏情况时间复杂度"></a>最好、最坏情况时间复杂度</h4><p>最好情况时间复杂度就是，在最理想的情况下，执行这段代码的时间复杂度。<br>最坏情况时间复杂度就是，在最糟糕的情况下，执行这段代码的时间复杂度。</p>
+<h4 id="平均情况时间复杂度"><a href="#平均情况时间复杂度" class="headerlink" title="平均情况时间复杂度"></a>平均情况时间复杂度</h4><p>比如要查找的变量 x 在数组中的位置，有 n+1 种情况：在数组的 0～n-1 位置中和不在数组中。我们把每种情况下，查找需要遍历的元素个数累加起来，然后再除以 n+1，就可以得到需要遍历的元素个数的平均值<br>(1 + 2 + 3 + … + n + n) / (n+1)</p>
+<h4 id="均摊时间复杂度"><a href="#均摊时间复杂度" class="headerlink" title="均摊时间复杂度"></a>均摊时间复杂度</h4><p>在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结果就等于低级别复杂度<br>均摊复杂度在以下两个条件满足时使用</p>
 <ol>
 <li>代码在绝大多数情况下是低级别复杂度，只有极少数情况是高级别复杂度；</li>
-<li>低级别和高级别复杂度出现具有时序规律。均摊结果一般都等于低级别复杂度。<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3>表示算法的存储空间与数据规模之间的增长关系。</li>
+<li>低级别和高级别复杂度出现具有时序规律。均摊结果一般都等于低级别复杂度。</li>
 </ol>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>表示算法的存储空间与数据规模之间的增长关系。</p>
 <hr>
 <h2 id="数据结构类型"><a href="#数据结构类型" class="headerlink" title="数据结构类型"></a>数据结构类型</h2><h3 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h3><p>线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。<br>数组，链表、队列、栈等都是线性表结构。</p>
 <hr>
 <h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>数组,用一组连续的内存空间，来存储一组具有相同类型的数据。</p>
 <ul>
-<li>连续的内存空间和相同类型的数据&gt; 段落引用</li>
+<li>连续的内存空间和相同类型的数据</li>
 <li>支持随机访问</li>
 <li>低效的“插入”和“删除”<br>如果某个数组中，需要在arr[x]的位置插入一个新的val，就需要将原来的x向后挪出一位，最坏的时间复杂度的情况为O(n)</li>
 </ul>
@@ -395,13 +401,18 @@
 <p>单链表有两个结点比较特殊,头结点(第一个结点)和尾结点(最后一个结点指向null)</p>
 <ul>
 <li>插入删除非常便捷</li>
-<li>但随即访问没有数组高效，无法像数组一样通过下标获取，而是需要根据指针一个结点一个结点地依次遍历，直到找到相应的结点。<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5>是一种特殊的单链表。<br>单链表的尾结点指向null(空地址),而循环链表的尾结点指针是指向链表的头结点.<h5 id="双向链表。"><a href="#双向链表。" class="headerlink" title="双向链表。"></a>双向链表。</h5>单向链表只有一个方向，结点只有一个后继指针 next 指向后面的结点。而双向链表，顾名思义，它支持两个方向，每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。</li>
+<li>但随即访问没有数组高效，无法像数组一样通过下标获取，而是需要根据指针一个结点一个结点地依次遍历，直到找到相应的结点。</li>
+</ul>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><p>是一种特殊的单链表。<br>单链表的尾结点指向null(空地址),而循环链表的尾结点指针是指向链表的头结点.</p>
+<h5 id="双向链表。"><a href="#双向链表。" class="headerlink" title="双向链表。"></a>双向链表。</h5><p>单向链表只有一个方向，结点只有一个后继指针 next 指向后面的结点。而双向链表，顾名思义，它支持两个方向，每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。</p>
+<ul>
 <li>双向链表需要额外的两个空间来存储后继结点和前驱结点的地址。所以，如果存储同样多的数据，双向链表要比单链表占用更多的内存空间。虽然两个指针比较浪费存储空间，但可以支持双向遍历，这样也带来了双向链表操作的灵活性。</li>
 </ul>
 <p>####链表与数组的对比</p>
 <ul>
-<li>数组大小固定，一经声明就要占用整块连续内存空间。链表本身没有大小的限制，天然地支持动态扩容。<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5>将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针，或者反过来说，指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量。</li>
+<li>数组大小固定，一经声明就要占用整块连续内存空间。链表本身没有大小的限制，天然地支持动态扩容。</li>
 </ul>
+<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5><p>将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针，或者反过来说，指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量。</p>
 <p><strong>插入结点时一定要注意: 如果希望在a结点和b结点插入c结点，要先将c的next结点指向b，再将a的next结点指向c,这样才不会丢失指针，导致内存泄漏。同理，删除链表结点时，也一定要记得手动释放内存空间。</strong></p>
 <h5 id="如何优雅的写出链表代码"><a href="#如何优雅的写出链表代码" class="headerlink" title="如何优雅的写出链表代码"></a>如何优雅的写出链表代码</h5><ol>
 <li>理解指针或引用的含义</li>
@@ -426,7 +437,7 @@
 <hr>
 <h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>指在运行的过程中调用自己。</p>
 <h3 id="构成递归需要满足的条件"><a href="#构成递归需要满足的条件" class="headerlink" title="构成递归需要满足的条件"></a>构成递归需要满足的条件</h3><ol>
-<li>一个问题的解可以分解为几个子问题的解。 </li>
+<li>一个问题的解可以分解为几个子问题的解。</li>
 <li>子问题须与原始问题为同样的事,且更为简单。</li>
 <li>存在递归终止条件。</li>
 </ol>
@@ -434,7 +445,7 @@
 <p>如斐波那契数列。 1, 1, 2, 3, 5, 8, 13, 21, …</p>
 <p>如何求 斐波那契数列第n项的值？</p>
 <ol>
-<li>找出递推公式。 按数列不难发现，从第三项起，第三项的值，等于前两项值的和。<br>及f(n) = f(n - 1) + f(n - 2) </li>
+<li>找出递推公式。 按数列不难发现，从第三项起，第三项的值，等于前两项值的和。<br>及f(n) = f(n - 1) + f(n - 2)</li>
 <li>终止条件<br>当只有一个数时，值为1，所以 f(1) = 1。<br>校验递归终止条件是否足够时，可以将n =  2,n = 3 带入地推公式里面实验一下。</li>
 </ol>
 <p>当n = 2 时，f(2) = f(1) + f(0)。如果递归终止条件只有一个 f(1)=1，那 f(2) 就无法求解了。<br>所以除了f(1) = 1之外，还要有 f(0) = 1,用来表示0个数时的值，不过显然长度为0的数列是不符合正常逻辑的，所以，我们可以把f(2) = 2，当做一个 终止条件。<br>当n = 3时 …</p>
