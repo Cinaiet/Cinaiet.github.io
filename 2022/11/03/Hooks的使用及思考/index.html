@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="花满楼,">
+  <meta name="keywords" content="花满楼,重学React,">
 
 
 
@@ -87,14 +87,14 @@
 
 
 <meta name="description" content="为什么要用 Hooks其实在类组件时代时，已经有了函数组件的雏形。但是有一个局限，就是函数组件无法存在内部状态，必须是纯函数，而且无法提供完整的生命周期。故使用了 Class 作为组件。">
-<meta name="keywords" content="花满楼">
+<meta name="keywords" content="花满楼,重学React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hooks的使用及思考">
-<meta property="og:url" content="https:// blog.wangguanwei.com/2022/11/03/Hooks的使用及思考/index.html">
+<meta property="og:url" content="https:// blog.wangguanwei.cn/2022/11/03/Hooks的使用及思考/index.html">
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="为什么要用 Hooks其实在类组件时代时，已经有了函数组件的雏形。但是有一个局限，就是函数组件无法存在内部状态，必须是纯函数，而且无法提供完整的生命周期。故使用了 Class 作为组件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-11-03T09:01:42.719Z">
+<meta property="og:updated_time" content="2022-11-15T09:13:12.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hooks的使用及思考">
 <meta name="twitter:description" content="为什么要用 Hooks其实在类组件时代时，已经有了函数组件的雏形。但是有一个局限，就是函数组件无法存在内部状态，必须是纯函数，而且无法提供完整的生命周期。故使用了 Class 作为组件。">
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https:// blog.wangguanwei.com/2022/11/03/Hooks的使用及思考/">
+  <link rel="canonical" href="https:// blog.wangguanwei.cn/2022/11/03/Hooks的使用及思考/">
 
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.com/2022/11/03/Hooks的使用及思考/">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.cn/2022/11/03/Hooks的使用及思考/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cinaiet">
@@ -456,7 +456,23 @@
 <li>只能在函数组件的顶级作用域中使用；只能在函数组件或其他 Hooks 中使用。<br>顶级作用域，就是<strong>Hooks 不能用在循环、条件判断或者嵌套函数内执行，必须是顶层。</strong>同时 <strong>Hooks 在组件的多次渲染之间，必须按顺序被执行。</strong></li>
 <li>避免重复定义回调函数</li>
 </ul>
-
+<hr>
+<p><em><code>20221111补充：</code></em></p>
+<h3 id="保持状态的一致性"><a href="#保持状态的一致性" class="headerlink" title="保持状态的一致性"></a>保持状态的一致性</h3><p>在 Hooks 的使用过程中我们应当尽可能使用最优、最合理的方式去管理应用状态。</p>
+<h4 id="保证状态最小化"><a href="#保证状态最小化" class="headerlink" title="保证状态最小化"></a>保证状态最小化</h4><p>不要把 State 当做变量用。<strong>在保证 State 完整性的同时，也应保证它的最小化。</strong></p>
+<p>举个栗子。我们要实现一个对订单列表进行关键字搜索的功能。我们可能需要一个搜索框和一个订单列表。</p>
+<p>按照 React 状态驱动 UI 的思想，我们页面上可能需要三个状态：</p>
+<ol>
+<li>订单列表的数据：可能来自于某个接口请求；</li>
+<li>搜索关键字： 用户输入；</li>
+<li>搜索结果： 根据搜索关键字过滤原始数据。</li>
+</ol>
+<p>故代码实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const OrderListFilter = function (data) &#123;</span><br><span class="line">  // 搜索关键字</span><br><span class="line">  const [filterVal, setFilterVal] = useState(&apos;&apos;);</span><br><span class="line"></span><br><span class="line">  // 过滤后展示的数据，默认为原始数据</span><br><span class="line">  const [filterList, setFilterList] = useState(data);</span><br><span class="line"></span><br><span class="line">  const handleFilter = useCallback(</span><br><span class="line">    (evt) =&gt; &#123;</span><br><span class="line">      const temp = evt.target.value;</span><br><span class="line">      setFilterVal(temp);</span><br><span class="line">      setFilterList(</span><br><span class="line">        filterList.filter((item) =&gt; &#123;</span><br><span class="line">          return item.title.includes(temp);</span><br><span class="line">        &#125;),</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    [filterVal],</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; value=&#123;filterVal&#125; onChange=&#123;handleFilter&#125; /&gt;</span><br><span class="line">      &#123;filterList.length</span><br><span class="line">        ? filterList.map((item) =&gt; &#123;</span><br><span class="line">            return &lt;div&gt;item.title&lt;/div&gt;;</span><br><span class="line">          &#125;)</span><br><span class="line">        : null&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，使用了两个 state 去保存过滤后的结果。但其实这个 state 是多余的。因为<strong>过滤后的结果数据可以使用计算属性 useMemo 缓存起来。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const OrderListFilter = function (data) &#123;</span><br><span class="line">  // 搜索关键字</span><br><span class="line">  const [filterVal, setFilterVal] = useState(&apos;&apos;);</span><br><span class="line"></span><br><span class="line">  const filterList = useMemo(() =&gt; &#123;</span><br><span class="line">    return data.filter(item =&gt; &#123;</span><br><span class="line">      return item.title.includes(filterVal)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const handleFilter = useCallback(</span><br><span class="line">    (evt) =&gt; &#123;</span><br><span class="line">      const temp = evt.target.value;</span><br><span class="line">      setFilterVal(temp);</span><br><span class="line">      setFilterList(</span><br><span class="line">        filterList.filter((item) =&gt; &#123;</span><br><span class="line">          return item.title.includes(temp);</span><br><span class="line">        &#125;),</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    [filterVal, data],</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; value=&#123;filterVal&#125; onChange=&#123;handleFilter&#125; /&gt;</span><br><span class="line">      &#123;filterList.length</span><br><span class="line">        ? filterList.map((item) =&gt; &#123;</span><br><span class="line">            return &lt;div&gt;item.title&lt;/div&gt;;</span><br><span class="line">          &#125;)</span><br><span class="line">        : null&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这样就可以只使用一个 state 来使得组件最简化。<br>所以我们在定义一个新的状态之前，都要再三拷问自己：<strong>这个状态是必须的吗？是否能通过计算得到？</strong></p>
+<h4 id="避免中间状态，保持数据源唯一"><a href="#避免中间状态，保持数据源唯一" class="headerlink" title="避免中间状态，保持数据源唯一"></a>避免中间状态，保持数据源唯一</h4>
       
     </div>
     
@@ -474,6 +490,8 @@
         <div class="post-tags">
           
             <a href="/tags/花满楼/" rel="tag"># 花满楼</a>
+          
+            <a href="/tags/重学React/" rel="tag"># 重学React</a>
           
         </div>
       
@@ -495,6 +513,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/11/04/自定义Hooks/" rel="prev" title="自定义Hooks">
+                自定义Hooks <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -573,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -628,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用-Hooks"><span class="nav-number">1.</span> <span class="nav-text">为什么要用 Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Class-组件的缺点"><span class="nav-number">1.1.</span> <span class="nav-text">使用 Class 组件的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks-的诞生"><span class="nav-number">1.2.</span> <span class="nav-text">Hooks 的诞生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks-优点"><span class="nav-number">1.3.</span> <span class="nav-text">Hooks 优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useState"><span class="nav-number">2.</span> <span class="nav-text">useState</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-的最佳实践"><span class="nav-number">2.1.</span> <span class="nav-text">state 的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useEffect-执行副作用"><span class="nav-number">3.</span> <span class="nav-text">useEffect 执行副作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-模拟生命周期"><span class="nav-number">3.1.</span> <span class="nav-text">useEffect 模拟生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#componentDidMount"><span class="nav-number">3.1.1.</span> <span class="nav-text">componentDidMount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">3.1.2.</span> <span class="nav-text">componentDidUpdate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">3.1.3.</span> <span class="nav-text">componentWillUnmount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四种不同的时机执行一个回调产生的副作用"><span class="nav-number">3.1.4.</span> <span class="nav-text">四种不同的时机执行一个回调产生的副作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-最佳实践"><span class="nav-number">3.2.</span> <span class="nav-text">useEffect 最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useCallback-缓存回调函数"><span class="nav-number">4.</span> <span class="nav-text">useCallback 缓存回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useCallback-最佳实践"><span class="nav-number">4.1.</span> <span class="nav-text">useCallback 最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useMemo-缓存计算的结果"><span class="nav-number">5.</span> <span class="nav-text">useMemo 缓存计算的结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo-和-useCallback-的区别"><span class="nav-number">5.1.</span> <span class="nav-text">useMemo 和 useCallback 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useRef-在多次渲染之间共享数据"><span class="nav-number">6.</span> <span class="nav-text">useRef 在多次渲染之间共享数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享值"><span class="nav-number">6.1.</span> <span class="nav-text">共享值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存-DOM-节点的引用"><span class="nav-number">6.2.</span> <span class="nav-text">保存 DOM 节点的引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useContext-定义全局状态"><span class="nav-number">7.</span> <span class="nav-text">useContext 定义全局状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createContext-initVal"><span class="nav-number">7.1.</span> <span class="nav-text">createContext(initVal)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useContext-实践"><span class="nav-number">7.2.</span> <span class="nav-text">useContext 实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hooks-使用规则"><span class="nav-number">8.</span> <span class="nav-text">Hooks 使用规则</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用-Hooks"><span class="nav-number">1.</span> <span class="nav-text">为什么要用 Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Class-组件的缺点"><span class="nav-number">1.1.</span> <span class="nav-text">使用 Class 组件的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks-的诞生"><span class="nav-number">1.2.</span> <span class="nav-text">Hooks 的诞生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hooks-优点"><span class="nav-number">1.3.</span> <span class="nav-text">Hooks 优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useState"><span class="nav-number">2.</span> <span class="nav-text">useState</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-的最佳实践"><span class="nav-number">2.1.</span> <span class="nav-text">state 的最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useEffect-执行副作用"><span class="nav-number">3.</span> <span class="nav-text">useEffect 执行副作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-模拟生命周期"><span class="nav-number">3.1.</span> <span class="nav-text">useEffect 模拟生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#componentDidMount"><span class="nav-number">3.1.1.</span> <span class="nav-text">componentDidMount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">3.1.2.</span> <span class="nav-text">componentDidUpdate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">3.1.3.</span> <span class="nav-text">componentWillUnmount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四种不同的时机执行一个回调产生的副作用"><span class="nav-number">3.1.4.</span> <span class="nav-text">四种不同的时机执行一个回调产生的副作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-最佳实践"><span class="nav-number">3.2.</span> <span class="nav-text">useEffect 最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useCallback-缓存回调函数"><span class="nav-number">4.</span> <span class="nav-text">useCallback 缓存回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useCallback-最佳实践"><span class="nav-number">4.1.</span> <span class="nav-text">useCallback 最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useMemo-缓存计算的结果"><span class="nav-number">5.</span> <span class="nav-text">useMemo 缓存计算的结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useMemo-和-useCallback-的区别"><span class="nav-number">5.1.</span> <span class="nav-text">useMemo 和 useCallback 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useRef-在多次渲染之间共享数据"><span class="nav-number">6.</span> <span class="nav-text">useRef 在多次渲染之间共享数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享值"><span class="nav-number">6.1.</span> <span class="nav-text">共享值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存-DOM-节点的引用"><span class="nav-number">6.2.</span> <span class="nav-text">保存 DOM 节点的引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useContext-定义全局状态"><span class="nav-number">7.</span> <span class="nav-text">useContext 定义全局状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createContext-initVal"><span class="nav-number">7.1.</span> <span class="nav-text">createContext(initVal)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useContext-实践"><span class="nav-number">7.2.</span> <span class="nav-text">useContext 实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hooks-使用规则"><span class="nav-number">8.</span> <span class="nav-text">Hooks 使用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保持状态的一致性"><span class="nav-number">8.1.</span> <span class="nav-text">保持状态的一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保证状态最小化"><span class="nav-number">8.1.1.</span> <span class="nav-text">保证状态最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免中间状态，保持数据源唯一"><span class="nav-number">8.1.2.</span> <span class="nav-text">避免中间状态，保持数据源唯一</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -649,7 +671,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <adress>个人邮箱: <a href="mailto:crazyguanwei@163.com">crazyguanwei@163.com </a></adress>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
