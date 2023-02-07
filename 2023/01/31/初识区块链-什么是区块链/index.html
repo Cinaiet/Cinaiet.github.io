@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="薄梦风轻眠">
 <meta property="og:description" content="区块链(blockchain)究竟是个什么技术？为什么会成为热点技术？它又解决了什么问题？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2023-01-31T08:50:30.172Z">
+<meta property="og:updated_time" content="2023-02-01T05:55:09.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识区块链-什么是区块链">
 <meta name="twitter:description" content="区块链(blockchain)究竟是个什么技术？为什么会成为热点技术？它又解决了什么问题？">
@@ -392,13 +392,40 @@
 <p>于是中本聪说我先生成第一个 Transaction，这个交易的付款人为空，收款人是村长，付款金额是 100W(全村的总资产)。<br>做好第一个信封以后，让村里所有人都复印一份。这个步骤也叫做<strong>同步区块</strong>，也就是全网都拿到这个信封，以及信封里的 Transaction。</p>
 <h4 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h4><p>现在有了创世纪区块，假设张三在村长那存款余额为 10W，那么交易单就应该把 100W 分成两部分，一部分是 10W，一收款人是张三；另外 90W 是村长自己，这样就做成了一个 Transaction。</p>
 <h4 id="打包-Transaction-挖矿"><a href="#打包-Transaction-挖矿" class="headerlink" title="打包 Transaction (挖矿)"></a>打包 Transaction (挖矿)</h4><p>现在有了 Transaction，但是还需要用信封把 Transaction 装起来，这个信封就是区块链中的”区块“，这个封装过程就是”<strong>打包交易。</strong>“</p>
-<p>之所以要封装起来是为了让打包交易的人能在信封上署名，并且装配交易标号，方便后续村民查询。</p>
+<p>之所以要封装起来是为了让打包交易的人能在信封上署名，并且装配交易标号(区块 ID)，方便后续村民查询。</p>
 <p>谁来打包呢？这个时候中本聪又说，随着咱村人口的增长，未来 100W 肯定不够，暂定 150W，多出来的这 50W，就当奖励那些装信封的人了，当然也不能给多，谁装一次给 2 个币。<br>但是你要想获得这个装信封的权利，得做一道难题，谁先把这个题做出来谁就给这笔 Transaction 装到信封里并且盖上自己的印章。</p>
 <p>但是挖矿(做题)需要大规模的计算来找到一个符合系统要求的区块 ID。要找到符合条件的区块 ID 只能通过暴力穷举的方式，所以要付出大量系统计算和电力。</p>
 <h4 id="广播交易"><a href="#广播交易" class="headerlink" title="广播交易"></a>广播交易</h4><p>广播是为了让全村都知道你这一刻产生了一个 Transaction，或者是装好了一个信封。</p>
 <p>收到通知后，村民可以先验证信封上难题的答案是否正确，接着验里面的每一笔交易，最后还要验信封背面的内容，及上一个信封的摘要是否正确。因为上一个信封大家都已经确认过。所以可以有效的防止伪造作假。这就是区块链。</p>
 <h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><p>区块链中包含着一个个的区块，每个区块中记录者一组交易信息，然后每个区块也都会有一个 ID(或地址)，这些区块通过记录前一个区块的 ID 来形成一条链。</p>
 <p>每个 ID 都是通过其内容生成的，只要内容有一丁点的变化这个 ID 就会完全不一样。<br>而且这个 ID 的内容中还包含上一个块的 ID，于是只要上一个块的内容变了，其(当前) ID 也要跟着变(不然就不合法了)。那么后一个区块的 ID 也要重新计算变成另一个，这样就会形成一个连锁效应，一个区块被改，后续的都得跟着改，提高了修改(伪造)成本。</p>
+<h2 id="共识机制"><a href="#共识机制" class="headerlink" title="共识机制"></a>共识机制</h2><p>共识机制是区块链的核心组成要素之一。它决定了区块链的业务吞吐量、交易速度、不可篡改性、准入门槛等。</p>
+<p>共识机制主要解决了两个问题。</p>
+<ol>
+<li><strong>谁有权利。</strong></li>
+<li><strong>作弊问题。</strong></li>
+</ol>
+<p>在上文中心化记账中，采用分布式方式记账，所以大家面临的最大的问题就是谁有权利记账，以谁的记账数据为准，其次是如何避免记账者作弊。</p>
+<p><strong>以谁的数据为准？</strong> 任何结点都可以修改自己所下载的账本，也就是说任何人都可以伪造账本。那么谁的账本才是对的？<strong>在去中心化的网络下，我们只能认为大多数人的账本数据是对的。因为在没有服务器的去中心化网络下，所谓的真理不过是大多数人认可同意的东西。</strong>所以只要控制了一半以上的结点，让这”大多数人“伪造同一份账本，那么就相当于整个账本被修改过来了。</p>
+<p><strong>所谓大多数人？</strong> 在互联网的世界里，我们可以使用程序模拟出无穷多个“人”出来，根本分不清是人还是狗。</p>
+<p><strong>如何避免中心化风险？</strong> 比如李四在第一次记账时篡改了部分数据，第二次还是他记账，还继续篡改，这样是很有可能形成假账的。</p>
+<p>为了解决这些问题，比特币使用了 Proof Of Work 工作量证明机制，也就是”<strong>挖矿</strong>“</p>
+<h3 id="PoW-工作量证明"><a href="#PoW-工作量证明" class="headerlink" title="PoW 工作量证明"></a>PoW 工作量证明</h3><p>在 PoW (Proof Of Work)机制中，计算资源(算力)是决定记账权的唯一因素，与之对应的，便是计算难度。</p>
+<p>计算难度是区块链为了控制答案产生的速度。</p>
+<p>通过提升计算难度来”极度消耗计算力“这种方式来提高成本，从而有效控制以下几个问题。</p>
+<ol>
+<li><strong> 修改变得几乎不可能</strong> 如果生成一个区块需要大量的且长时间的计算力，比如世界上最好的电脑集群下 10 分钟才能打包好一个 Transaction。那么当我们去修改数据内容的时候，其过程也是一样的。前面也有说过，篡改一个区块，就要修改后面所有的块。</li>
+<li><strong> 能掌握 51%算力的人变得几乎不可能</strong> 除了伪造一个链的成本很高，还要控制大多数人的算力，这意味着需要巨额的资金支出，两个难度加起来，几乎不太可能。</li>
+<li><strong> 解决分歧</strong> 一方面，大量的算力计算出答案，也就是区块 ID，已经有效降低了大家有意见冲突的可能。另一方面，就算出现了合法冲突的区块(如分支、分叉)。<strong>也就是多个合法的账本</strong> 而因为挖矿的成本太高，导致同时跟进多个账本是不可能的，所以矿工们只能赌跟其中一个。大多数人选择的那个分支的链越多，另一个也就作废了。</li>
+</ol>
+<h4 id="解决双花攻击"><a href="#解决双花攻击" class="headerlink" title="解决双花攻击"></a>解决双花攻击</h4><p>双花攻击是指一个币被花费了两次。这在任意的区块链系统中是不被允许的。</p>
+<p>所有的记账结点都会遵循一下两个规则。</p>
+<ol>
+<li>一个币如果已经被花费，就会标为已花费，如果再次接收到这个币的花费请求，那么记账结点就会拒绝打包这次交易。</li>
+<li>如果同时接收到了两个信封，这两个信封中装的两笔交易出现了一个币被花费了两次的情况，也就是<strong>分叉</strong> 那么一般会选择挖矿难度比较大的那个信封。</li>
+</ol>
+<p>规则一避免未确认的交易出现双花，规则二避免已确认的交易出现双花，及上文中说到的解决分歧。</p>
+<p>以上。</p>
 
       
     </div>
@@ -573,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链技术的革命性"><span class="nav-number">1.</span> <span class="nav-text">区块链技术的革命性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化记账"><span class="nav-number">2.</span> <span class="nav-text">去中心化记账</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统中心化"><span class="nav-number">2.1.</span> <span class="nav-text">传统中心化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去中心化"><span class="nav-number">2.2.</span> <span class="nav-text">去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公开记账"><span class="nav-number">2.2.1.</span> <span class="nav-text">公开记账</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建创世区块"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建创世区块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交易"><span class="nav-number">2.2.3.</span> <span class="nav-text">交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包-Transaction-挖矿"><span class="nav-number">2.2.4.</span> <span class="nav-text">打包 Transaction (挖矿)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广播交易"><span class="nav-number">2.2.5.</span> <span class="nav-text">广播交易</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链"><span class="nav-number">3.</span> <span class="nav-text">区块链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链技术的革命性"><span class="nav-number">1.</span> <span class="nav-text">区块链技术的革命性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化记账"><span class="nav-number">2.</span> <span class="nav-text">去中心化记账</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统中心化"><span class="nav-number">2.1.</span> <span class="nav-text">传统中心化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去中心化"><span class="nav-number">2.2.</span> <span class="nav-text">去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公开记账"><span class="nav-number">2.2.1.</span> <span class="nav-text">公开记账</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建创世区块"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建创世区块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交易"><span class="nav-number">2.2.3.</span> <span class="nav-text">交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包-Transaction-挖矿"><span class="nav-number">2.2.4.</span> <span class="nav-text">打包 Transaction (挖矿)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广播交易"><span class="nav-number">2.2.5.</span> <span class="nav-text">广播交易</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链"><span class="nav-number">3.</span> <span class="nav-text">区块链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共识机制"><span class="nav-number">4.</span> <span class="nav-text">共识机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PoW-工作量证明"><span class="nav-number">4.1.</span> <span class="nav-text">PoW 工作量证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决双花攻击"><span class="nav-number">4.1.1.</span> <span class="nav-text">解决双花攻击</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1090,5 +1117,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
