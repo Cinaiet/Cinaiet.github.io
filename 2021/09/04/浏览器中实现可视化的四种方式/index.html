@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大千世界,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简单来说，可视化就是将数据信息组织起来后，以图形的形式展示出来。在 web 上，图形通常是通过浏览器来绘制的。其中负责绘制图形的部分是渲染引擎。渲染引擎绘制图形的方式，大体上有以下4种。">
+<meta name="keywords" content="大千世界">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器中实现可视化的四种方式">
+<meta property="og:url" content="https:// blog.wangguanwei.cn/2021/09/04/浏览器中实现可视化的四种方式/index.html">
+<meta property="og:site_name" content="薄梦风轻眠">
+<meta property="og:description" content="简单来说，可视化就是将数据信息组织起来后，以图形的形式展示出来。在 web 上，图形通常是通过浏览器来绘制的。其中负责绘制图形的部分是渲染引擎。渲染引擎绘制图形的方式，大体上有以下4种。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://Cinaiet.github.io/images/html-bar.png">
+<meta property="og:image" content="https://Cinaiet.github.io/images/html-pie.png">
+<meta property="og:image" content="https://Cinaiet.github.io/images/canvas-hierarchy.png">
+<meta property="og:updated_time" content="2025-07-31T01:57:10.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器中实现可视化的四种方式">
+<meta name="twitter:description" content="简单来说，可视化就是将数据信息组织起来后，以图形的形式展示出来。在 web 上，图形通常是通过浏览器来绘制的。其中负责绘制图形的部分是渲染引擎。渲染引擎绘制图形的方式，大体上有以下4种。">
+<meta name="twitter:image" content="https://Cinaiet.github.io/images/html-bar.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https:// blog.wangguanwei.cn/2021/09/04/浏览器中实现可视化的四种方式/">
+
+
+
+
+
+  <title>浏览器中实现可视化的四种方式 | 薄梦风轻眠</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薄梦风轻眠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.cn/2021/09/04/浏览器中实现可视化的四种方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器中实现可视化的四种方式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-04T16:11:03+08:00">
+                2021-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大千世界/" itemprop="url" rel="index">
+                    <span itemprop="name">大千世界</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简单来说，可视化就是将数据信息组织起来后，以图形的形式展示出来。<br>在 web 上，图形通常是通过浏览器来绘制的。其中负责绘制图形的部分是渲染引擎。渲染引擎绘制图形的方式，大体上有以下<code>4种</code>。</p>
+<a id="more"></a>
+<h3 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h3><p>使用 html + css 可以实现常规的图标展示。</p>
+<h4 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/* dataset = &#123; current: [15, 11, 17, 25, 37], total: [25, 26, 40, 45, 68], &#125; */</span><br><span class="line">    .bargraph &#123;</span><br><span class="line">      display: grid;</span><br><span class="line">      width: 150px;</span><br><span class="line">      height: 100px;</span><br><span class="line">      padding: 10px;</span><br><span class="line">      transform: scaleY(3);</span><br><span class="line">      grid-template-columns: repeat(5, 20%);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div &#123;</span><br><span class="line">      margin: 0 2px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div:nth-child(1) &#123;</span><br><span class="line">      background: linear-gradient(to bottom, transparent 75%, #37c 0, #37c 85%, #3c7 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div:nth-child(2) &#123;</span><br><span class="line">      background: linear-gradient(to bottom, transparent 74%, #37c 0, #37c 89%, #3c7 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div:nth-child(3) &#123;</span><br><span class="line">      background: linear-gradient(to bottom, transparent 60%, #37c 0, #37c 83%, #3c7 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div:nth-child(4) &#123;</span><br><span class="line">      background: linear-gradient(to bottom, transparent 55%, #37c 0, #37c 75%, #3c7 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .bargraph div:nth-child(5) &#123;</span><br><span class="line">      background: linear-gradient(to bottom, transparent 32%, #37c 0, #37c 63%, #3c7 0);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下图:<br><img src="https://Cinaiet.github.io/images/html-bar.png" alt="html-bar"></p>
+<h4 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.piegraph &#123;</span><br><span class="line">display: inline-block;</span><br><span class="line">width: 250px;</span><br><span class="line">height: 250px;</span><br><span class="line">border-radius: 50%;</span><br><span class="line">background-image: conic-gradient(#37c 30deg, #3c7 30deg, #3c7 65deg, orange 65deg, orange 110deg, #f73 110deg, #f73 200deg, #ccc 200deg); // 锥形渐变</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下图:<br><img src="https://Cinaiet.github.io/images/html-pie.png" alt="html-bar"></p>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>简化开发，不需要引入额外的库，节省资源，提高网页打开的速度。</li>
+<li>html + css 主要还是为了用于网页布局，虽然可以绘制可视化图表，但绘制的方法并不简洁。从 css 中很难看出图形与数据之间的关系，并且换算也需要 developer 自己来做，数据一旦发生变化，就需要重新计算生成。维护成本较高。</li>
+<li>其次，开销较大。html+css 是浏览器渲染引擎的一部分，浏览器的渲染引擎在工作时，要先解析 html、css 绘制 dom 树，cssom 树,render 树等等，当用 html 绘图时，一旦图形发生变化，就要引发浏览器的重绘。</li>
+</ul>
+<h3 id="Canvas-2D"><a href="#Canvas-2D" class="headerlink" title="Canvas 2D"></a>Canvas 2D</h3><p>Canvas2D 是浏览器提供的简便快捷的指令式图形系统，它通过一些简单的指令就能快速绘制出复杂的图形。</p>
+<p>MDN 使用教程链接：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API" target="_blank" rel="noopener">canvas 教程与指导</a></p>
+<h4 id="canvas-元素和-2d-上下文"><a href="#canvas-元素和-2d-上下文" class="headerlink" title="canvas 元素和 2d 上下文"></a>canvas 元素和 2d 上下文</h4><p>canvas 元素本身的 width 和 height，不等同于 canvas 元素 css 样式的宽高属性。</p>
+<p>css 宽高决定 canvas 页面呈现的大小，而 canvas 元素宽高决定了 canvas 的坐标系，决定可视区域的坐标范围。为了区分它们，我们称 canvas 元素属性宽高为<strong>画布宽高</strong>，css 样式宽高为<strong>样式宽高</strong></p>
+<p>在实际绘制的过程中，如果不设置样式宽高，只设置了画布宽高，那么 canvas 的样式宽高就会等同于画布宽高。<br>如果不设置画布宽高，只设置了样式宽高，那么画布宽高将等同于样式宽高的二倍。</p>
+<h4 id="canvas-操作步骤"><a href="#canvas-操作步骤" class="headerlink" title="canvas 操作步骤"></a>canvas 操作步骤</h4><p>此处不会赘述 canvas 的各个 api,只是做于简单说明。</p>
+<ol>
+<li>获取 Canvas 对象，通过 getContext(‘2d’) 得到 2D 上下文；</li>
+<li>设置绘图状态，比如填充颜色 fillStyle，平移变换 translate 等等；</li>
+<li>调用 beginPath 指令开始绘制图形；</li>
+<li>调用绘图指令，比如 rect，表示绘制矩形；</li>
+<li>调用 fill 指令，将绘制内容真正输出到画布上。</li>
+</ol>
+<h4 id="使用-canvas-绘制层次关系图"><a href="#使用-canvas-绘制层次关系图" class="headerlink" title="使用 canvas 绘制层次关系图"></a>使用 canvas 绘制层次关系图</h4><h5 id="层次结构数据"><a href="#层次结构数据" class="headerlink" title="层次结构数据"></a>层次结构数据</h5><p>用来表示能够体现层次结构的信息，例如城市与省与国家。一般来说，层次结构数据用层次关系图表来呈现。</p>
+<h5 id="城市层级示例图"><a href="#城市层级示例图" class="headerlink" title="城市层级示例图"></a>城市层级示例图</h5><p>json 数据格式如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;中国&quot;,</span><br><span class="line">  &quot;children&quot;:</span><br><span class="line">    [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;name&quot;: &quot;浙江&quot;,</span><br><span class="line">        &quot;children&quot;:</span><br><span class="line">          [</span><br><span class="line">            &#123; &quot;name&quot;: &quot;杭州&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;宁波&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;温州&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;绍兴&quot; &#125;</span><br><span class="line">          ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;name&quot;: &quot;河南&quot;,</span><br><span class="line">        &quot;children&quot;:</span><br><span class="line">          [</span><br><span class="line">            &#123; &quot;name&quot;: &quot;濮阳&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;洛阳&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;南阳&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;安阳&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;信阳&quot; &#125;,</span><br><span class="line">          ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;name&quot;: &quot;广西&quot;,</span><br><span class="line">        &quot;children&quot;:</span><br><span class="line">          [</span><br><span class="line">            &#123; &quot;name&quot;: &quot;桂林&quot; &#125;,</span><br><span class="line">            &#123; &quot;name&quot;: &quot;南宁&quot; &#125;,</span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设我们想要实现的层级关系图效果如下：</p>
+<p><img src="https://Cinaiet.github.io/images/canvas-hierarchy.png" alt="城市层级关系图"></p>
+<p>数据中只有”城市&gt;省份&gt;中国”这样的层级数据，我们需要把数据层级、位置和要绘制的半径、位置一一对应起来。</p>
+<p>换句话说，就是需要数学计算。不过，我们可以直接使用 <a href="https://www.d3js.org.cn/document/d3-hierarchy/#installing" target="_blank" rel="noopener">d3-hierarchy</a>这个工具库转换数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const regions = d3.hierarchy(cityData)</span><br><span class="line">  .sum(d =&gt; 1) //</span><br><span class="line">const pack = d3.pack()</span><br><span class="line">  .size([1000, 1000])</span><br><span class="line">  .padding(3);</span><br><span class="line">const root = pack(regions);</span><br></pre></td></tr></table></figure>
+<p>使用 d3.hierarchy 进行数据转换。将数据映射到一个 1000 * 1000 的画布上，每个相邻圆之间间隔 3px。拿到数据之后，<strong>只需要遍历数据并且根据数据内容绘制圆弧</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const canvas = document.querySelector(&apos;canvas&apos;);</span><br><span class="line">  const context = canvas.getContext(&apos;2d&apos;);</span><br><span class="line">  const TAU = 2 * Math.PI;</span><br><span class="line"></span><br><span class="line">  function draw(ctx, node, &#123;fillStyle = &apos;rgba(0, 0, 0, 0.2)&apos;, textColor = &apos;white&apos;&#125; = &#123;&#125;) &#123;</span><br><span class="line">    const children = node.children;</span><br><span class="line">    const &#123;x, y, r&#125; = node;</span><br><span class="line">    ctx.fillStyle = fillStyle;</span><br><span class="line">    ctx.beginPath();</span><br><span class="line">    ctx.arc(x, y, r, 0, TAU);</span><br><span class="line">    ctx.fill();</span><br><span class="line">    if(children) &#123;</span><br><span class="line">      for(let i = 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        draw(context, children[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      const name = node.data.name;</span><br><span class="line">      ctx.fillStyle = textColor;</span><br><span class="line">      ctx.font = &apos;1.5rem Arial&apos;;</span><br><span class="line">      ctx.textAlign = &apos;center&apos;;</span><br><span class="line">      ctx.fillText(name, x, y);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw(context, root);</span><br></pre></td></tr></table></figure>
+<p>首先使用 arc 指令(api)在当前节点绘制一个圆，arc 方法的五个参数分别是圆心的 x、y 坐标、半径 r、起始角度和结束角度，前三个参数就是数据中的 x、y 和 r。因为我们要绘制的是整圆，所以后面的两个参数中起始角是 0，结束角是 2π。</p>
+<p>绘制成图后，如果当前数据有下一级的数据，则遍历它的下一级数据，递归的调用绘图过程。如果没有下一级，则说明当前数据为城市数据(最小单元数据),通过 fillText 指令直接给出当前城市的名字。</p>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>canvas 能够直接操作绘图上下文，不需要 html,css 解析、渲染、布局等一系列操作。</li>
+<li>不容易添加操作事件(如 click 事件)</li>
+</ul>
+<h3 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h3><p>svg，可缩放矢量图。是一种基于 XML 语法的图像格式，可以用图片(img 元素)的 src 属性加载。</p>
+<p>svg MDN 参考文档<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG" target="_blank" rel="noopener">地址</a></p>
+<h4 id="实现柱状图"><a href="#实现柱状图" class="headerlink" title="实现柱状图"></a>实现柱状图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- dataset = &#123; total: [25, 26, 40, 45, 68], current: [15, 11, 17, 25, 37], &#125; --&gt;</span><br><span class="line">  &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;120px&quot; height=&quot;240px&quot; viewBox=&quot;0 0 60 100&quot;&gt;</span><br><span class="line">    &lt;g transform=&quot;translate(0, 100) scale(1, -1)&quot;&gt;</span><br><span class="line">      &lt;g&gt;</span><br><span class="line">        &lt;rect x=&quot;1&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;25&quot; fill=&quot;#37c&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;13&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;26&quot; fill=&quot;#37c&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;25&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;40&quot; fill=&quot;#37c&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;37&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;45&quot; fill=&quot;#37c&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;49&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;68&quot; fill=&quot;#37c&quot; /&gt;</span><br><span class="line">      &lt;/g&gt;</span><br><span class="line">      &lt;g&gt;</span><br><span class="line">        &lt;rect x=&quot;1&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;15&quot; fill=&quot;#3c7&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;13&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;11&quot; fill=&quot;#3c7&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;25&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;17&quot; fill=&quot;#3c7&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;37&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;25&quot; fill=&quot;#3c7&quot; /&gt;</span><br><span class="line">        &lt;rect x=&quot;49&quot; y=&quot;0&quot; width=&quot;10&quot; height=&quot;37&quot; fill=&quot;#3c7&quot; /&gt;</span><br><span class="line">      &lt;/g&gt;</span><br><span class="line">    &lt;/g&gt;</span><br><span class="line">  &lt;/svg&gt;</span><br><span class="line">&lt;!-- total 和current中的每一项分别对应svg g中的height--&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="绘制层次关系图"><a href="#绘制层次关系图" class="headerlink" title="绘制层次关系图"></a>绘制层次关系图</h4><p>以 canvas 绘制的城市分级为例。数据同样需要经过<code>d3.hierarchy</code>进行转换。</p>
+<p>转换完成之后获取当前的 svg 节点。同样实现 draw 方法从 root 开始遍历数据。不同于 canvas 的调用绘图指令(api)来绘图，svg 是通过创建 svg 元素，将元素添加到 DOM 中，来使得图像显现出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const svgroot = document.querySelector(&apos;svg&apos;);</span><br><span class="line"></span><br><span class="line">  function draw(parent, node, &#123;fillStyle = &apos;rgba(0, 0, 0, 0.2)&apos;, textColor = &apos;white&apos;&#125; = &#123;&#125;) &#123;</span><br><span class="line">    const children = node.children;</span><br><span class="line">    const &#123;x, y, r&#125; = node;</span><br><span class="line">    const circle = document.createElementNS(&apos;http://www.w3.org/2000/svg&apos;, &apos;circle&apos;);</span><br><span class="line">    circle.setAttribute(&apos;cx&apos;, x);</span><br><span class="line">    circle.setAttribute(&apos;cy&apos;, y);</span><br><span class="line">    circle.setAttribute(&apos;r&apos;, r);</span><br><span class="line">    circle.setAttribute(&apos;fill&apos;, fillStyle);</span><br><span class="line">    circle.setAttribute(&apos;data-name&apos;, node.data.name);</span><br><span class="line">    parent.appendChild(circle);</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw(svgroot, root);</span><br></pre></td></tr></table></figure>
+<p>使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElementNS" target="_blank" rel="noopener">Document.createElementNS</a>来创建一个具有指定命名空间(arg1)和限定名称（arg2)的元素。</p>
+<p>因为要绘制圆形，所以创建一个 circle 元素，指定 x,y,r 分别为圆的 cx(中心点 x),cy(中心点 y),cr(半径);fillStyle 赋值给 fill 属性。然后将 circle 元素添加到他的 parent 里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(children) &#123;</span><br><span class="line">      const group = document.createElementNS(&apos;http://www.w3.org/2000/svg&apos;, &apos;g&apos;);</span><br><span class="line">      for(let i = 0; i &lt; children.length; i++) &#123;</span><br><span class="line">        draw(group, children[i], &#123;fillStyle, textColor&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">      group.setAttribute(&apos;data-name&apos;, node.data.name);</span><br><span class="line">      parent.appendChild(group);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>svg 的 g 代表一个分组，可以考虑用它(g)来建立一个层级结构，且 g 元素的属性，其子元素也可继承。</p>
+<p>如果有子节点，则接着遍历下一层数据，直到数据最小单元(没有下一级的数据了)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">else &#123;</span><br><span class="line">      const text = document.createElementNS(&apos;http://www.w3.org/2000/svg&apos;, &apos;text&apos;);</span><br><span class="line">      text.setAttribute(&apos;fill&apos;, textColor);</span><br><span class="line">      text.setAttribute(&apos;font-family&apos;, &apos;Arial&apos;);</span><br><span class="line">      text.setAttribute(&apos;font-size&apos;, &apos;1.5rem&apos;);</span><br><span class="line">      text.setAttribute(&apos;text-anchor&apos;, &apos;middle&apos;);</span><br><span class="line">      text.setAttribute(&apos;x&apos;, x);</span><br><span class="line">      text.setAttribute(&apos;y&apos;, y);</span><br><span class="line">      const name = node.data.name;</span><br><span class="line">      text.textContent = name;</span><br><span class="line">      parent.appendChild(text);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>当没有下一级数据时，就需要为其添加 text 文字元素了，然后设置元素的属性，添加到父节点。</p>
+<h4 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>相较于 html + css ，弥补了 html 绘制不规则图形的能力，使用 svg 实现不规则形状图形要简单的多。</li>
+<li>适用于元素较少的简单场景。同样需要经过浏览器渲染引擎的一系列操作。如果数据很复杂，同样会开销很多的内存空间。</li>
+</ul>
+<h4 id="svg-与-canvas"><a href="#svg-与-canvas" class="headerlink" title="svg 与 canvas"></a>svg 与 canvas</h4><ul>
+<li>写法不同<br>svg 是以创建图形元素绘图的”声明式”的绘图系统，Canvas 是执行绘图指令绘图的“指令式”绘图系统。</li>
+<li>交互实现不同<br>svg 的交互方式与 dom 操作大体相同。如(addEventListner)而 canvas，则需要用到复杂的数学计算。</li>
+<li>svg 绘制大量几何图形会极大的增大浏览器的重绘和重排。<br>-</li>
+</ul>
+<h3 id="WebGL"><a href="#WebGL" class="headerlink" title="WebGL"></a>WebGL</h3><p>webGL 比上述三种方式要复杂一些，因为 WebGL 是基于 OpenGL ES 规范的浏览器实现的，API 相对更底层，使用起来不如前三种那么简单直接。要使用 webGL 绘图，我们必须要深入细节里。换句话说就是，我们必须要和内存、GPU 打交道，真正控制图形输出的每一个细节。</p>
+<h4 id="图形是如何绘制的"><a href="#图形是如何绘制的" class="headerlink" title="图形是如何绘制的"></a>图形是如何绘制的</h4><p>首先说一下计算机图形系统的主要组成部分，以及他们在绘图过程中的作用。</p>
+<ul>
+<li><strong>光栅</strong> 指构成图像的像素阵列。</li>
+<li><strong>像素</strong> 一个像素对应图像上的一个点，通常保存图像上的某个具体位置的颜色等信息。</li>
+<li><strong>帧缓存</strong> 是一块内存地址。在绘图过程中，像素信息被存放于帧缓存中。</li>
+<li><strong>CPU</strong> 中央处理单元，负责逻辑计算。</li>
+<li><strong>GPU</strong> 图形处理单元，负责图形计算。</li>
+</ul>
+<p>数据经过 CPU 处理，成为具有特定结构的几何信息。然后，这些信息会被送到 GPU 中进行处理，在 GPU 中经过两个步骤生成光栅信息，这些光栅信息会输出到帧缓存中，最后渲染到屏幕上。</p>
+<h5 id="一-创建-webGL-上下文"><a href="#一-创建-webGL-上下文" class="headerlink" title="一 创建 webGL 上下文"></a>一 创建 webGL 上下文</h5><p>创建 webGL 上下文这一步和 Canvas2D 基本一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const canvas = document.querySelector(&apos;canvas&apos;);</span><br><span class="line">const gl = canvas.getContext(&apos;2d&apos;);</span><br></pre></td></tr></table></figure>
+<h5 id="二-创建-WebGL-程序"><a href="#二-创建-WebGL-程序" class="headerlink" title="二 创建 WebGL 程序"></a>二 创建 WebGL 程序</h5><p>要创建 WebGL 程序，需要先编写两个<strong>着色器</strong>。 在绘图的时候，WebGL 是以<strong>顶点</strong>和<strong>图元</strong>来描述图形几何信息的。<strong>顶点</strong>就是几何图形的顶点。<strong>图元</strong>是 WebGL 可直接处理的图形单元，由 WebGL 的绘图模式决定。<strong>顶点着色器</strong>负责处理图形的顶点信息；<strong>片元着色器</strong>负责处理图形的像素信息。我们可以把<strong>顶点着色器理解为处理顶点的 GPU 程序代码。它可以改变顶点的信息</strong>(如顶点的坐标、法线方向、材质等等)。顶点处理完成后，WebGL 就会根据顶点和绘图模式指定的图元，计算出需要着色的像素点，然后对他们执行片元着色器程序(对指定图元中的像素点着色)。</p>
+<p>WebGL 从顶点着色器和图元提取像素点给片元着色器执行代码的过程，就是生成光栅信息的过程，也叫做光栅化过程。所以<strong>片元着色器的作用就是处理光栅化后的像素信息</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大千世界/" rel="tag"># 大千世界</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/08/22/simpleReact实现虚拟dom更新/" rel="next" title="simpleReact实现虚拟dom更新">
+                <i class="fa fa-chevron-left"></i> simpleReact实现虚拟dom更新
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/11/03/Hooks的使用及思考/" rel="prev" title="Hooks的使用及思考">
+                Hooks的使用及思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Cinaiet">
+            
+              <p class="site-author-name" itemprop="name">Cinaiet</p>
+              <p class="site-description motion-element" itemprop="description">因为喜欢，所以坚持</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-CSS"><span class="nav-number">1.</span> <span class="nav-text">HTML+CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#柱状图"><span class="nav-number">1.1.</span> <span class="nav-text">柱状图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#饼图"><span class="nav-number">1.2.</span> <span class="nav-text">饼图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas-2D"><span class="nav-number">2.</span> <span class="nav-text">Canvas 2D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#canvas-元素和-2d-上下文"><span class="nav-number">2.1.</span> <span class="nav-text">canvas 元素和 2d 上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#canvas-操作步骤"><span class="nav-number">2.2.</span> <span class="nav-text">canvas 操作步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-canvas-绘制层次关系图"><span class="nav-number">2.3.</span> <span class="nav-text">使用 canvas 绘制层次关系图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#层次结构数据"><span class="nav-number">2.3.1.</span> <span class="nav-text">层次结构数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#城市层级示例图"><span class="nav-number">2.3.2.</span> <span class="nav-text">城市层级示例图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点-1"><span class="nav-number">2.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVG"><span class="nav-number">3.</span> <span class="nav-text">SVG</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现柱状图"><span class="nav-number">3.1.</span> <span class="nav-text">实现柱状图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘制层次关系图"><span class="nav-number">3.2.</span> <span class="nav-text">绘制层次关系图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点-2"><span class="nav-number">3.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#svg-与-canvas"><span class="nav-number">3.4.</span> <span class="nav-text">svg 与 canvas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebGL"><span class="nav-number">4.</span> <span class="nav-text">WebGL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图形是如何绘制的"><span class="nav-number">4.1.</span> <span class="nav-text">图形是如何绘制的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一-创建-webGL-上下文"><span class="nav-number">4.1.1.</span> <span class="nav-text">一 创建 webGL 上下文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二-创建-WebGL-程序"><span class="nav-number">4.1.2.</span> <span class="nav-text">二 创建 WebGL 程序</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <adress>个人邮箱: <a href="mailto:crazyguanwei@163.com">crazyguanwei@163.com </a></adress>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cinaiet</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

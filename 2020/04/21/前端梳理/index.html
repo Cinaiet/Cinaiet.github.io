@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="花满楼,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端知识体系大体上可分为 JavaScript、HTML、CSS 以及浏览器的实现原理和 API">
+<meta name="keywords" content="花满楼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端梳理">
+<meta property="og:url" content="https:// blog.wangguanwei.cn/2020/04/21/前端梳理/index.html">
+<meta property="og:site_name" content="薄梦风轻眠">
+<meta property="og:description" content="前端知识体系大体上可分为 JavaScript、HTML、CSS 以及浏览器的实现原理和 API">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-07-21T02:49:33.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端梳理">
+<meta name="twitter:description" content="前端知识体系大体上可分为 JavaScript、HTML、CSS 以及浏览器的实现原理和 API">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https:// blog.wangguanwei.cn/2020/04/21/前端梳理/">
+
+
+
+
+
+  <title>前端梳理 | 薄梦风轻眠</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薄梦风轻眠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.cn/2020/04/21/前端梳理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端梳理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T09:13:11+08:00">
+                2020-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端知识体系大体上可分为 JavaScript、HTML、CSS 以及浏览器的实现原理和 API</p>
+<a id="more"></a>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>JavaScript 的数据类型有 7 种语言类型 Undefined、Null、Boolean、String、Number、Symbol、Object。</p>
+<h4 id="undefined-和-NULL"><a href="#undefined-和-NULL" class="headerlink" title="undefined 和 NULL"></a>undefined 和 NULL</h4><p>Undefined 类型表示未定义，它的类型只有一个值，就是 undefined。任何变量在赋值前是 Undefined 类型、值为 undefined，一般我们可以用全局变量 undefined（就是名为 undefined 的这个变量）来表达这个值，或者 void 运算来把任意一个表达式变成 undefined 值<br>Undefined 跟 Null 有一定的表意差别，Null 表示的是：“定义了但是为空”。<br>Null 类型也只有一个值，就是 null，它的语义表示空值，undefined 是一个变量，与 undefined 不同，null 是 JavaScript 关键字，所以在任何代码中，你都可以放心用 null 关键字来获取 null 值。</p>
+<h5 id="为什么有的编程规范要求用-void-0-代替-undefined？"><a href="#为什么有的编程规范要求用-void-0-代替-undefined？" class="headerlink" title="为什么有的编程规范要求用 void 0 代替 undefined？"></a>为什么有的编程规范要求用 void 0 代替 undefined？</h5><h4 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h4><p>Boolean 类型有两个值， true 和 false，它用于表示逻辑意义上的真和假，同样有关键字 true 和 false 来表示两个值。</p>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><p>用于表示文本数据类型。<br>String 有最大长度是 2^53 - 1。所谓最大长度，并不完全是字符数，因为 String 的意义并非“字符串”，而是字符串的 UTF16 编码，我们字符串的操作 charAt、charCodeAt、length 等方法针对的都是 UTF16 编码。所以，字符串的最大长度，实际上是受字符串的编码长度影响的。</p>
+<h4 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h4><ul>
+<li>NaN</li>
+<li>Infinity，无穷大</li>
+<li>-Infinity，负无穷大</li>
+</ul>
+<h5 id="0-1-0-2-为什么不等于-0-3"><a href="#0-1-0-2-为什么不等于-0-3" class="headerlink" title="0.1 + 0.2 为什么不等于 0.3 ?"></a>0.1 + 0.2 为什么不等于 0.3 ?</h5><p>根据浮点数的定义，非整数的 Number 类型无法用 == （=== 也不行)来比较.<br>实际上，这里错误的不是结论，而是比较的方法，正确的比较方法是使用 JavaScript 提供的最小精度值.检查等式左右两边差的绝对值是否小于最小精度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log( 0.1 + 0.2 == 0.3)</span><br><span class="line">console.log( Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON)</span><br></pre></td></tr></table></figure>
+<h4 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h4><p>Symbol 是 ES6 中引入的新类型，它是一切非字符串的对象 key 的集合，在 ES6 规范中，整个对象系统被用 Symbol 重塑</p>
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><p>Object 是 JavaScript 中最复杂的类型，也是 JavaScript 的核心机制之一。Object 表示对象的意思，它是一切有形和无形物体的总称。<br>在 JavaScript 中，对象的定义是”属性的集合”。属性分为数据属性和访问器属性，二者都是 key-value 结构，key 可以是字符串或者 Symbol 类型。</p>
+<h5 id="对象的特征"><a href="#对象的特征" class="headerlink" title="对象的特征"></a>对象的特征</h5><ul>
+<li>对象具有唯一标识性：即使完全相同的两个对象，也并非同一个对象。<br>一般而言，各种语言的对象唯一标识性都是用内存地址来体现的， 对象具有唯一标识的内存地址，所以具有唯一的标识。</li>
+<li>对象有状态：对象具有状态，同一对象可能处于不同状态之下。</li>
+<li>对象具有行为：即对象的状态，可能因为它的行为产生变迁。<br>在 JavaScript 中，将状态和行为统一抽象为属性。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123; // o 是一个对象</span><br><span class="line"></span><br><span class="line">        d: 1, // d 是对象o的一个属性</span><br><span class="line">        f() &#123; // 函数 f也是对象o的一个属性</span><br><span class="line">            console.log(this.d);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对象具有高度的动态性，因为 JavaScript 赋予了使用者在运行时为对象添改状态和行为的能力。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123; a: 1 &#125;;</span><br><span class="line">    o.b = 2;</span><br><span class="line">    console.log(o.a, o.b); //1 2</span><br></pre></td></tr></table></figure>
+<h5 id="对象的两类属性"><a href="#对象的两类属性" class="headerlink" title="对象的两类属性"></a>对象的两类属性</h5><p>对 JavaScript 来说，属性并非只是简单的名称和值，JavaScript 用一组特征（attribute）来描述属性（property）。</p>
+<ul>
+<li><p>数据属性<br>它比较接近于其它语言的属性概念。数据属性具有四个特征:</p>
+<ol>
+<li>value：就是属性的值。</li>
+<li>writable：决定属性能否被赋值。</li>
+<li>enumerable：决定 for in 能否枚举该属性。</li>
+<li>configurable：决定该属性能否被删除或者改变特征值。</li>
+</ol>
+<p>在大多数情况下，我们只关心数据属性的值即可。</p>
+</li>
+<li><p>访问器（getter/setter）属性</p>
+<ol>
+<li>getter：函数或 undefined，在取属性值时被调用。</li>
+<li>setter：函数或 undefined，在设置属性值时被调用。</li>
+<li>enumerable：决定 for in 能否枚举该属性。</li>
+<li>configurable：决定该属性能否被删除或者改变特征值。</li>
+</ol>
+<p>访问器属性使得属性在读和写时执行代码，它允许使用者在写和读属性时，得到完全不同的值，它可以视为一种函数的语法糖。</p>
+</li>
+</ul>
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><ul>
+<li>原型系统的“复制操作”思路<ol>
+<li>并不是真的去复制一个原型对象，而是使得新对象持有一个原型的引用。</li>
+<li>切实地复制对象，从此两个对象再无关联</li>
+</ol>
+</li>
+<li>Js 原型系统<ol>
+<li>如果所有对象都有私有字段[[prototype]]，就是对象的原型。</li>
+<li>读一个属性，如果对象本身没有，则会继续访问对象的原型，直到原型为空或者找到为止。</li>
+</ol>
+</li>
+</ul>
+<p>ES6 提供了一系列的内置函数，以便更为直接地访问操纵原型。三个方法分别为：</p>
+<ol>
+<li>Object.create 根据指定的原型创建新对象，原型可以是 null</li>
+<li>Object.getPrototypeOf 获得一个对象的原型；</li>
+<li>Object.setPrototypeOf 设置一个对象的原型。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var cat = &#123;</span><br><span class="line">  say() &#123;</span><br><span class="line">    console.log(&apos;meow!&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  jump() &#123;</span><br><span class="line">    console.log(&apos;jump&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var tiger = Object.create(cat, &#123;</span><br><span class="line">  say: &#123;</span><br><span class="line">    writable: true,</span><br><span class="line">    value: function()&#123;</span><br><span class="line">      console.log(&apos;roar!&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">    configurable: true,</span><br><span class="line">    enumerable: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var otherCat = Object.create(cat)</span><br><span class="line">otherCat.say()</span><br><span class="line"></span><br><span class="line">var otherTiger = Object.create(tiger)</span><br><span class="line">otherTiger.say()</span><br><span class="line">otherTiger.jump()</span><br></pre></td></tr></table></figure>
+<h5 id="new"><a href="#new" class="headerlink" title="new"></a>new</h5><p>new 运算接受一个构造器和一组调用参数，实际上做了几件事：</p>
+<ol>
+<li>以构造器的 prototype 属性（注意与私有字段[[prototype]]的区分）为原型，创建新对象；</li>
+<li>将 this 和调用参数传给构造器，执行；</li>
+<li>如果构造器返回的是对象，则返回，否则返回第一步创建的对象。</li>
+</ol>
+<p>new 这样的行为，试图让函数对象在语法上跟类变得相似，但是，它客观上提供了两种方式，一是在构造器中添加属性，二是在构造器的 prototype 属性上添加属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function c1()&#123;</span><br><span class="line">  // 直接在构造器中修改 this，给 this 添加属性</span><br><span class="line">  this.p1 = 1;</span><br><span class="line">  this.p2 = function () &#123;</span><br><span class="line">    console.log(this.p1)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o1 = new c1()</span><br><span class="line">o1.p2()</span><br><span class="line"></span><br><span class="line">function c2() &#123;</span><br><span class="line">  // 修改构造器的 prototype 属性指向的对象，它是从这个构造器构造出来的所有对象的原型</span><br><span class="line">  this.prototype.p1 = 1;</span><br><span class="line">  this.prototype.p2 = function () &#123;</span><br><span class="line">    console.log(this.p1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o2 = new c2;</span><br><span class="line">o2.p2();</span><br></pre></td></tr></table></figure>
+<h5 id="class"><a href="#class" class="headerlink" title="class"></a>class</h5><p>在此不再举例赘述，创建对象的方法详见 <a href="https://blog.wangguanwei.com/2019/05/10/Js%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/#more" target="_blank" rel="noopener">Js 创建对象</a></p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>因为 JS 是弱类型语言，所以类型转换发生非常频繁，大部分我们熟悉的运算都会先进行类型转换。</p>
+<h5 id="StringToNumber"><a href="#StringToNumber" class="headerlink" title="StringToNumber"></a>StringToNumber</h5><p>字符串到数字的类型转换，存在一个语法结构，类型转换支持十进制、二进制、八进制和十六进制。如 30、0b111、0o13、0xFF<br>此外，JavaScript 支持的字符串语法还包括正负号科学计数法，可以使用大写或者小写的 e 来表示。如 1e3、-1e-2。</p>
+<h5 id="NumberToString"><a href="#NumberToString" class="headerlink" title="NumberToString"></a>NumberToString</h5><p>在较小的范围内，数字到字符串的转换是完全符合你直觉的十进制表示。当 Number 绝对值较大或者较小时，字符串表示则是使用科学计数法表示的。</p>
+<h5 id="装箱转换"><a href="#装箱转换" class="headerlink" title="装箱转换"></a>装箱转换</h5><p>每一种基本类型 Number、String、Boolean、Symbol 在对象中都有对应的类，所谓装箱转换，正是把基本类型转换为对应的对象，它是类型转换中一种相当重要的种类。</p>
+<ul>
+<li>Symbol<br>全局的 Symbol 函数无法使用 new 来调用，但我们仍可以利用装箱机制来得到一个 Symbol 对象，我们可以利用一个函数的 call 方法来强迫产生装箱。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var symbolObject = (function() &#123;return this&#125;.call(Symbol(&quot;a&quot;)))</span><br><span class="line">console.log(typeof symbolObject); //object</span><br><span class="line">console.log(symbolObject instanceof Symbol); //true</span><br><span class="line">console.log(symbolObject.constructor == Symbol); //true</span><br></pre></td></tr></table></figure>
+<h4 id="对象的分类"><a href="#对象的分类" class="headerlink" title="对象的分类"></a>对象的分类</h4><h5 id="宿主对象"><a href="#宿主对象" class="headerlink" title="宿主对象"></a>宿主对象</h5><p>由 JavaScript 宿主环境提供的对象，它们的行为完全由宿主环境决定。<br>如 Date,Boolean,String, Number …等</p>
+<h4 id="用对象来模拟函数与构造器：函数对象与构造器对象"><a href="#用对象来模拟函数与构造器：函数对象与构造器对象" class="headerlink" title="用对象来模拟函数与构造器：函数对象与构造器对象"></a>用对象来模拟函数与构造器：函数对象与构造器对象</h4><h5 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h5><ul>
+<li>固有对象<br>固有对象是由标准规定，随着 JavaScript 运行时创建而自动创建的对象实例。<br>固有对象在任何 JavaScript 代码执行前就已经被创建出来了，它们通常扮演者类似基础库的角色。</li>
+<li>原生对象<br>我们把 JavaScript 中，能够通过语言本身的构造器创建的对象称作原生对象。</li>
+</ul>
+<h3 id="事件循环-EventLoop"><a href="#事件循环-EventLoop" class="headerlink" title="事件循环(EventLoop)"></a>事件循环(EventLoop)</h3><p>主线程从<strong>任务队列</strong>中读取事件，整个过程是循环不断的，所以这种整个的运行机制被称为事件循环。</p>
+<p>在操作系统中，通常等待的行为就是一个时间循环。</p>
+<h4 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h4><p>任务队列是一个<strong>事件</strong>的队列。</p>
+<p>Js 的语言特性是单线程，也就是说，同一时间只能做一件事。意味着所有的事件都需要排队，前一个任务结束，才会执行下一个任务，如果前一个任务耗时很长，那么下一个任务就只能等着。</p>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>在 Js 中，事件分为<strong>宏观任务</strong>和<strong>微观任务</strong>。</p>
+<h5 id="宏观任务"><a href="#宏观任务" class="headerlink" title="宏观任务"></a>宏观任务</h5><p>由宿主（如浏览器）发起的任务</p>
+<h5 id="微观任务"><a href="#微观任务" class="headerlink" title="微观任务"></a>微观任务</h5><p>由 Js 引擎发起的任务</p>
+<p>详见<a href="https://blog.wangguanwei.com/2019/12/06/async/#more" target="_blank" rel="noopener">Js 异步</a></p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包可以理解为一个绑定了执行环境的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var addNum = (() =&gt; &#123;</span><br><span class="line">  var nums = 0</span><br><span class="line">  return () =&gt; &#123;</span><br><span class="line">    return nums += 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受干扰。直观的说就是形成一个不销毁的栈环境。</p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><h4 id="移位算表达式"><a href="#移位算表达式" class="headerlink" title="移位算表达式"></a>移位算表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt; 向左移位</span><br><span class="line">&gt;&gt; 向右移位</span><br><span class="line">&gt;&gt;&gt; 无符号向右移位</span><br></pre></td></tr></table></figure>
+<p>移位运算可以把操作数看做二进制表示的整数，然后移动特定的位数。<br>左移 n 位就相当于乘以 2 的 n 次方，右移 n 位相当于除以 2 取整 n 次方。</p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>HTML 的功能主要由标签来承担，根据标签的不同作用可大致分为以下几类</p>
+<h3 id="文档元信息"><a href="#文档元信息" class="headerlink" title="文档元信息"></a>文档元信息</h3><p>通常是出现在 head 标签中的元素，包含了描述文档自身的一些信息。如 title、meta、style、link、base。</p>
+<h3 id="语义相关"><a href="#语义相关" class="headerlink" title="语义相关"></a>语义相关</h3><p>扩展了纯文本，表达文章结构、不同语言要素的标签。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>提供到文档内和文档外的链接</p>
+<h3 id="替换型标签"><a href="#替换型标签" class="headerlink" title="替换型标签"></a>替换型标签</h3><p>引入声音、图片、视频等外部元素替换自身的一类标签</p>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>用于填写和提交信息的一类标签；</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>表头、表尾、单元格等表格的结构。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="布局类"><a href="#布局类" class="headerlink" title="布局类"></a>布局类</h3><h4 id="正常流"><a href="#正常流" class="headerlink" title="正常流"></a>正常流</h4><h4 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h4><h3 id="绘制类"><a href="#绘制类" class="headerlink" title="绘制类"></a>绘制类</h3><h3 id="交互类"><a href="#交互类" class="headerlink" title="交互类"></a>交互类</h3><h2 id="浏览器实现原理"><a href="#浏览器实现原理" class="headerlink" title="浏览器实现原理"></a>浏览器实现原理</h2><p>解析原理： 解析、构建 DOM 树、计算 CSS、渲染、合成和绘制。</p>
+<h2 id="工程实践"><a href="#工程实践" class="headerlink" title="工程实践"></a>工程实践</h2><h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><h3 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h3><h3 id="架构与基础库"><a href="#架构与基础库" class="headerlink" title="架构与基础库"></a>架构与基础库</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/花满楼/" rel="tag"># 花满楼</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/06/数据结构和算法之美/" rel="next" title="数据结构和算法之美">
+                <i class="fa fa-chevron-left"></i> 数据结构和算法之美
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/11/delete-JavaScript中有什么是可以销毁的/" rel="prev" title="delete, JavaScript中有什么是可以销毁的">
+                delete, JavaScript中有什么是可以销毁的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Cinaiet">
+            
+              <p class="site-author-name" itemprop="name">Cinaiet</p>
+              <p class="site-description motion-element" itemprop="description">因为喜欢，所以坚持</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined-和-NULL"><span class="nav-number">1.1.1.</span> <span class="nav-text">undefined 和 NULL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么有的编程规范要求用-void-0-代替-undefined？"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">为什么有的编程规范要求用 void 0 代替 undefined？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boolean"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boolean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String"><span class="nav-number">1.1.3.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number"><span class="nav-number">1.1.4.</span> <span class="nav-text">Number</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-1-0-2-为什么不等于-0-3"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">0.1 + 0.2 为什么不等于 0.3 ?</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Symbol"><span class="nav-number">1.1.5.</span> <span class="nav-text">Symbol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object"><span class="nav-number">1.1.6.</span> <span class="nav-text">Object</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的特征"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">对象的特征</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的两类属性"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">对象的两类属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原型"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#new"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#class"><span class="nav-number">1.1.6.5.</span> <span class="nav-text">class</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型转换"><span class="nav-number">1.1.7.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#StringToNumber"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">StringToNumber</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NumberToString"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">NumberToString</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#装箱转换"><span class="nav-number">1.1.7.3.</span> <span class="nav-text">装箱转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的分类"><span class="nav-number">1.1.8.</span> <span class="nav-text">对象的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#宿主对象"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">宿主对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用对象来模拟函数与构造器：函数对象与构造器对象"><span class="nav-number">1.1.9.</span> <span class="nav-text">用对象来模拟函数与构造器：函数对象与构造器对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#内置对象"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">内置对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环-EventLoop"><span class="nav-number">1.2.</span> <span class="nav-text">事件循环(EventLoop)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务队列"><span class="nav-number">1.2.1.</span> <span class="nav-text">任务队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件"><span class="nav-number">1.2.2.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#宏观任务"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">宏观任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#微观任务"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">微观任务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">1.3.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式"><span class="nav-number">1.4.</span> <span class="nav-text">表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#移位算表达式"><span class="nav-number">1.4.1.</span> <span class="nav-text">移位算表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">2.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档元信息"><span class="nav-number">2.1.</span> <span class="nav-text">文档元信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义相关"><span class="nav-number">2.2.</span> <span class="nav-text">语义相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">2.3.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换型标签"><span class="nav-number">2.4.</span> <span class="nav-text">替换型标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单"><span class="nav-number">2.5.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">2.6.</span> <span class="nav-text">表格</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布局类"><span class="nav-number">3.1.</span> <span class="nav-text">布局类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常流"><span class="nav-number">3.1.1.</span> <span class="nav-text">正常流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弹性布局"><span class="nav-number">3.1.2.</span> <span class="nav-text">弹性布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制类"><span class="nav-number">3.2.</span> <span class="nav-text">绘制类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交互类"><span class="nav-number">3.3.</span> <span class="nav-text">交互类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器实现原理"><span class="nav-number">4.</span> <span class="nav-text">浏览器实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程实践"><span class="nav-number">5.</span> <span class="nav-text">工程实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能"><span class="nav-number">5.1.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具链"><span class="nav-number">5.2.</span> <span class="nav-text">工具链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续集成"><span class="nav-number">5.3.</span> <span class="nav-text">持续集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建系统"><span class="nav-number">5.4.</span> <span class="nav-text">构建系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构与基础库"><span class="nav-number">5.5.</span> <span class="nav-text">架构与基础库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <adress>个人邮箱: <a href="mailto:crazyguanwei@163.com">crazyguanwei@163.com </a></adress>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cinaiet</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

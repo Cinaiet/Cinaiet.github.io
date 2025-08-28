@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大千世界,数据结构,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="痛并快乐着。">
+<meta name="keywords" content="大千世界,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构和算法之美">
+<meta property="og:url" content="https:// blog.wangguanwei.cn/2020/04/06/数据结构和算法之美/index.html">
+<meta property="og:site_name" content="薄梦风轻眠">
+<meta property="og:description" content="痛并快乐着。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://Cinaiet.github.io/images/tree-struth.png">
+<meta property="og:image" content="https://Cinaiet.github.io/images/tree-binary.png">
+<meta property="og:updated_time" content="2025-08-25T08:44:31.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构和算法之美">
+<meta name="twitter:description" content="痛并快乐着。">
+<meta name="twitter:image" content="https://Cinaiet.github.io/images/tree-struth.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https:// blog.wangguanwei.cn/2020/04/06/数据结构和算法之美/">
+
+
+
+
+
+  <title>数据结构和算法之美 | 薄梦风轻眠</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薄梦风轻眠</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https:// blog.wangguanwei.cn/2020/04/06/数据结构和算法之美/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cinaiet">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薄梦风轻眠">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构和算法之美</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T13:09:22+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大千世界/" itemprop="url" rel="index">
+                    <span itemprop="name">大千世界</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>痛并快乐着。</p>
+<a id="more"></a>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="大-O-复杂度表示法-时间复杂度"><a href="#大-O-复杂度表示法-时间复杂度" class="headerlink" title="大 O 复杂度表示法(时间复杂度)"></a>大 O 复杂度表示法(时间复杂度)</h3><p>T(n) = O(f(n))<br>T(n)表示代码执行的时间；n 表示数据规模的大小；f(n) 表示每行代码执行的次数总和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 例1</span><br><span class="line">function cal1 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 例2</span><br><span class="line">function cal2 (n) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let i = 1;</span><br><span class="line">    let j = 1;</span><br><span class="line">    for(; i &lt; n; ++i) &#123;</span><br><span class="line">        j = 1;</span><br><span class="line">        for(; i &lt;= n; j++) &#123;</span><br><span class="line">            sum = sum + i * j</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设每行代码的运行时间为 x,例 1 中的第二三行代码，分别需要 x 个时间,第 4、5 行代码,各执行了 n 次,执行时间分别需要 n <em> x。所以例 1 中代码执行时间需要(2n+2) </em>x 。可以看出，<strong>所有代码的执行时间 T(n) 与每行代码的执行次数成正比。</strong></p>
+<p>所以例 2 中代码所需要的执行时间 T(n) = 2n² + 2n + 3.<br>即: <strong>所有代码的执行时间 T(n) 与每行代码的执行次数 n 成正比</strong></p>
+<p><strong>大 O 时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码执行时间随数据规模增长的变化趋势</strong></p>
+<hr>
+<h4 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4><ul>
+<li>只关注循环执行次数最多的一段代码。<br>如例 1 中的代码，2、3 行代码的执行时间都是常量级,与 n 的大小无关，所以对于复杂度并没有影响。循环执行次数最多的是第 4、5 行代码，所以这块代码要重点分析。这两行代码被执行了 n 次，所以总的时间复杂度就是 O(n)。</li>
+<li>加法法则: 总复杂度等于量级最大的那段代码的复杂度</li>
+<li>乘法法则: 嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
+<li>O(m+n)、O(m*n)<br>如一个函数中有两个数据规模的量，在事先又无法评估谁的量级大，所以我们在表示复杂度的时候，就不能简单地利用加法法则，省略掉其中一个。所以，上面代码的时间复杂度就是 O(m+n)。乘法一样。</li>
+</ul>
+<h4 id="最好、最坏情况时间复杂度"><a href="#最好、最坏情况时间复杂度" class="headerlink" title="最好、最坏情况时间复杂度"></a>最好、最坏情况时间复杂度</h4><p>最好情况时间复杂度就是，在最理想的情况下，执行这段代码的时间复杂度。<br>最坏情况时间复杂度就是，在最糟糕的情况下，执行这段代码的时间复杂度。</p>
+<h4 id="平均情况时间复杂度"><a href="#平均情况时间复杂度" class="headerlink" title="平均情况时间复杂度"></a>平均情况时间复杂度</h4><p>比如要查找的变量 x 在数组中的位置，有 n+1 种情况：在数组的 0 ～ n-1 位置中和不在数组中。我们把每种情况下，查找需要遍历的元素个数累加起来，然后再除以 n+1，就可以得到需要遍历的元素个数的平均值<br>(1 + 2 + 3 + … + n + n) / (n+1)</p>
+<h4 id="均摊时间复杂度"><a href="#均摊时间复杂度" class="headerlink" title="均摊时间复杂度"></a>均摊时间复杂度</h4><p>在代码执行的所有复杂度情况中绝大部分是低级别的复杂度，个别情况是高级别复杂度且发生具有时序关系时，可以将个别高级别复杂度均摊到低级别复杂度上。基本上均摊结果就等于低级别复杂度<br>均摊复杂度在以下两个条件满足时使用</p>
+<ol>
+<li>代码在绝大多数情况下是低级别复杂度，只有极少数情况是高级别复杂度；</li>
+<li>低级别和高级别复杂度出现具有时序规律。均摊结果一般都等于低级别复杂度。</li>
+</ol>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>表示算法的存储空间与数据规模之间的增长关系。</p>
+<hr>
+<h2 id="数据结构类型"><a href="#数据结构类型" class="headerlink" title="数据结构类型"></a>数据结构类型</h2><h3 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h3><p>线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。<br>数组，链表、队列、栈等都是线性表结构。</p>
+<hr>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>数组,用一组连续的内存空间，来存储一组具有相同类型的数据。</p>
+<ul>
+<li>连续的内存空间和相同类型的数据</li>
+<li>支持随机访问</li>
+<li>低效的“插入”和“删除”<br>如果某个数组中，需要在 arr[x]的位置插入一个新的 val，就需要将原来的 x 向后挪出一位，最坏的时间复杂度的情况为 O(n)</li>
+</ul>
+<hr>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>与数组相反，它并不需要一块一块连续的内存空间，它通过“指针”将一组零散的内存块串联起来使用。其中，我们把内存块称为链表的”结点”。为了将所有的结点串起来，每个链表的结点除了存储数据之外，还需要记录链上的下一个结点的地址。</p>
+<h5 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--&gt; data --&gt; data -- &gt; data --&gt; null</span><br></pre></td></tr></table></figure>
+<p>单链表有两个结点比较特殊,头结点(第一个结点)和尾结点(最后一个结点指向 null)</p>
+<ul>
+<li>插入删除非常便捷</li>
+<li>但随即访问没有数组高效，无法像数组一样通过下标获取，而是需要根据指针一个结点一个结点地依次遍历，直到找到相应的结点。</li>
+</ul>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><p>是一种特殊的单链表。<br>单链表的尾结点指向 null(空地址),而循环链表的尾结点指针是指向链表的头结点.</p>
+<h5 id="双向链表。"><a href="#双向链表。" class="headerlink" title="双向链表。"></a>双向链表。</h5><p>单向链表只有一个方向，结点只有一个后继指针 next 指向后面的结点。而双向链表，顾名思义，它支持两个方向，每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。</p>
+<ul>
+<li>双向链表需要额外的两个空间来存储后继结点和前驱结点的地址。所以，如果存储同样多的数据，双向链表要比单链表占用更多的内存空间。虽然两个指针比较浪费存储空间，但可以支持双向遍历，这样也带来了双向链表操作的灵活性。</li>
+</ul>
+<h4 id="链表与数组的对比"><a href="#链表与数组的对比" class="headerlink" title="链表与数组的对比"></a>链表与数组的对比</h4><ul>
+<li>数组大小固定，一经声明就要占用整块连续内存空间。链表本身没有大小的限制，天然地支持动态扩容。</li>
+</ul>
+<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5><p>将某个变量赋值给指针，实际上就是将这个变量的地址赋值给指针，或者反过来说，指针中存储了这个变量的内存地址，指向了这个变量，通过指针就能找到这个变量。</p>
+<p><strong>插入结点时一定要注意: 如果希望在 a 结点和 b 结点插入 c 结点，要先将 c 的 next 结点指向 b，再将 a 的 next 结点指向 c,这样才不会丢失指针，导致内存泄漏。同理，删除链表结点时，也一定要记得手动释放内存空间。</strong></p>
+<h5 id="如何优雅的写出链表代码"><a href="#如何优雅的写出链表代码" class="headerlink" title="如何优雅的写出链表代码"></a>如何优雅的写出链表代码</h5><ol>
+<li>理解指针或引用的含义</li>
+<li>警惕指针丢失和内存泄漏（单链表）</li>
+<li>利用“哨兵”简化实现难度<br>链表中的“哨兵”节点是解决边界问题的，不参与业务逻辑。如果我们引入“哨兵”节点，则不管链表是否为空，head 指针都会指向这个“哨兵”节点。我们把这种有“哨兵”节点的链表称为带头链表，相反，没有“哨兵”节点的链表就称为不带头链表。</li>
+<li>重点留意边界条件处理</li>
+<li>举例画图，辅助思考</li>
+</ol>
+<hr>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>先进后出，后进先出。</p>
+<ul>
+<li>只允许在端插入和删除数据</li>
+<li>存储运行方法的形参、局部变量、返回值。由系统自动分配和回收。</li>
+<li>可以由数组实现</li>
+</ul>
+<hr>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>先进先出</p>
+<ul>
+<li>最基本的操作有两个：入队 enqueue()，放一个数据到队列尾部；出队 dequeue()，从队列头部取一个元素。</li>
+<li>可以由数组实现，也可以用链表来实现。用数组实现的栈叫作顺序栈，用链表实现的栈叫作链式栈。同样，用数组实现的队列叫作顺序队列，用链表实现的队列叫作链式队列。</li>
+</ul>
+<hr>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>指在运行的过程中调用自己。</p>
+<h3 id="构成递归需要满足的条件"><a href="#构成递归需要满足的条件" class="headerlink" title="构成递归需要满足的条件"></a>构成递归需要满足的条件</h3><ol>
+<li>一个问题的解可以分解为几个子问题的解。</li>
+<li>子问题须与原始问题为同样的事,且更为简单。</li>
+<li>存在递归终止条件。</li>
+</ol>
+<h3 id="如何编写递归"><a href="#如何编写递归" class="headerlink" title="如何编写递归"></a>如何编写递归</h3><p>写出递推公式，找到终止条件。</p>
+<p>如斐波那契数列。 1, 1, 2, 3, 5, 8, 13, 21, …</p>
+<p>如何求 斐波那契数列第 n 项的值？</p>
+<ol>
+<li>找出递推公式。 按数列不难发现，从第三项起，第三项的值，等于前两项值的和。<br>及 f(n) = f(n - 1) + f(n - 2)</li>
+<li>终止条件<br>当只有一个数时，值为 1，所以 f(1) = 1。<br>校验递归终止条件是否足够时，可以将 n = 2,n = 3 带入地推公式里面实验一下。</li>
+</ol>
+<p>当 n = 2 时，f(2) = f(1) + f(0)。如果递归终止条件只有一个 f(1)=1，那 f(2) 就无法求解了。<br>所以除了 f(1) = 1 之外，还要有 f(0) = 1,用来表示 0 个数时的值，不过显然长度为 0 的数列是不符合正常逻辑的，所以，我们可以把 f(2) = 2，当做一个 终止条件。<br>当 n = 3 时 …</p>
+<p>把得到的递推公式和终止条件结合在一起:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(1) = 1</span><br><span class="line">f(2) = 2</span><br><span class="line">f(n) = f(n -1) + f(n - 2)</span><br></pre></td></tr></table></figure>
+<p>有了公式，将其转换成代码就容易多啦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 时间复杂度 2^n  2的n次方</span><br><span class="line">function fib(n) &#123;</span><br><span class="line">  if(n === 1) return 1</span><br><span class="line">  if(n === 2) return 1</span><br><span class="line">  return fib(n - 1) + fib(n - 2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="避免-OOM-内存溢出"><a href="#避免-OOM-内存溢出" class="headerlink" title="避免 OOM(内存溢出)"></a>避免 OOM(内存溢出)</h3><ol>
+<li>以通过在代码中限制递归调用的最大深度的方式来解决这个问题。及递归调用次数超过一定的深度(如 1000 以后)，我们就报错不再执行。</li>
+</ol>
+<h3 id="警惕重复计算"><a href="#警惕重复计算" class="headerlink" title="警惕重复计算"></a>警惕重复计算</h3><p>如果将上述代码的递归过程分解一下的话，不难发现有重复计算的问题。<br>如当 n 为 5 时，f(5) = f(4) + f(3), 当 n 为 4 时， f(4) = f(3) + f(2),这里的 f(3)就重复计算了。<br>还是斐波那契数列求 n 项的值，为了避免重复计算，可以考虑将前两位数作为参数避免重复计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fib(n) &#123;</span><br><span class="line">  function fun (n, fir, next) &#123;</span><br><span class="line">    if(n === 1) return fir</span><br><span class="line">    if(n === 2) return next</span><br><span class="line"></span><br><span class="line">    return fun(n-1, next, next + fir)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return fun(n, 1, 1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h4><p>冒泡排序只会操作两个相邻的数据。每次冒泡排序都会对两个相邻的元素进行比较，看是否满足大小关系，如果不满足就让他俩互换，一次冒泡会至少让一个元素移动到他应该在的位置，重复 n 次就完成了 n 个数据的排序工作。</p>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>最好时间复杂度 O(n)<br>最坏时间复杂度 O(n²)<br>平均时间复杂度 O(n²)</p>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function bubbling(arr) &#123;</span><br><span class="line">  let len = arr.length; // 3</span><br><span class="line"></span><br><span class="line">  if(len &lt;=1 ) return</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    let bool = false // 用于控制结束循环</span><br><span class="line"></span><br><span class="line">    for(let j = 0; j &lt; len - i - 1; j++) &#123;</span><br><span class="line">      if(arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">        let temp = arr[j] // 6</span><br><span class="line">        let next = arr[j + 1]  // 3</span><br><span class="line">        arr[j + 1] = temp // arr[1] = 6</span><br><span class="line">        arr[j] = next // arr[0] = 3</span><br><span class="line"></span><br><span class="line">        bool = true</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(!bool) break</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h4><p>首先，我们将数组中的数据分为两个区间，已排序区间和未排序区间。初始已排序区间只有一个元素，通常是数据的第一个元素。插入算法的核心思想就是取未排序区间中的数据，在已排序区间找到合适的位置将其插入，并保证已排序区间一直有序。重复这个过程，直到未排序区间数据为空，结束排序。</p>
+<h4 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>最好时间复杂度 O(n)<br>最坏时间复杂度 O(n²)<br>平均时间复杂度 O(n²)</p>
+<h4 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function insertSort(arr) &#123;</span><br><span class="line">  let len = arr.length</span><br><span class="line"></span><br><span class="line">  if(len &lt;= 1) return arr</span><br><span class="line"></span><br><span class="line">  for(let i = 1; i &lt; len; i++) &#123;</span><br><span class="line"></span><br><span class="line">    let j = i - 1</span><br><span class="line">    let val = arr[i] // 3</span><br><span class="line"></span><br><span class="line">    for(; j &gt;= 0; j--) &#123;</span><br><span class="line">      if(arr[j] &gt; val) &#123;</span><br><span class="line">        arr[j + 1] = arr[j] // 数据移动</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        break</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    arr[j + 1] = val // 插入数据</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return arr</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h4><p>选择排序的思路与插入排序的方法有些类似，也分为已排序区和未排序区。但是选择排序每次会在未排序区选择一个 最小值插入到已排序区末尾。</p>
+<h4 id="时间复杂度-2"><a href="#时间复杂度-2" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>最好时间复杂度 O(n)<br>最坏时间复杂度 O(n²)<br>平均时间复杂度 O(n²)</p>
+<h4 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function selectSort(arr) &#123;</span><br><span class="line">  let  len = arr.length</span><br><span class="line">  if(len &lt;= 1) return arr</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; len - 1; i++) &#123;</span><br><span class="line">    let minIndex = i;</span><br><span class="line">    let minVal</span><br><span class="line"></span><br><span class="line">    for(let j = i + 1; j &lt; len; j++) &#123;</span><br><span class="line">      let currMinVal  =  arr[minIndex]</span><br><span class="line">      let currEachVal = arr[j]</span><br><span class="line">      if(currEachVal &lt; currMinVal) &#123;</span><br><span class="line">        minIndex = j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minVal = arr[minIndex]</span><br><span class="line">    arr[minIndex] = arr[i]</span><br><span class="line">    arr[i] = minVal</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return arr</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h4 id="排序原理"><a href="#排序原理" class="headerlink" title="排序原理"></a>排序原理</h4><ol>
+<li>尽可能的将一组元素拆分成两个元素相等的子组(若无法相等向下取整保留前多后少)，并对每一个子组继续拆分，直到拆分后的每个子组中的元素个数为 1 为止。</li>
+<li>将相邻的两个子组归并成一个有序的大组。</li>
+<li>重复上述步骤直到归并成一个数组为止。</li>
+</ol>
+<h4 id="时间复杂度-3"><a href="#时间复杂度-3" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>最好时间复杂度 O(nlogn)<br>最坏时间复杂度 O(nlogn)<br>平均时间复杂度 O(nlogn)</p>
+<h4 id="代码示例-3"><a href="#代码示例-3" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">function mergeSort(arr) &#123;</span><br><span class="line">  let len = arr.length</span><br><span class="line">  if(len &lt;= 1)  return arr</span><br><span class="line"></span><br><span class="line">  let midIndex = Math.floor(len / 2) // 向下取整。如数据有5条，分割成 2, 3</span><br><span class="line"></span><br><span class="line">  let leftArr = arr.slice(0, midIndex)</span><br><span class="line">  let rightArr = arr.slice(midIndex)</span><br><span class="line"></span><br><span class="line">  return merge(mergeSort(leftArr),mergeSort(rightArr))</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function merge(left, right) &#123;</span><br><span class="line">  let arr = []</span><br><span class="line">  let leftIndex = 0</span><br><span class="line">  let rightIndex = 0</span><br><span class="line">  let leftLen = left.length</span><br><span class="line">  let rightLen = right.length</span><br><span class="line"></span><br><span class="line">  while(leftIndex &lt; leftLen &amp;&amp; rightIndex &lt; rightLen) &#123;</span><br><span class="line">    let leftTempVal = left[leftIndex]</span><br><span class="line">    let rightTempVal = right[rightIndex]</span><br><span class="line"></span><br><span class="line">    if(leftTempVal &lt;= rightTempVal) &#123;</span><br><span class="line">      arr.push(leftTempVal)</span><br><span class="line">      leftIndex++</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      arr.push(rightTempVal)</span><br><span class="line">      rightIndex++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  while(leftIndex &lt; leftLen) &#123;</span><br><span class="line">    arr.push(left[leftIndex])</span><br><span class="line">    leftIndex++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  while(rightIndex &lt; rightLen) &#123;</span><br><span class="line">    arr.push(right[rightIndex])</span><br><span class="line">    rightIndex++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  return arr</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><ol>
+<li>在数集中选择一个元素作为基准。</li>
+<li>所有小于基准的元素，都移到基准的左边，大于基准的元素，都挪到右边。</li>
+<li>对基准左右两边的数集，重复 1,2 的步骤，直到所有的子集都只剩一个元素为止</li>
+</ol>
+<h4 id="时间复杂度-4"><a href="#时间复杂度-4" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>最好时间复杂度 O(nlogn)<br>最坏时间复杂度 O(nlogn)<br>平均时间复杂度 O(nlogn)</p>
+<h4 id="代码示例-4"><a href="#代码示例-4" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr) &#123;</span><br><span class="line">  let len = arr.length</span><br><span class="line">  if(len &lt;= 1) &#123;return arr&#125;</span><br><span class="line"></span><br><span class="line">  let baseIndex = Math.floor(len / 2)</span><br><span class="line">  let baseVal = arr.splice(baseIndex, 1)[0]</span><br><span class="line"></span><br><span class="line">  let leftArr = []</span><br><span class="line">  let rightArr = []</span><br><span class="line"></span><br><span class="line">  for(let i  = 0; i &lt; len; i++) &#123;</span><br><span class="line">    if(arr[i] &lt; baseVal) &#123;</span><br><span class="line">      leftArr.push(arr[i])</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      rightArr.push(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return quickSort(leftArr).concat([baseVal], quickSort(rightArr))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><h4 id="核心思想："><a href="#核心思想：" class="headerlink" title="核心思想："></a>核心思想：</h4><p>将要排序的数据，分到几个有序的桶里，每个桶里的数据再单独进行排序。桶内排完序后，再把桶里每个数据按照顺序依次取出，组成的序列就是有序的了。</p>
+<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a>核心思想</h4><p>当要排序的 n 个数据，所处的范围 并不大的时候，如最大值为 k,则把数据划分成 k 个桶，这样桶里的数据都是相同的，相较于桶排序，省去了桶内排序的时间。</p>
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p>####核心思想<br>需要分割出独立的“位”来比较，而且位之间有递进 关系，如果 a 数据的高位比 b 数据的大，那剩下的低位就不用比较了。除此之外，每一位的数据范围不能太大，要可以用线性排序算法来排序，否则，基数排序的时间复杂度就无法做到 O(n) 了。</p>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="核心思想-2"><a href="#核心思想-2" class="headerlink" title="核心思想"></a>核心思想</h3><p>每次都取数据中的中间数来比较大小，从而不断地缩小查找范围，直至找到数据为止。</p>
+<h3 id="时间复杂度-5"><a href="#时间复杂度-5" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>O(logn)</p>
+<h3 id="使用限制"><a href="#使用限制" class="headerlink" title="使用限制"></a>使用限制</h3><ol>
+<li>需要数据为数组类型；</li>
+<li>需要数据为有序数据；</li>
+<li>数据量太小、太大，均不适合使用二分查找。</li>
+</ol>
+<h3 id="代码示例-5"><a href="#代码示例-5" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// 非递归</span><br><span class="line">function basearch(arr, target) &#123;</span><br><span class="line">  let low = 0</span><br><span class="line">  let high = arr.lenth - 1</span><br><span class="line"></span><br><span class="line">  while(low &lt;= high) &#123;</span><br><span class="line">    let mid  = Math.floor((low + high) / 2)</span><br><span class="line"></span><br><span class="line">    if(arr[mid] === target) &#123;</span><br><span class="line">      return mid</span><br><span class="line">    &#125; else if(arr[mid] &lt; target) &#123;</span><br><span class="line">      low = mid + 1</span><br><span class="line">    &#125;  else &#123;</span><br><span class="line">      high = mid - 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 递归</span><br><span class="line">function basearch(arr, target) &#123;</span><br><span class="line">  return recursive(arr, 0, arr.length - 1, target)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function recursive(arr, low, high, target) &#123;</span><br><span class="line">  if(low &gt; high) return false</span><br><span class="line"></span><br><span class="line">  let mid = Math.floor((low + high) /2)</span><br><span class="line"></span><br><span class="line">  if(arr[mid] ===  target)   &#123;</span><br><span class="line">    return mid</span><br><span class="line">  &#125; else if(arr[mid] &lt; target) &#123;</span><br><span class="line">    return recursive(arr, mid + 1, high, target)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return recursive(arr, low, mid - 1, target)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="散列表-Hash-Table"><a href="#散列表-Hash-Table" class="headerlink" title="散列表 Hash Table"></a>散列表 Hash Table</h2><p>散列表用的是数组下标支持随机访问的特性，所以散列表其实是数组的一种扩展，由数组演化而来。</p>
+<p>假如有 50 名学生参加学校运动会，为了方便记录成绩，会在胸前贴上编号，通过编号可以快速的查找到某个学生的成绩。</p>
+<p>参赛学生的编号我们 叫做 key,把参赛编号转化为数组下标的映射方法就叫作散列函数,而散列函数计算得到的值就叫作散列值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 找出两个数组中重复的项</span><br><span class="line"></span><br><span class="line">let firstArr = [1, 2, 3, 4, 5, 6, 7]</span><br><span class="line">let nextArr = [2, 4, 6, 8, 10, 9, 12]</span><br><span class="line">function unque(firstArr, nextArr) &#123;</span><br><span class="line">  let map = &#123;&#125;, retArr = []</span><br><span class="line">  firstArr.forEach(item =&gt; &#123;</span><br><span class="line">    map[item] = true</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  nextArr.forEach(item =&gt; &#123;</span><br><span class="line">    if(map[item]) &#123;</span><br><span class="line">      retArr.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return retArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="释义"><a href="#释义" class="headerlink" title="释义"></a>释义</h3><p><img src="https://Cinaiet.github.io/images/tree-struth.png" alt="树结构"></p>
+<ul>
+<li>节点：树上的每一个元素我们称之为节点；</li>
+<li>父子关系： 用来连接相邻节点之间的关系称之为父子关系；</li>
+<li>高度：节点到叶节点的<strong>最长路径(边数)</strong> 由下往上的度量。图中二图的高度为 3(从零开始)</li>
+<li>深度：根节点到这个节点所经历的<strong>边的个数</strong> 由上往下度量，从 0 开始。</li>
+<li>层数：节点的深度 + 1。及层数的计算是由 1 开始。</li>
+<li>树的高度 = 根节点的高度</li>
+</ul>
+<h3 id="二叉树-Binary-Tree"><a href="#二叉树-Binary-Tree" class="headerlink" title="二叉树 Binary Tree"></a>二叉树 Binary Tree</h3><p>每个节点最多有两个叉，也就是最多两个子节点，分别为<strong>左节点</strong>和<strong>右节点</strong>。不过二叉树也并不要求每个节点都有左右节点，有的只有左节点，有的只有右节点。</p>
+<p><img src="https://Cinaiet.github.io/images/tree-binary.png" alt="二叉树"></p>
+<ul>
+<li>满二叉树： 除了根节点外，每个节点都有左右两个子节点。</li>
+<li>完全二叉树： 最后一层的叶子节点都靠左排列，并且除了最后一层，其它层的节点数都打到了最大。</li>
+</ul>
+<h4 id="二叉树的存储"><a href="#二叉树的存储" class="headerlink" title="二叉树的存储"></a>二叉树的存储</h4><h5 id="链式存储法"><a href="#链式存储法" class="headerlink" title="链式存储法"></a>链式存储法</h5><h5 id="指针-1"><a href="#指针-1" class="headerlink" title="指针"></a>指针</h5><h4 id="时间复杂度-O-n"><a href="#时间复杂度-O-n" class="headerlink" title="时间复杂度 O(n)"></a>时间复杂度 O(n)</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大千世界/" rel="tag"># 大千世界</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/29/web协议详解/" rel="next" title="web协议详解">
+                <i class="fa fa-chevron-left"></i> web协议详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/21/前端梳理/" rel="prev" title="前端梳理">
+                前端梳理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Cinaiet">
+            
+              <p class="site-author-name" itemprop="name">Cinaiet</p>
+              <p class="site-description motion-element" itemprop="description">因为喜欢，所以坚持</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-number">1.</span> <span class="nav-text">复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大-O-复杂度表示法-时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">大 O 复杂度表示法(时间复杂度)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">时间复杂度分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最好、最坏情况时间复杂度"><span class="nav-number">1.1.2.</span> <span class="nav-text">最好、最坏情况时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均情况时间复杂度"><span class="nav-number">1.1.3.</span> <span class="nav-text">平均情况时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均摊时间复杂度"><span class="nav-number">1.1.4.</span> <span class="nav-text">均摊时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间复杂度"><span class="nav-number">1.2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构类型"><span class="nav-number">2.</span> <span class="nav-text">数据结构类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性表"><span class="nav-number">2.1.</span> <span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">2.1.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单链表"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#循环链表"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#双向链表。"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">双向链表。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表与数组的对比"><span class="nav-number">2.1.3.</span> <span class="nav-text">链表与数组的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指针"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">指针</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何优雅的写出链表代码"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">如何优雅的写出链表代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈"><span class="nav-number">2.1.4.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">2.1.5.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.6.</span> <span class="nav-text">散列表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构成递归需要满足的条件"><span class="nav-number">3.1.</span> <span class="nav-text">构成递归需要满足的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何编写递归"><span class="nav-number">3.2.</span> <span class="nav-text">如何编写递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免-OOM-内存溢出"><span class="nav-number">3.3.</span> <span class="nav-text">避免 OOM(内存溢出)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#警惕重复计算"><span class="nav-number">3.4.</span> <span class="nav-text">警惕重复计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">4.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">4.1.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心原理"><span class="nav-number">4.1.1.</span> <span class="nav-text">核心原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度"><span class="nav-number">4.1.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例"><span class="nav-number">4.1.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">4.2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心原理-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">核心原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例-1"><span class="nav-number">4.2.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">4.3.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心原理-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">核心原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例-2"><span class="nav-number">4.3.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">4.4.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排序原理"><span class="nav-number">4.4.1.</span> <span class="nav-text">排序原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-3"><span class="nav-number">4.4.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例-3"><span class="nav-number">4.4.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">4.5.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想"><span class="nav-number">4.5.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-4"><span class="nav-number">4.5.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例-4"><span class="nav-number">4.5.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桶排序"><span class="nav-number">4.6.</span> <span class="nav-text">桶排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想："><span class="nav-number">4.6.1.</span> <span class="nav-text">核心思想：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计数排序"><span class="nav-number">4.7.</span> <span class="nav-text">计数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心思想-1"><span class="nav-number">4.7.1.</span> <span class="nav-text">核心思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基数排序"><span class="nav-number">4.8.</span> <span class="nav-text">基数排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找"><span class="nav-number">5.</span> <span class="nav-text">二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心思想-2"><span class="nav-number">5.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度-5"><span class="nav-number">5.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用限制"><span class="nav-number">5.3.</span> <span class="nav-text">使用限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例-5"><span class="nav-number">5.4.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散列表-Hash-Table"><span class="nav-number">6.</span> <span class="nav-text">散列表 Hash Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树"><span class="nav-number">7.</span> <span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#释义"><span class="nav-number">7.1.</span> <span class="nav-text">释义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树-Binary-Tree"><span class="nav-number">7.2.</span> <span class="nav-text">二叉树 Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树的存储"><span class="nav-number">7.2.1.</span> <span class="nav-text">二叉树的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链式存储法"><span class="nav-number">7.2.1.1.</span> <span class="nav-text">链式存储法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指针-1"><span class="nav-number">7.2.1.2.</span> <span class="nav-text">指针</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-O-n"><span class="nav-number">7.2.2.</span> <span class="nav-text">时间复杂度 O(n)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <adress>个人邮箱: <a href="mailto:crazyguanwei@163.com">crazyguanwei@163.com </a></adress>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cinaiet</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
